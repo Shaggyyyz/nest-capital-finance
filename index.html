@@ -392,38 +392,98 @@
             </div>
         </section>
 
-        <!-- Calculator / CTA Section -->
-        <section class="py-24 bg-white border-b border-gray-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="bg-brand-900 rounded-sm overflow-hidden shadow-2xl flex flex-col md:flex-row reveal">
-                    <div class="md:w-1/2 p-12 flex flex-col justify-center">
-                        <span class="text-accent-400 font-bold uppercase tracking-widest text-xs mb-4">Know Your Numbers</span>
-                        <h2 class="text-3xl md:text-4xl font-serif text-white mb-6">What's your borrowing power?</h2>
-                        <p class="text-brand-100 mb-8 leading-relaxed">
-                            Don't guess when it comes to your future. Use our tools to get an estimate of your repayments and borrowing capacity before you start looking.
-                        </p>
-                        <form onsubmit="event.preventDefault();" class="space-y-6 bg-white/5 p-6 rounded-sm border border-white/10">
-                            <div>
-                                <label class="text-xs uppercase text-brand-100 mb-1 block">Loan Amount</label>
-                                <input type="range" min="100000" max="2000000" step="10000" class="w-full accent-accent-500 cursor-pointer">
-                                <div class="flex justify-between text-white font-mono text-sm mt-1">
-                                    <span>$100k</span>
-                                    <span class="text-accent-400">$750,000</span>
-                                    <span>$2M</span>
-                                </div>
-                            </div>
-                            <button class="w-full bg-accent-500 text-white py-3 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-accent-400 transition">
-                                Calculate Repayments
-                            </button>
-                        </form>
+       <!-- Calculator CTA Section with Working Functionality -->
+<section class="py-24 bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-brand-900 rounded-sm overflow-hidden shadow-2xl flex flex-col md:flex-row reveal">
+            
+            <!-- Left Side: Calculator Form -->
+            <div class="md:w-1/2 p-12 flex flex-col justify-center">
+                <span class="text-accent-400 font-bold uppercase tracking-widest text-xs mb-4">Know Your Numbers</span>
+                <h2 class="text-3xl md:text-4xl font-serif text-white mb-6">What's your borrowing power?</h2>
+                <p class="text-brand-100 mb-8 leading-relaxed">
+                    Don't guess when it comes to your future. Use our tools to get an estimate of your repayments and borrowing capacity before you start looking.
+                </p>
+                
+                <form id="loan-calculator-form" class="space-y-6 bg-white/5 p-6 rounded-sm border border-white/10">
+                    <!-- Loan Amount Slider -->
+                    <div>
+                        <label class="text-xs uppercase text-brand-100 mb-2 block">Loan Amount</label>
+                        <input 
+                            type="range" 
+                            id="loan-amount" 
+                            min="100000" 
+                            max="2000000" 
+                            step="10000" 
+                            value="750000"
+                            class="w-full accent-accent-500 cursor-pointer">
+                        <div class="flex justify-between text-white font-mono text-sm mt-1">
+                            <span>$100k</span>
+                            <span id="loan-amount-display" class="text-accent-400">$750,000</span>
+                            <span>$2M</span>
+                        </div>
                     </div>
-                    <div class="md:w-1/2 relative min-h-[300px]">
-                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Financial Calculator" class="absolute inset-0 w-full h-full object-cover opacity-80">
-                        <div class="absolute inset-0 bg-brand-900/20"></div>
+                    
+                    <!-- Interest Rate -->
+                    <div>
+                        <label class="text-xs uppercase text-brand-100 mb-2 block">Interest Rate (% p.a.)</label>
+                        <input 
+                            type="number" 
+                            id="interest-rate" 
+                            min="1" 
+                            max="15" 
+                            step="0.1" 
+                            value="6.5"
+                            style="color: #606060; background: white;"
+                            class="w-full border border-gray-300 py-2 px-3 rounded-sm focus:outline-none focus:border-accent-400">
                     </div>
+                    
+                    <!-- Loan Term -->
+                    <div>
+                        <label class="text-xs uppercase text-brand-100 mb-2 block">Loan Term (Years)</label>
+                        <select 
+                            id="loan-term"
+                            style="color: #606060; background: white;"
+                            class="w-full border border-gray-300 py-2 px-3 rounded-sm focus:outline-none focus:border-accent-400">
+                            <option value="10">10 years</option>
+                            <option value="15">15 years</option>
+                            <option value="20">20 years</option>
+                            <option value="25">25 years</option>
+                            <option value="30" selected>30 years</option>
+                        </select>
+                    </div>
+                    
+                    <button 
+                        type="button"
+                        onclick="calculateRepayment()"
+                        class="w-full bg-accent-500 text-white py-3 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-accent-400 transition">
+                        Calculate Repayments
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Right Side: Image with Result Overlay -->
+            <div class="md:w-1/2 relative min-h-[300px] md:min-h-[500px]">
+                <img 
+                    src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                    alt="Financial Calculator" 
+                    class="absolute inset-0 w-full h-full object-cover opacity-80">
+                <div class="absolute inset-0 bg-brand-900/20"></div>
+                
+                <!-- Result Display in Center -->
+                <div id="repayment-result" class="absolute inset-0 flex flex-col items-center justify-center text-white p-8 text-center">
+                    <p class="text-sm uppercase tracking-widest text-white/80 mb-2">Monthly Repayment</p>
+                    <p id="monthly-payment" class="text-5xl md:text-6xl font-serif font-bold text-white mb-4" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">
+                        $4,772
+                    </p>
+                    <p class="text-xs uppercase tracking-wider text-white/70">Principal & Interest</p>
                 </div>
             </div>
-        </section>
+            
+        </div>
+    </div>
+</section>
+
         
     <!-- === SERVICES VIEW === -->
     <div id="view-services" class="view-section pt-24">
@@ -1114,6 +1174,55 @@ document.getElementById('contact-form').addEventListener('submit', async functio
         submitBtn.textContent = 'SEND ENQUIRY';
         submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
     }
+});
+// --- LOAN REPAYMENT CALCULATOR ---
+
+// Update loan amount display when slider moves
+document.getElementById('loan-amount').addEventListener('input', function() {
+    const amount = parseInt(this.value);
+    document.getElementById('loan-amount-display').textContent = 
+        '$' + amount.toLocaleString('en-AU');
+});
+
+// Calculate Monthly Repayment Function
+function calculateRepayment() {
+    // Get input values
+    const loanAmount = parseInt(document.getElementById('loan-amount').value);
+    const interestRate = parseFloat(document.getElementById('interest-rate').value);
+    const loanTerm = parseInt(document.getElementById('loan-term').value);
+    
+    // Validate inputs
+    if (!loanAmount || !interestRate || !loanTerm) {
+        alert('Please fill in all fields');
+        return;
+    }
+    
+    // Calculate using standard mortgage formula [web:201][web:206][web:208]
+    // M = P * [r * (1+r)^n] / [(1+r)^n - 1]
+    
+    const monthlyRate = (interestRate / 100) / 12; // Convert annual % to monthly decimal
+    const numberOfPayments = loanTerm * 12; // Convert years to months
+    
+    // Calculate monthly payment
+    const monthlyPayment = loanAmount * 
+        (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
+        (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+    
+    // Display result
+    document.getElementById('monthly-payment').textContent = 
+        '$' + monthlyPayment.toFixed(0).toLocaleString('en-AU');
+    
+    // Optional: Add animation
+    const resultDiv = document.getElementById('monthly-payment');
+    resultDiv.style.transform = 'scale(1.1)';
+    setTimeout(() => {
+        resultDiv.style.transform = 'scale(1)';
+    }, 300);
+}
+
+// Calculate on page load
+window.addEventListener('load', function() {
+    calculateRepayment();
 });
 
     </script>
