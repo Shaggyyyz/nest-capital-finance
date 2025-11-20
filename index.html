@@ -103,7 +103,7 @@
             transform: translateY(0);
         }
 
-        /* Navigation */
+        /* Navigation - Updated for white hover underline */
         .nav-link::after {
             content: '';
             position: absolute;
@@ -111,7 +111,7 @@
             height: 1px;
             bottom: -4px;
             left: 0;
-            background-color: #c5a028;
+            background-color: white;
             transition: width 0.3s ease;
         }
         .nav-link:hover::after { width: 100%; }
@@ -141,8 +141,8 @@
 </head>
 <body class="bg-brand-50 text-gray-800 font-sans antialiased overflow-x-hidden">
 
-    <!-- Navigation -->
-   <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-md border-b" style="border-bottom-color: #606060;">
+    <!-- Navigation - UPDATED WITH GRAY BACKGROUND -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 border-b" style="background-color: #606060; border-bottom-color: #606060;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-24">
                 <!-- YOUR LOGO -->
@@ -152,17 +152,20 @@
                          class="h-16 w-auto transition-transform duration-500 group-hover:scale-105">
                 </a>
 
+                <!-- UPDATED NAVIGATION WITH WHITE TEXT -->
                 <nav class="hidden md:flex space-x-10 items-center">
-                    <a href="javascript:navigateTo('home')" class="nav-link text-brand-900 font-medium text-sm uppercase tracking-widest relative">Home</a>
-                    <a href="javascript:navigateTo('services')" class="nav-link text-brand-900 font-medium text-sm uppercase tracking-widest relative">Services</a>
-                    <a href="javascript:navigateTo('resources')" class="nav-link text-brand-900 font-medium text-sm uppercase tracking-widest relative">Resources</a>
-                    <a href="javascript:navigateTo('articles')" class="nav-link text-brand-900 font-medium text-sm uppercase tracking-widest relative">Articles</a>
-                    <a href="javascript:navigateTo('about')" class="nav-link text-brand-900 font-medium text-sm uppercase tracking-widest relative">About</a>
-                    <a href="#contact" class="nav-link text-brand-900 font-medium text-sm uppercase tracking-widest relative">Contact</a>
-                    <a href="#contact" class="bg-brand-900 text-white px-8 py-3 rounded-sm font-medium text-xs uppercase tracking-widest hover:bg-accent-500 transition-colors duration-300 shadow-lg">Book Consultation</a>
+                    <a href="javascript:navigateTo('home')" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Home</a>
+                    <a href="javascript:navigateTo('services')" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Services</a>
+                    <a href="javascript:navigateTo('resources')" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Resources</a>
+                    <a href="javascript:navigateTo('articles')" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Articles</a>
+                    <a href="javascript:navigateTo('about')" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">About</a>
+                    <a href="#contact" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Contact</a>
+                    <!-- WHITE BUTTON -->
+                    <a href="#contact" class="bg-white text-brand-900 px-8 py-3 rounded-sm font-medium text-xs uppercase tracking-widest hover:bg-gray-100 transition-colors duration-300 shadow-lg">Book Consultation</a>
                 </nav>
 
-                <button id="mobile-menu-btn" class="md:hidden text-brand-900 focus:outline-none">
+                <!-- WHITE MOBILE MENU ICON -->
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
                     <i data-lucide="menu" class="w-8 h-8"></i>
                 </button>
             </div>
@@ -243,7 +246,6 @@
                 <div class="w-[1px] h-12 bg-white/50 mx-auto"></div>
             </div>
         </section>
-
         <!-- Introduction -->
         <section class="py-24 bg-white">
             <div class="max-w-4xl mx-auto px-4 text-center">
@@ -884,7 +886,6 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
-                    <!-- YOUR LOGO IN FOOTER -->
                     <img src="https://shaggyyyz.github.io/nest-capital-finance/logo.png" 
                          alt="Nest Capital Finance" 
                          class="h-12 w-auto mb-4">
@@ -990,16 +991,13 @@
         mobileBtn.addEventListener('click', toggleMenu);
         closeBtn.addEventListener('click', toggleMenu);
 
-        // Navbar Scroll
+        // Navbar Scroll - UPDATED TO KEEP GRAY
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 navbar.classList.add('shadow-lg');
-                navbar.classList.remove('bg-white/80');
-                navbar.classList.add('bg-white/95');
             } else {
-                navbar.classList.remove('shadow-lg', 'bg-white/95');
-                navbar.classList.add('bg-white/80');
+                navbar.classList.remove('shadow-lg');
             }
         });
 
