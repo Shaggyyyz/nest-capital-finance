@@ -145,14 +145,11 @@
     <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-24">
+                <!-- YOUR LOGO -->
                 <a href="javascript:navigateTo('home')" class="flex items-center gap-3 group">
-                    <div class="w-10 h-10 bg-brand-900 rounded-full flex items-center justify-center transition-transform duration-500 group-hover:rotate-180">
-                        <i data-lucide="bird" class="text-accent-400 w-6 h-6"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="font-serif text-xl font-bold text-brand-900 leading-none tracking-tight">Nest Capital</span>
-                        <span class="text-[10px] uppercase tracking-[0.2em] text-brand-600 mt-1">Finance</span>
-                    </div>
+                    <img src="https://shaggyyyz.github.io/nest-capital-finance/logo.png" 
+                         alt="Nest Capital Finance" 
+                         class="h-16 w-auto transition-transform duration-500 group-hover:scale-105">
                 </a>
 
                 <nav class="hidden md:flex space-x-10 items-center">
@@ -887,12 +884,10 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-accent-400 rounded-full flex items-center justify-center">
-                            <i data-lucide="bird" class="text-brand-900 w-6 h-6"></i>
-                        </div>
-                        <span class="font-serif text-xl font-bold">Nest Capital</span>
-                    </div>
+                    <!-- YOUR LOGO IN FOOTER -->
+                    <img src="https://shaggyyyz.github.io/nest-capital-finance/logo.png" 
+                         alt="Nest Capital Finance" 
+                         class="h-12 w-auto mb-4">
                     <p class="text-sm text-gray-400">Your financial nest, built on solid ground.</p>
                 </div>
                 <div>
@@ -1193,7 +1188,6 @@
                         </div>
                     `
                 },
-                // Add more articles as needed
             };
             
             if (articles[articleId]) {
