@@ -137,12 +137,23 @@
         .prose h3 { margin-top: 2rem; margin-bottom: 1rem; }
         .prose p { margin-bottom: 1rem; }
         .prose ul { margin-bottom: 1.5rem; }
+
+                /* Navbar Fade Effect */
+        #navbar {
+            background: linear-gradient(to bottom, rgba(96,96,96,0.95) 0%, rgba(96,96,96,0) 100%);
+            border-bottom-color: transparent;
+            transition: background 0.3s ease, border-bottom-color 0.3s ease;
+        }
+        #navbar.scrolled {
+            background: #606060 !important;
+            border-bottom-color: #606060;
+        }
     </style>
 </head>
 <body class="bg-brand-50 text-gray-800 font-sans antialiased overflow-x-hidden">
 
     <!-- Navigation - UPDATED WITH GRAY BACKGROUND -->
-    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 border-b" style="background-color: #606060; border-bottom-color: #606060;">
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 border-b" >
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-24">
                 <!-- YOUR LOGO -->
@@ -997,9 +1008,8 @@
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                navbar.classList.add('shadow-lg');
-            } else {
-                navbar.classList.remove('shadow-lg');
+            navbar.classList.add('scrolled');            } else {
+                navbar.classList.remove('scrolled');
             }
         });
 
