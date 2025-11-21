@@ -21,7 +21,7 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Manrope', 'sans-serif'],
+                        sans: ['FuturaPT', 'Manrope', 'sans-serif'],
                         serif: ['Playfair Display', 'serif'],
                     },
                     colors: {
@@ -53,6 +53,33 @@
     </script>
 
     <style>
+                /* FuturaPT Font Face */
+        @font-face {
+            font-family: 'FuturaPT';
+            src: url('fonts/FuturaPT-Light.woff2') format('woff2'),
+                 url('fonts/FuturaPT-Light.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Apply FuturaPT Light to body and most content */
+        body {
+            font-family: 'FuturaPT', 'Manrope', sans-serif;
+            font-weight: 300;
+        }
+
+        /* Apply to paragraphs, lists, and body text */
+        p, li, span, a, div:not(.logo):not(.icon) {
+            font-family: 'FuturaPT', 'Manrope', sans-serif;
+        }
+
+        /* Keep buttons with medium weight */
+        button, .btn {
+            font-family: 'FuturaPT', 'Manrope', sans-serif;
+            font-weight: 400;
+        }
+
         /* Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
