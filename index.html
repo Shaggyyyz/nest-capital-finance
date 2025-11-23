@@ -1318,6 +1318,11 @@
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
+        // Scroll modal content to top
+        const modalContent = modal.querySelector('.bg-white');
+        if (modalContent) {
+            modalContent.scrollTop = 0;
+        }
                 setTimeout(() => lucide.createIcons(), 100);
             }
         }
