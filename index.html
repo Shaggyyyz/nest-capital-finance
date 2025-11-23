@@ -1319,9 +1319,8 @@
                 modal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
         // Scroll modal content to top
-        const modalContent = modal.querySelector('.bg-white');
-        if (modalContent) {
-            modalContent.scrollTop = 0;
+        // Scroll to top after a brief delay
+                setTimeout(() => modal.scrollTop = 0, 10);
         }
                 setTimeout(() => lucide.createIcons(), 100);
             }
