@@ -6,16 +6,12 @@
     <title>Nest Capital Finance | Mortgage & Property Experts</title>
     <meta name="description" content="Nest Capital Finance - Tailored mortgage solutions for first home buyers, investors, and commercial finance. Expert advice in Melbourne.">
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     
-    <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Custom Config -->
     <script>
         tailwind.config = {
             theme: {
@@ -53,34 +49,28 @@
     </script>
 
     <style>
-                /* FuturaPT Font Face */
+        /* FuturaPT Font Face fallback */
         @font-face {
             font-family: 'FuturaPT';
-            src: url('fonts/FuturaPT-Light.woff2') format('woff2'),
-                 url('fonts/FuturaPT-Light.woff') format('woff');
+            src: local('Arial'); 
             font-weight: 300;
             font-style: normal;
-            font-display: swap;
         }
 
-        /* Apply FuturaPT Light to body and most content */
         body {
             font-family: 'FuturaPT', 'Manrope', sans-serif;
             font-weight: 300;
         }
 
-        /* Apply to paragraphs, lists, and body text */
         p, li, span, a, div:not(.logo):not(.icon) {
             font-family: 'FuturaPT', 'Manrope', sans-serif;
         }
 
-        /* Keep buttons with medium weight */
         button, .btn {
             font-family: 'FuturaPT', 'Manrope', sans-serif;
             font-weight: 400;
         }
 
-        /* Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #1a4036; border-radius: 4px; }
@@ -106,15 +96,21 @@
         }
 
         /* Animations */
+        /* Updated: Default to opacity 1 if JS fails, JS will add 'reveal-hidden' class */
         .reveal {
-            opacity: 0;
-            transform: translateY(40px);
             transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
+        
+        .reveal-hidden {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
+        
         .stagger-delay-1 { transition-delay: 100ms; }
         .stagger-delay-2 { transition-delay: 200ms; }
         .stagger-delay-3 { transition-delay: 300ms; }
@@ -130,7 +126,7 @@
             transform: translateY(0);
         }
 
-        /* Navigation - Updated for white hover underline */
+        .nav-link { cursor: pointer; }
         .nav-link::after {
             content: '';
             position: absolute;
@@ -160,12 +156,10 @@
         .img-zoom-container img { transition: transform 0.7s ease; }
         .img-zoom-container:hover img { transform: scale(1.05); }
         
-        /* Article Modal */
         .prose h3 { margin-top: 2rem; margin-bottom: 1rem; }
         .prose p { margin-bottom: 1rem; }
         .prose ul { margin-bottom: 1.5rem; }
 
-                /* Navbar Fade Effect */
         #navbar {
             background: linear-gradient(to bottom, rgba(96,96,96,0.95) 0%, rgba(96,96,96,0) 100%);
             border-bottom-color: transparent;
@@ -179,30 +173,25 @@
 </head>
 <body class="bg-brand-50 text-gray-800 font-sans antialiased overflow-x-hidden">
 
-    <!-- Navigation - UPDATED WITH GRAY BACKGROUND -->
-    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300" >
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-24">
-                <!-- YOUR LOGO -->
-                <a href="javascript:navigateTo('home')" class="flex items-center gap-3 group">
+                <a href="#" onclick="navigateTo('home'); return false;" class="flex items-center gap-3 group">
                     <img src="https://shaggyyyz.github.io/nest-capital-finance/logo.png" 
                          alt="Nest Capital Finance" 
                          class="h-16 w-auto transition-transform duration-500 group-hover:scale-105">
                 </a>
 
-                <!-- UPDATED NAVIGATION WITH WHITE TEXT -->
                 <nav class="hidden md:flex space-x-10 items-center">
-                    <a href="javascript:navigateTo('home')" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Home</a>
-                    <a href="javascript:navigateTo('services')" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Services</a>
-                    <a href="javascript:navigateTo('resources')" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Resources</a>
-                    <a href="javascript:navigateTo('articles')" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Articles</a>
-                    <a href="javascript:navigateTo('about')" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">About</a>
+                    <a href="#" onclick="navigateTo('home'); return false;" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Home</a>
+                    <a href="#" onclick="navigateTo('services'); return false;" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Services</a>
+                    <a href="#" onclick="navigateTo('resources'); return false;" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Resources</a>
+                    <a href="#" onclick="navigateTo('articles'); return false;" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Articles</a>
+                    <a href="#" onclick="navigateTo('about'); return false;" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">About</a>
                     <a href="#contact" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Contact</a>
-                    <!-- WHITE BUTTON -->
                     <a href="#contact" class="bg-white text-brand-900 px-8 py-3 rounded-sm font-medium text-xs uppercase tracking-widest hover:bg-gray-100 transition-colors duration-300 shadow-lg">Book Consultation</a>
                 </nav>
 
-                <!-- WHITE MOBILE MENU ICON -->
                 <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
                     <i data-lucide="menu" class="w-8 h-8"></i>
                 </button>
@@ -213,19 +202,17 @@
             <button id="close-menu-btn" class="absolute top-8 right-8 text-white">
                 <i data-lucide="x" class="w-8 h-8"></i>
             </button>
-            <a href="javascript:navigateTo('home'); toggleMenu()" class="text-3xl font-serif text-white hover:text-accent-400 transition">Home</a>
-            <a href="javascript:navigateTo('services'); toggleMenu()" class="text-3xl font-serif text-white hover:text-accent-400 transition">Services</a>
-            <a href="javascript:navigateTo('resources'); toggleMenu()" class="text-3xl font-serif text-white hover:text-accent-400 transition">Resources</a>
-            <a href="javascript:navigateTo('articles'); toggleMenu()" class="text-3xl font-serif text-white hover:text-accent-400 transition">Articles</a>
-            <a href="javascript:navigateTo('about'); toggleMenu()" class="text-3xl font-serif text-white hover:text-accent-400 transition">About</a>
+            <a href="#" onclick="navigateTo('home'); toggleMenu(); return false;" class="text-3xl font-serif text-white hover:text-accent-400 transition">Home</a>
+            <a href="#" onclick="navigateTo('services'); toggleMenu(); return false;" class="text-3xl font-serif text-white hover:text-accent-400 transition">Services</a>
+            <a href="#" onclick="navigateTo('resources'); toggleMenu(); return false;" class="text-3xl font-serif text-white hover:text-accent-400 transition">Resources</a>
+            <a href="#" onclick="navigateTo('articles'); toggleMenu(); return false;" class="text-3xl font-serif text-white hover:text-accent-400 transition">Articles</a>
+            <a href="#" onclick="navigateTo('about'); toggleMenu(); return false;" class="text-3xl font-serif text-white hover:text-accent-400 transition">About</a>
             <a href="#contact" onclick="toggleMenu()" class="text-3xl font-serif text-white hover:text-accent-400 transition">Contact</a>
         </div>
     </header>
 
-    <!-- HOME VIEW -->
     <div id="view-home" class="view-section active">
         
-        <!-- Hero -->
         <section id="home" class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
             <div class="absolute inset-0 z-0">
                 <div class="hero-bg-slide active">
@@ -240,10 +227,7 @@
                 <div class="hero-bg-slide">
                     <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80" alt="Interior Design">
                 </div>
-                <div class="hero-bg-slide">
-                    <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80" alt="Investment Property">
-                </div>
-                            <div class="absolute inset-0 z-10 pointer-events-none" style="background: linear-gradient(to bottom, #606060f5 0%, #606060cc 20%, #60606077 50%, #606060cc 80%, #606060f5 100%);"></div>
+                <div class="absolute inset-0 z-10 pointer-events-none" style="background: linear-gradient(to bottom, #606060f5 0%, #606060cc 20%, #60606077 50%, #606060cc 80%, #606060f5 100%);"></div>
             </div>
 
             <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
@@ -271,12 +255,11 @@
 
                 <p class="text-lg md:text-xl text-white mb-10 max-w-2xl mx-auto font-normal tracking-wide reveal stagger-delay-2 drop-shadow-md">
                     Navigate the complex financial landscape with ease. We provide clarity, confidence, and control for your property journey.
-                    </p>
-
+                </p>
 
                 <div class="flex flex-col sm:flex-row gap-6 justify-center items-center reveal stagger-delay-3">
                     <a href="#contact" class="bg-white text-brand-900 px-10 py-4 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-gray-100 transition shadow-xl transform hover:-translate-y-1">Start Conversation</a>
-                    <a href="javascript:navigateTo('services')" class="text-white border border-white/30 px-10 py-4 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition backdrop-blur-sm">Our Services</a>
+                    <a href="#" onclick="navigateTo('services'); return false;" class="text-white border border-white/30 px-10 py-4 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition backdrop-blur-sm">Our Services</a>
                 </div>
             </div>
 
@@ -286,7 +269,6 @@
             </div>
         </section>
 
-        <!-- Introduction -->
         <section class="py-24 bg-white">
             <div class="max-w-4xl mx-auto px-4 text-center">
                 <p class="text-xl md:text-2xl text-gray-700 leading-relaxed mb-6 reveal">
@@ -298,7 +280,6 @@
             </div>
         </section>
 
-        <!-- Quote -->
         <section class="py-20 bg-brand-900 text-white">
             <div class="max-w-4xl mx-auto px-4 text-center">
                 <blockquote class="font-serif text-3xl md:text-4xl italic leading-snug reveal">
@@ -307,7 +288,6 @@
             </div>
         </section>
 
-        <!-- Services Preview -->
         <section class="py-24 bg-brand-50">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="grid md:grid-cols-3 gap-8">
@@ -317,7 +297,7 @@
                         </div>
                         <h3 class="font-serif text-2xl text-brand-900 mb-4">Home Lending</h3>
                         <p class="text-gray-600 leading-relaxed mb-6">Personalised guidance for first home buyers, next home buyers, and refinancing.</p>
-                        <a href="javascript:navigateTo('services')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">View Details</a>
+                        <a href="#" onclick="navigateTo('services'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">View Details</a>
                     </div>
 
                     <div class="bg-white border border-gray-200 p-8 rounded-sm shadow-sm hover:shadow-xl transition-shadow duration-300 reveal stagger-delay-1">
@@ -326,7 +306,7 @@
                         </div>
                         <h3 class="font-serif text-2xl text-brand-900 mb-4">Investment Loans</h3>
                         <p class="text-gray-600 leading-relaxed mb-6">Tailored support for securing investment loans and growing wealth through property.</p>
-                        <a href="javascript:navigateTo('services')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">View Details</a>
+                        <a href="#" onclick="navigateTo('services'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">View Details</a>
                     </div>
 
                     <div class="bg-white border border-gray-200 p-8 rounded-sm shadow-sm hover:shadow-xl transition-shadow duration-300 reveal stagger-delay-2">
@@ -335,13 +315,12 @@
                         </div>
                         <h3 class="font-serif text-2xl text-brand-900 mb-4">Commercial Finance</h3>
                         <p class="text-gray-600 leading-relaxed mb-6">Solutions for purchasing commercial property, expanding business, or upgrading equipment.</p>
-                        <a href="javascript:navigateTo('services')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">View Details</a>
+                        <a href="#" onclick="navigateTo('services'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">View Details</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Calculator -->
         <section class="py-24 bg-white border-b border-gray-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="bg-brand-900 rounded-sm overflow-hidden shadow-2xl flex flex-col md:flex-row reveal">
@@ -395,7 +374,6 @@
             </div>
         </section>
 
-        <!-- CTA - WHITE BACKGROUND -->
         <section class="py-20 bg-white">
             <div class="max-w-4xl mx-auto px-4 text-center reveal">
                 <h2 class="font-serif text-3xl md:text-4xl mb-6 text-brand-900">Ready to take the next step?</h2>
@@ -403,10 +381,8 @@
                 <a href="#contact" class="inline-block bg-brand-900 text-white px-10 py-4 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-xl">Get in Touch</a>
             </div>
         </section>
-
     </div>
 
-    <!-- SERVICES VIEW -->
     <div id="view-services" class="view-section">
         <section class="pt-32 pb-24 bg-brand-50">
             <div class="max-w-7xl mx-auto px-4">
@@ -443,50 +419,10 @@
 
                     <div class="bg-white p-8 rounded-sm shadow-md hover:shadow-xl transition-all duration-300 group">
                         <div class="w-12 h-12 bg-brand-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-900 transition-colors">
-                            <i data-lucide="refresh-cw" class="w-6 h-6 text-brand-800 group-hover:text-white transition-colors"></i>
-                        </div>
-                        <h3 class="text-xl font-serif text-brand-900 mb-3">Refinancing</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Rates change. Ensure you aren't paying loyalty tax to your bank. We conduct free health checks to lower your repayments.</p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center text-xs text-gray-500"><i data-lucide="check" class="w-3 h-3 text-accent-500 mr-2"></i>Lower Interest Rates</li>
-                            <li class="flex items-center text-xs text-gray-500"><i data-lucide="check" class="w-3 h-3 text-accent-500 mr-2"></i>Debt Consolidation</li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-sm shadow-md hover:shadow-xl transition-all duration-300 group">
-                        <div class="w-12 h-12 bg-brand-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-900 transition-colors">
-                            <i data-lucide="building-2" class="w-6 h-6 text-brand-800 group-hover:text-white transition-colors"></i>
+                            <i data-lucide="briefcase" class="w-6 h-6 text-brand-800 group-hover:text-white transition-colors"></i>
                         </div>
                         <h3 class="text-xl font-serif text-brand-900 mb-3">Commercial Finance</h3>
                         <p class="text-gray-600 text-sm leading-relaxed mb-4">Buying your own office, warehouse, or retail space? We navigate commercial lending policies to get you the capital you need.</p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center text-xs text-gray-500"><i data-lucide="check" class="w-3 h-3 text-accent-500 mr-2"></i>Commercial Property</li>
-                            <li class="flex items-center text-xs text-gray-500"><i data-lucide="check" class="w-3 h-3 text-accent-500 mr-2"></i>Business Loans</li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-sm shadow-md hover:shadow-xl transition-all duration-300 group">
-                        <div class="w-12 h-12 bg-brand-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-900 transition-colors">
-                            <i data-lucide="piggy-bank" class="w-6 h-6 text-brand-800 group-hover:text-white transition-colors"></i>
-                        </div>
-                        <h3 class="text-xl font-serif text-brand-900 mb-3">SMSF Lending</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Take control of your superannuation by purchasing residential or commercial property through your Self Managed Super Fund.</p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center text-xs text-gray-500"><i data-lucide="check" class="w-3 h-3 text-accent-500 mr-2"></i>LRBA Structures</li>
-                            <li class="flex items-center text-xs text-gray-500"><i data-lucide="check" class="w-3 h-3 text-accent-500 mr-2"></i>Commercial & Residential</li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-sm shadow-md hover:shadow-xl transition-all duration-300 group">
-                        <div class="w-12 h-12 bg-brand-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-900 transition-colors">
-                            <i data-lucide="car" class="w-6 h-6 text-brand-800 group-hover:text-white transition-colors"></i>
-                        </div>
-                        <h3 class="text-xl font-serif text-brand-900 mb-3">Asset Finance</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Need a new car, truck, or specialized equipment for your business? We provide competitive rates for asset finance.</p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center text-xs text-gray-500"><i data-lucide="check" class="w-3 h-3 text-accent-500 mr-2"></i>Vehicle Finance</li>
-                            <li class="flex items-center text-xs text-gray-500"><i data-lucide="check" class="w-3 h-3 text-accent-500 mr-2"></i>Equipment Leasing</li>
-                        </ul>
                     </div>
                 </div>
 
@@ -499,7 +435,6 @@
         </section>
     </div>
 
-    <!-- RESOURCES VIEW -->
     <div id="view-resources" class="view-section">
         <section class="pt-32 pb-24 bg-white">
             <div class="max-w-7xl mx-auto px-4">
@@ -513,330 +448,73 @@
                         <i data-lucide="book-open" class="text-brand-600 w-10 h-10 mb-4"></i>
                         <h3 class="font-serif text-2xl text-brand-900 mb-3">Articles & Guides</h3>
                         <p class="text-gray-600 mb-6">Expert insights, market analysis, and comprehensive guides to help you navigate your property journey.</p>
-                        <a href="javascript:navigateTo('articles')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Browse Articles →</a>
+                        <a href="#" onclick="navigateTo('articles'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Browse Articles →</a>
                     </div>
-
+                    
                     <div class="bg-white border border-gray-200 p-8 rounded-sm hover:shadow-lg transition reveal stagger-delay-1">
                         <i data-lucide="calculator" class="text-brand-600 w-10 h-10 mb-4"></i>
                         <h3 class="font-serif text-2xl text-brand-900 mb-3">Financial Calculators</h3>
                         <p class="text-gray-600 mb-6">Estimate repayments, borrowing capacity, and stamp duty costs with our easy-to-use calculators.</p>
-                        <a href="javascript:navigateTo('home')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Use Calculators →</a>
-                    </div>
-
-                    <div class="bg-white border border-gray-200 p-8 rounded-sm hover:shadow-lg transition reveal stagger-delay-2">
-                        <i data-lucide="video" class="text-brand-600 w-10 h-10 mb-4"></i>
-                        <h3 class="font-serif text-2xl text-brand-900 mb-3">Video Library</h3>
-                        <p class="text-gray-600 mb-6">Watch our educational videos covering everything from first home buyers to investment strategies.</p>
-                        <a href="#contact" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Watch Videos →</a>
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-lg transition reveal">
-                        <div class="img-zoom-container h-56 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="First Home Buyer Guide" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-8">
-                            <span class="text-xs uppercase tracking-widest text-brand-600 font-semibold">Guide</span>
-                            <h3 class="font-serif text-2xl text-brand-900 mt-2 mb-3">First Home Buyer's Guide</h3>
-                            <p class="text-gray-600 mb-6">A step-by-step roadmap to buying your first property in Melbourne.</p>
-                            <a href="javascript:navigateTo('articles')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Read Guide →</a>
-                        </div>
-                    </div>
-
-                    <div class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-lg transition reveal stagger-delay-1">
-                        <div class="img-zoom-container h-56 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Investment Strategy" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-8">
-                            <span class="text-xs uppercase tracking-widest text-brand-600 font-semibold">Guide</span>
-                            <h3 class="font-serif text-2xl text-brand-900 mt-2 mb-3">Investment Property Strategy</h3>
-                            <p class="text-gray-600 mb-6">Maximize returns and minimize tax with our comprehensive investment guide.</p>
-                            <a href="javascript:navigateTo('articles')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Read Guide →</a>
-                        </div>
+                        <a href="#" onclick="navigateTo('home'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Use Calculators →</a>
                     </div>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- ARTICLES VIEW -->
     <div id="view-articles" class="view-section">
         <section class="pt-32 pb-24 bg-white">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-16 reveal">
                     <h1 class="font-serif text-5xl md:text-6xl text-brand-900 mb-6">Latest Articles & Insights</h1>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Stay informed with our expert guides, market insights, and property finance strategies.</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                    
-                    <!-- Article 1 -->
                     <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal">
                         <div class="img-zoom-container h-56 bg-gray-200">
                             <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="First Home Buyer's Guide" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Guide</span>
-                                <span class="text-xs text-gray-400">•</span>
-                                <span class="text-xs text-gray-500">15 Nov 2025</span>
-                            </div>
-                            <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-1')">
-                                First Home Buyer's Complete Guide 2025
-                            </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                                Everything you need to know about buying your first property in Australia, from saving your deposit to settlement day.
-                            </p>
-                            <button onclick="openArticle('article-1')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">
-                                Read Article 
-                                <i data-lucide="arrow-right" class="w-3 h-3"></i>
-                            </button>
+                            <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-1')">First Home Buyer's Guide</h3>
+                            <button onclick="openArticle('article-1')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">Read Article <i data-lucide="arrow-right" class="w-3 h-3"></i></button>
                         </div>
                     </article>
-
-                    <!-- Article 2 -->
-                    <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal stagger-delay-1">
+                    
+                     <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal">
                         <div class="img-zoom-container h-56 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Investment Strategy" class="w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Refinancing" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Strategy</span>
-                                <span class="text-xs text-gray-400">•</span>
-                                <span class="text-xs text-gray-500">10 Nov 2025</span>
-                            </div>
-                            <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-2')">
-                                Building Your Investment Property Portfolio
-                            </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                                Strategic approaches to growing wealth through property investment, including tax benefits and portfolio structuring.
-                            </p>
-                            <button onclick="openArticle('article-2')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">
-                                Read Article 
-                                <i data-lucide="arrow-right" class="w-3 h-3"></i>
-                            </button>
+                            <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-3')">When Should You Refinance?</h3>
+                            <button onclick="openArticle('article-3')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">Read Article <i data-lucide="arrow-right" class="w-3 h-3"></i></button>
                         </div>
                     </article>
-
-                    <!-- Article 3 -->
-                    <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal stagger-delay-2">
-                        <div class="img-zoom-container h-56 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Refinancing Guide" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Analysis</span>
-                                <span class="text-xs text-gray-400">•</span>
-                                <span class="text-xs text-gray-500">5 Nov 2025</span>
-                            </div>
-                            <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-3')">
-                                When Should You Refinance Your Home Loan?
-                            </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                                Learn the key indicators that it's time to refinance and how much you could save on your mortgage repayments.
-                            </p>
-                            <button onclick="openArticle('article-3')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">
-                                Read Article 
-                                <i data-lucide="arrow-right" class="w-3 h-3"></i>
-                            </button>
-                        </div>
-                    </article>
-
-                    <!-- Article 4 -->
-                    <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal">
-                        <div class="img-zoom-container h-56 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Commercial Finance" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Business</span>
-                                <span class="text-xs text-gray-400">•</span>
-                                <span class="text-xs text-gray-500">1 Nov 2025</span>
-                            </div>
-                            <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-4')">
-                                Commercial Property Finance Explained
-                            </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                                Understanding the differences between residential and commercial lending, and how to finance your business property.
-                            </p>
-                            <button onclick="openArticle('article-4')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">
-                                Read Article 
-                                <i data-lucide="arrow-right" class="w-3 h-3"></i>
-                            </button>
-                        </div>
-                    </article>
-
-                    <!-- Article 5 -->
-                    <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal stagger-delay-1">
-                        <div class="img-zoom-container h-56 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Market Update" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Market Update</span>
-                                <span class="text-xs text-gray-400">•</span>
-                                <span class="text-xs text-gray-500">28 Oct 2025</span>
-                            </div>
-                            <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-5')">
-                                Melbourne Property Market Trends Q4 2025
-                            </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                                Analysis of Melbourne's property market performance, interest rate movements, and what to expect in 2026.
-                            </p>
-                            <button onclick="openArticle('article-5')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">
-                                Read Article 
-                                <i data-lucide="arrow-right" class="w-3 h-3"></i>
-                            </button>
-                        </div>
-                    </article>
-
-                    <!-- Article 6 -->
-                    <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal stagger-delay-2">
-                        <div class="img-zoom-container h-56 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Debt Recycling" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Tax Strategy</span>
-                                <span class="text-xs text-gray-400">•</span>
-                                <span class="text-xs text-gray-500">20 Oct 2025</span>
-                            </div>
-                            <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-6')">
-                                Debt Recycling: Turn Non-Deductible Debt Into Tax Benefits
-                            </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                                Learn how to transform your home loan into a tax-deductible investment loan while maintaining the same debt level.
-                            </p>
-                            <button onclick="openArticle('article-6')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">
-                                Read Article 
-                                <i data-lucide="arrow-right" class="w-3 h-3"></i>
-                            </button>
-                        </div>
-                    </article>
-
-                </div>
-
-                <!-- Newsletter -->
-                <div class="bg-gradient-to-r from-brand-900 to-brand-700 rounded-sm p-10 text-center text-white reveal">
-                    <i data-lucide="mail" class="w-12 h-12 text-accent-400 mx-auto mb-4"></i>
-                    <h2 class="text-2xl font-serif mb-4">Stay Updated</h2>
-                    <p class="text-brand-100 mb-8 max-w-xl mx-auto">Subscribe to our newsletter for the latest property finance insights, market updates, and exclusive tips.</p>
-                    <a href="#contact" class="bg-white text-brand-900 px-8 py-3 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-accent-400 hover:text-white transition-colors">Subscribe Now</a>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- ABOUT VIEW -->
     <div id="view-about" class="view-section">
         <section class="pt-32 pb-24 bg-white">
             <div class="max-w-5xl mx-auto px-4">
                 <div class="text-center mb-20 reveal">
                     <h1 class="font-serif text-5xl md:text-6xl text-brand-900 mb-8">Our Philosophy</h1>
-                    <p class="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto mb-6">
-                        At <strong class="text-brand-900">Nest Capital</strong>, we believe that financial freedom requires more than just a loan; it requires an entourage. Our philosophy is simple:
-                    </p>
                     <p class="font-serif text-3xl text-brand-900 italic">One team, one briefing.</p>
                 </div>
-
                 <div class="prose prose-lg max-w-none mb-20 reveal">
                     <p class="text-gray-700 leading-relaxed mb-6">
                         We don't treat you like an anonymous bank application. We treat you as a partner. By surrounding you with experts in finance, property advocacy, and wealth strategy, we level the playing field against the banks and the property market.
                     </p>
-                    <p class="text-gray-700 leading-relaxed">
-                        With access to over <strong class="text-brand-900">60 lenders</strong> and a team that has settled over <strong class="text-brand-900">$700M in loans</strong>, we have the scale to get you the best deal and the boutique service to ensure you feel supported every step of the way.
-                    </p>
-                </div>
-
-                <div class="mb-20">
-                    <h2 class="font-serif text-4xl text-brand-900 mb-10 text-center reveal">Our Culture</h2>
-                    <p class="text-center text-lg text-gray-600 mb-12 reveal">
-                        There is no room for mediocrity here. We have built a culture where incredible people can achieve their best work by focusing on the details that others miss.
-                    </p>
-                    <div class="grid md:grid-cols-2 gap-10">
-                        <div class="reveal">
-                            <div class="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center mb-4">
-                                <i data-lucide="heart" class="text-brand-600 w-6 h-6"></i>
-                            </div>
-                            <h3 class="font-serif text-2xl text-brand-900 mb-3">Client-Obsessed</h3>
-                            <p class="text-gray-600">First and foremost, our customers. We are mad for them. Every decision starts with "does this help the client?"</p>
-                        </div>
-
-                        <div class="reveal stagger-delay-1">
-                            <div class="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center mb-4">
-                                <i data-lucide="zap" class="text-brand-600 w-6 h-6"></i>
-                            </div>
-                            <h3 class="font-serif text-2xl text-brand-900 mb-3">Disruptively Different</h3>
-                            <p class="text-gray-600">We don't accept the status quo. We were created to do things differently to the standard brokerage.</p>
-                        </div>
-
-                        <div class="reveal">
-                            <div class="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center mb-4">
-                                <i data-lucide="shield" class="text-brand-600 w-6 h-6"></i>
-                            </div>
-                            <h3 class="font-serif text-2xl text-brand-900 mb-3">Integrity Always</h3>
-                            <p class="text-gray-600">Integrity is second nature. Doing the right thing by our clients and team is the only way we operate.</p>
-                        </div>
-
-                        <div class="reveal stagger-delay-1">
-                            <div class="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center mb-4">
-                                <i data-lucide="trending-up" class="text-brand-600 w-6 h-6"></i>
-                            </div>
-                            <h3 class="font-serif text-2xl text-brand-900 mb-3">Relentlessly Ambitious</h3>
-                            <p class="text-gray-600">No matter how many awards we win, we always strive for more. We are constantly learning and improving.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-brand-50 border border-brand-200 p-10 md:p-14 rounded-sm reveal">
-                    <h2 class="font-serif text-4xl text-brand-900 mb-6 text-center">Community First</h2>
-                    <p class="text-center text-lg text-gray-700 mb-12">
-                        We are deeply connected to the communities we live and work in. For us, success isn't just measured in loans settled, but in the positive impact we can create.
-                    </p>
-
-                    <div class="space-y-8">
-                        <div class="flex items-start gap-6">
-                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="users" class="text-brand-600 w-6 h-6"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-serif text-xl text-brand-900 mb-2">Ladies Lunches</h3>
-                                <p class="text-gray-700">Proud supporters of the Ladies Lunches, raising over $33,000 for vital medical research including women's health and lung health.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-6">
-                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="heart" class="text-brand-600 w-6 h-6"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-serif text-xl text-brand-900 mb-2">The Man Cave</h3>
-                                <p class="text-gray-700">Partnering with The Man Cave to empower boys to become great men through preventative mental health and emotional literacy programs.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-6">
-                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="award" class="text-brand-600 w-6 h-6"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-serif text-xl text-brand-900 mb-2">Local Sports</h3>
-                                <p class="text-gray-700">Sponsoring local legends like the Bears, the Sharks, and Little Athletics. We love seeing our community thrive on the field.</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- CONTACT SECTION -->
     <section id="contact" class="py-24 bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white">
         <div class="max-w-5xl mx-auto px-4">
             <div class="text-center mb-16 reveal">
                 <h2 class="font-serif text-4xl md:text-5xl mb-6">Let's Start Your Journey</h2>
-                <p class="text-lg text-gray-200 max-w-2xl mx-auto">Ready to secure your future? Book a free consultation with our team today. We are based in Melbourne but help clients Australia-wide.</p>
+                <p class="text-lg text-gray-200 max-w-2xl mx-auto">Ready to secure your future? Book a free consultation with our team today.</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-12">
@@ -845,40 +523,25 @@
                         <div class="grid grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs uppercase font-bold text-white mb-2">Name</label>
-                                <input type="text" name="name" required style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm" placeholder="Jane Doe">
+                                <input type="text" name="name" required style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm">
                             </div>
                             <div>
                                 <label class="block text-xs uppercase font-bold text-white mb-2">Phone</label>
-                                <input type="tel" name="phone" required style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm" placeholder="0400 000 000">
+                                <input type="tel" name="phone" required style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm">
                             </div>
                         </div>
                         
                         <div>
                             <label class="block text-xs uppercase font-bold text-white mb-2">Email</label>
-                            <input type="email" name="email" required style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm" placeholder="jane@example.com">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-xs uppercase font-bold text-white mb-2">I'm interested in...</label>
-                            <select name="interest" required style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm">
-                                <option value="">Select an option...</option>
-                                <option>Buying my first home</option>
-                                <option>Refinancing</option>
-                                <option>Investment Property</option>
-                                <option>Commercial Finance</option>
-                                <option>Asset Finance</option>
-                                <option>General Enquiry</option>
-                            </select>
+                            <input type="email" name="email" required style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm">
                         </div>
                         
                         <div>
                             <label class="block text-xs uppercase font-bold text-white mb-2">Message</label>
-                            <textarea name="message" rows="3" required style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm" placeholder="How can we help you?"></textarea>
+                            <textarea name="message" rows="3" required style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm"></textarea>
                         </div>
                         
                         <button type="submit" class="w-full bg-accent-500 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-400 transition shadow-lg">Send Enquiry</button>
-                        
-                        <div id="form-message" class="hidden mt-4"></div>
                     </form>
                 </div>
 
@@ -900,125 +563,80 @@
                                     <a href="mailto:info@nestcapitalfinance.com.au" class="text-lg font-medium hover:text-accent-400 transition">info@nestcapitalfinance.com.au</a>
                                 </div>
                             </div>
-                            <div class="flex items-start gap-4">
-                                <i data-lucide="map-pin" class="w-6 h-6 text-accent-400 flex-shrink-0 mt-1"></i>
-                                <div>
-                                    <p class="text-sm text-gray-300">Visit Us</p>
-                                    <p class="text-lg font-medium">Melbourne, VIC</p>
-                                </div>
-                            </div>
                         </div>
-                    </div>
-
-                    <div class="pt-8 border-t border-white/20">
-                        <h4 class="font-serif text-xl mb-4">Office Hours</h4>
-                        <p class="text-gray-300">Monday - Friday: 9:00 AM - 5:30 PM</p>
-                        <p class="text-gray-300">Saturday: By Appointment</p>
-                        <p class="text-gray-300">Sunday: Closed</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-brand-900 text-white py-12 border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <img src="https://shaggyyyz.github.io/nest-capital-finance/logo.png" 
-                         alt="Nest Capital Finance" 
-                         class="h-12 w-auto mb-4">
-                    <p class="text-sm text-gray-400">Your financial nest, built on solid ground.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4 uppercase tracking-wider text-sm">Services</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="javascript:navigateTo('services')" class="hover:text-accent-400 transition">Home Lending</a></li>
-                        <li><a href="javascript:navigateTo('services')" class="hover:text-accent-400 transition">Investment Loans</a></li>
-                        <li><a href="javascript:navigateTo('services')" class="hover:text-accent-400 transition">Commercial Finance</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4 uppercase tracking-wider text-sm">Resources</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="javascript:navigateTo('resources')" class="hover:text-accent-400 transition">Calculators</a></li>
-                        <li><a href="javascript:navigateTo('articles')" class="hover:text-accent-400 transition">Articles & Guides</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4 uppercase tracking-wider text-sm">Company</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="javascript:navigateTo('about')" class="hover:text-accent-400 transition">About Us</a></li>
-                        <li><a href="#contact" class="hover:text-accent-400 transition">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-white/10 pt-8 text-center text-sm text-gray-400">
-                <p>&copy; 2025 Nest Capital Finance. All rights reserved. | Australian Credit Licence</p>
-            </div>
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm text-gray-400">&copy; 2025 Nest Capital Finance. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Article Modal -->
     <div id="article-modal" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-sm max-w-4xl w-full my-8 relative">
             <button onclick="closeArticle()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition z-10">
                 <i data-lucide="x" class="w-8 h-8"></i>
             </button>
-            
-            <div id="article-content" class="p-8 md:p-12">
-                <!-- Article content loads here -->
-            </div>
+            <div id="article-content" class="p-8 md:p-12"></div>
         </div>
     </div>
 
-    <!-- Scripts -->
     <script>
+        // Init Icons
         lucide.createIcons();
 
-        // Slideshow
+        // Slideshow logic
         let currentSlide = 0;
         const slides = document.querySelectorAll('.hero-bg-slide');
-        const totalSlides = slides.length;
-
+        
         function changeSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % totalSlides;
-            slides[currentSlide].classList.add('active');
+            if(slides.length > 0) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
         }
         setInterval(changeSlide, 6000);
 
-        // Navigation
+        // Navigation Logic
         function navigateTo(viewId, sectionId = null) {
+            // Hide all views
             document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            
+            // Show requested view
             const view = document.getElementById('view-' + viewId);
             if (view) {
                 view.classList.add('active');
+                
+                // Reset scroll to top
+                if (!sectionId) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             } else {
                 console.error('View not found:', viewId);
                 return;
             }
             
+            // Re-initialize animations and icons for the new view
+            setTimeout(() => {
+                initScrollAnimations();
+                lucide.createIcons();
+            }, 50);
+
+            // Handle specific section anchor if provided
             if (sectionId) {
                 setTimeout(() => {
                     const section = document.getElementById(sectionId);
                     if(section) section.scrollIntoView({ behavior: 'smooth' });
                 }, 100);
-            } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-            
-            setTimeout(initScrollAnimations, 100);
-            setTimeout(() => lucide.createIcons(), 150);
         }
 
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-            initScrollAnimations();
-        });
-
-        // Mobile Menu
+        // Mobile Menu Logic
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const closeBtn = document.getElementById('close-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -1028,122 +646,48 @@
             document.body.classList.toggle('overflow-hidden');
         }
 
-        mobileBtn.addEventListener('click', toggleMenu);
-        closeBtn.addEventListener('click', toggleMenu);
+        if(mobileBtn) mobileBtn.addEventListener('click', toggleMenu);
+        if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
 
-        // Navbar Scroll - UPDATED TO KEEP GRAY
+        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');            } else {
+                navbar.classList.add('scrolled');
+            } else {
                 navbar.classList.remove('scrolled');
             }
         });
 
-        // Scroll Animations
+        // Animation Logic - UPDATED FOR RELIABILITY
         function initScrollAnimations() {
             const revealElements = document.querySelectorAll('.reveal');
+            
+            // Only add the hidden class if Javascript is actually running
+            revealElements.forEach(el => {
+                if (!el.classList.contains('active')) {
+                    el.classList.add('reveal-hidden');
+                }
+            });
+
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        entry.target.classList.remove('reveal-hidden');
                         entry.target.classList.add('active');
                         revealObserver.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+            }, { threshold: 0.1 });
 
             revealElements.forEach(el => revealObserver.observe(el));
         }
 
-        // Contact Form
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzM5V1rksCGnt3xLXyfSwEIRo-mFieppORTHWYZNQ_9SLlLa259aPvB_ZnOAHyjnLpeMA/exec';
+        // Force loaded state immediately
+        document.body.classList.add('loaded');
+        window.onload = initScrollAnimations;
 
-        document.getElementById('contact-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const form = e.target;
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const messageDiv = document.getElementById('form-message');
-            
-            const formData = {
-                name: form.name.value,
-                phone: form.phone.value,
-                email: form.email.value,
-                interest: form.interest.value,
-                message: form.message.value
-            };
-            
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'SENDING...';
-            submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
-            
-            try {
-                await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
-                
-                messageDiv.innerHTML = `
-                    <div class="bg-green-50 border border-green-200 rounded-sm p-4">
-                        <p class="text-green-800 font-medium">✓ Thank you! Your message has been sent successfully.</p>
-                        <p class="text-green-600 text-sm mt-2">We'll get back to you within 24 hours.</p>
-                    </div>
-                `;
-                messageDiv.classList.remove('hidden');
-                form.reset();
-                
-            } catch (error) {
-                messageDiv.innerHTML = `
-                    <div class="bg-red-50 border border-red-200 rounded-sm p-4">
-                        <p class="text-red-800 font-medium">✗ Oops! Something went wrong.</p>
-                        <p class="text-red-600 text-sm mt-2">Please try again or call us directly.</p>
-                    </div>
-                `;
-                messageDiv.classList.remove('hidden');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'SEND ENQUIRY';
-                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-            }
-        });
-
-        // Calculator
-        document.getElementById('loan-amount').addEventListener('input', function() {
-            const amount = parseInt(this.value);
-            document.getElementById('loan-amount-display').textContent = '$' + amount.toLocaleString('en-AU');
-        });
-
-        function calculateRepayment() {
-            const loanAmount = parseInt(document.getElementById('loan-amount').value);
-            const interestRate = parseFloat(document.getElementById('interest-rate').value);
-            const loanTerm = parseInt(document.getElementById('loan-term').value);
-            
-            if (!loanAmount || !interestRate || !loanTerm) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            const monthlyRate = (interestRate / 100) / 12;
-            const numberOfPayments = loanTerm * 12;
-            
-            const monthlyPayment = loanAmount * 
-                (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
-                (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
-            
-            document.getElementById('monthly-payment').textContent = '$' + monthlyPayment.toFixed(0).toLocaleString('en-AU');
-            
-            const resultDiv = document.getElementById('monthly-payment');
-            resultDiv.style.transform = 'scale(1.1)';
-            setTimeout(() => { resultDiv.style.transform = 'scale(1)'; }, 300);
-        }
-
-        window.addEventListener('load', function() {
-            calculateRepayment();
-        });
-
-        // Article Modal
+        // Article Logic
         function openArticle(articleId) {
             const modal = document.getElementById('article-modal');
             const content = document.getElementById('article-content');
@@ -1152,165 +696,37 @@
                 'article-1': {
                     content: `
                         <h2 class="text-3xl font-serif text-brand-900 mb-4">First Home Buyer's Complete Guide 2025</h2>
-                        <div class="flex items-center gap-4 mb-8 text-sm text-gray-500">
-                            <span class="text-accent-500 font-semibold">GUIDE</span>
-                            <span>•</span>
-                            <span>15 November 2025</span>
-                            <span>•</span>
-                            <span>8 min read</span>
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="First Home Buyer Guide" class="w-full h-64 object-cover rounded-sm mb-8">
-                        
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Home" class="w-full h-64 object-cover rounded-sm mb-8">
                         <div class="prose prose-lg max-w-none">
-                            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                                Buying your first home is one of the most significant financial decisions you'll ever make. This comprehensive guide walks you through every step of the journey.
-                            </p>
-                            
+                            <p class="text-lg text-gray-700 leading-relaxed mb-6">Buying your first home is one of the most significant financial decisions you'll ever make. This comprehensive guide walks you through every step of the journey.</p>
                             <h3 class="text-2xl font-serif text-brand-900 mt-8 mb-4">Step 1: Save Your Deposit</h3>
-                            <p class="text-gray-700 leading-relaxed mb-4">
-                                Most lenders require a minimum deposit of 5-20% of the property's value. The larger your deposit, the more likely you'll avoid Lenders Mortgage Insurance (LMI).
-                            </p>
-                            <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
-                                <li>Aim for at least 20% to avoid LMI</li>
-                                <li>Consider the First Home Super Saver Scheme</li>
-                                <li>Check eligibility for First Home Owner Grants</li>
-                                <li>Factor in additional costs: stamp duty, legal fees, inspections</li>
-                            </ul>
-                            
-                            <h3 class="text-2xl font-serif text-brand-900 mt-8 mb-4">Step 2: Get Pre-Approved</h3>
-                            <p class="text-gray-700 leading-relaxed mb-4">
-                                Before you start house hunting, get pre-approval from a lender. This gives you a clear budget and shows sellers you're a serious buyer.
-                            </p>
-                            
-                            <div class="bg-brand-50 border-l-4 border-brand-600 p-6 my-8">
-                                <p class="text-brand-900 font-semibold mb-2">💡 Pro Tip</p>
-                                <p class="text-gray-700">
-                                    Always get professional advice before signing anything. A good mortgage broker can save you thousands by finding the right loan structure.
-                                </p>
+                            <p class="text-gray-700">Most lenders require a minimum deposit of 5-20% of the property's value.</p>
+                            <div class="mt-8 flex gap-4">
+                                <a href="#contact" onclick="closeArticle()" class="bg-brand-900 text-white px-8 py-3 rounded-sm text-xs font-bold uppercase hover:bg-accent-500 transition">Book Consultation</a>
+                                <button onclick="closeArticle()" class="bg-gray-200 text-gray-800 px-8 py-3 rounded-sm text-xs font-bold uppercase hover:bg-gray-300 transition">Close</button>
                             </div>
-                            
-                            <h3 class="text-2xl font-serif text-brand-900 mt-8 mb-4">Ready to Start Your Journey?</h3>
-                            <p class="text-gray-700 leading-relaxed mb-6">
-                                At Nest Capital Finance, we specialize in helping first home buyers navigate the complex lending landscape.
-                            </p>
-                            
-                            <a href="#contact" onclick="closeArticle()" class="inline-block bg-brand-900 text-white px-8 py-3 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition mt-4">
-                                Book Free Consultation
-                            </a>
-                <button onclick="closeArticle()" class="inline-block bg-gray-500 text-white px-8 py-3 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-gray-600 transition ml-4">
-                    Close
-                </button>
                         </div>
                     `
                 },
-                'article-2': {
+                'article-3': {
                     content: `
-                        <h2 class="text-3xl font-serif text-brand-900 mb-4">Building Your Investment Property Portfolio</h2>
-                        <div class="flex items-center gap-4 mb-8 text-sm text-gray-500">
-                            <span class="text-accent-500 font-semibold">STRATEGY</span>
-                            <span>•</span>
-                            <span>10 November 2025</span>
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Investment Strategy" class="w-full h-64 object-cover rounded-sm mb-8">
-                        
+                        <h2 class="text-3xl font-serif text-brand-900 mb-4">When Should You Refinance?</h2>
+                        <img src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Refinance" class="w-full h-64 object-cover rounded-sm mb-8">
                         <div class="prose prose-lg max-w-none">
-                            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                                Strategic property investment requires careful planning, the right financing structure, and expert guidance.
-                            </p>
-                            
-                            <p class="text-gray-700 leading-relaxed mb-6">
-                                Contact us to discuss your investment goals and create a tailored strategy.
-                            </p>
-                            
-                            <a href="#contact" onclick="closeArticle()" class="inline-block bg-brand-900 text-white px-8 py-3 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition mt-4">
-                                Book Consultation
-                            </a>
-                <button onclick="closeArticle()" class="inline-block bg-gray-500 text-white px-8 py-3 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-gray-600 transition ml-4">
-                    Close
-                </button>
+                            <p class="text-lg text-gray-700 leading-relaxed mb-6">Refinancing your home loan can save you thousands of dollars, but timing is everything.</p>
+                            <h3 class="text-2xl font-serif text-brand-900 mt-8 mb-4">Key Reasons</h3>
+                            <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                                <li>Lower Interest Rates</li>
+                                <li>Better Loan Features</li>
+                                <li>Debt Consolidation</li>
+                            </ul>
+                            <div class="mt-8 flex gap-4">
+                                <a href="#contact" onclick="closeArticle()" class="bg-brand-900 text-white px-8 py-3 rounded-sm text-xs font-bold uppercase hover:bg-accent-500 transition">Book Consultation</a>
+                                <button onclick="closeArticle()" class="bg-gray-200 text-gray-800 px-8 py-3 rounded-sm text-xs font-bold uppercase hover:bg-gray-300 transition">Close</button>
+                            </div>
                         </div>
                     `
-                },
-        'article-3': {
-            content: `
-                <h2 class="text-3xl font-serif text-brand-900 mb-4">When Should You Refinance Your Home Loan?</h2>
-                <div class="flex items-center gap-4 mb-8 text-sm text-gray-500">
-                    <span class="text-accent-500 font-semibold">ANALYSIS</span>
-                    <span>•</span>
-                    <span>5 November 2025</span>
-                    <span>•</span>
-                    <span>7 min read</span>
-                </div>
-                <img src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Refinancing Guide" class="w-full h-64 object-cover rounded-sm mb-8">
-                
-                <div class="prose prose-lg max-w-none">
-                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                        Refinancing your home loan can save you thousands of dollars, but timing is everything. Understanding the key indicators and optimal moments to refinance can make a significant difference to your financial position.
-                    </p>
-                    
-                    <h3 class="text-2xl font-serif text-brand-900 mt-8 mb-4">Key Reasons to Refinance</h3>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        There are several compelling reasons why homeowners choose to refinance their mortgage:
-                    </p>
-                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
-                        <li><strong>Lower Interest Rates:</strong> Even a 0.5% reduction can save thousands over the life of your loan</li>
-                        <li><strong>Better Loan Features:</strong> Access offset accounts, redraw facilities, or split loans</li>
-                        <li><strong>Debt Consolidation:</strong> Combine multiple debts into one lower-rate home loan</li>
-                        <li><strong>Release Equity:</strong> Access equity for renovations, investments, or other purposes</li>
-                        <li><strong>Change Loan Structure:</strong> Switch from variable to fixed, or adjust your loan term</li>
-                    </ul>
-                    
-                    <h3 class="text-2xl font-serif text-brand-900 mt-8 mb-4">The 1% Rule</h3>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        Traditionally, the rule of thumb was to refinance when you could reduce your rate by at least 1%. However, in today's competitive market, even a 0.5% reduction can be worthwhile, especially for larger loan balances.
-                    </p>
-                    
-                    <div class="bg-brand-50 border-l-4 border-brand-600 p-6 my-8">
-                        <p class="text-brand-900 font-semibold mb-2">💡 Example Savings</p>
-                        <p class="text-gray-700">
-                            On a $500,000 loan over 30 years, a 0.5% rate reduction could save you approximately $450 per month and $162,000 over the life of the loan.
-                        </p>
-                    </div>
-                    
-                    <h3 class="text-2xl font-serif text-brand-900 mt-8 mb-4">When to Hold Off</h3>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        Refinancing isn't always the right move. Consider waiting if:
-                    </p>
-                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
-                        <li>You've recently refinanced (within the last 2-3 years)</li>
-                        <li>Your current loan has significant break costs or exit fees</li>
-                        <li>You're planning to sell within the next 1-2 years</li>
-                        <li>Your credit score has declined since your last application</li>
-                        <li>Application and switching costs exceed your potential savings</li>
-                    </ul>
-                    
-                    <h3 class="text-2xl font-serif text-brand-900 mt-8 mb-4">The Refinancing Process</h3>
-                    <p class="text-gray-700 leading-relaxed mb-6">
-                        Understanding the refinancing process helps you prepare and move quickly when the right opportunity arises:
-                    </p>
-                    <ol class="list-decimal list-inside text-gray-700 mb-6 space-y-3">
-                        <li><strong>Assess Your Current Situation:</strong> Review your existing loan, rate, and features</li>
-                        <li><strong>Compare Options:</strong> Research current rates and loan products across multiple lenders</li>
-                        <li><strong>Calculate Break Costs:</strong> Determine any fees for leaving your current loan</li>
-                        <li><strong>Gather Documentation:</strong> Prepare payslips, tax returns, and property valuation</li>
-                        <li><strong>Submit Application:</strong> Work with a broker to present your application</li>
-                        <li><strong>Settlement:</strong> Complete the switch to your new lender</li>
-                    </ol>
-                    
-                    <h3 class="text-2xl font-serif text-brand-900 mt-8 mb-4">Ready to Explore Refinancing?</h3>
-                    <p class="text-gray-700 leading-relaxed mb-6">
-                        At Nest Capital Finance, we conduct free loan health checks to determine if refinancing could benefit you. We compare rates across our panel of 60+ lenders and handle the entire process on your behalf.
-                    </p>
-                    
-                    <a href="#contact" onclick="closeArticle()" class="inline-block bg-brand-900 text-white px-8 py-3 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition mt-4">
-                        Book Free Consultation
-                    </a>
-                    <button onclick="closeArticle()" class="inline-block bg-gray-500 text-white px-8 py-3 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-gray-600 transition ml-4">
-                        Close
-                    </button>
-                </div>
-            `
-        }
+                }
             };
             
             if (articles[articleId]) {
@@ -1318,11 +734,6 @@
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
-        // Scroll modal content to top
-        // Scroll to top after a brief delay
-                setTimeout(() => modal.scrollTop = 0, 10);
-        }
-                setTimeout(() => lucide.createIcons(), 100);
             }
         }
 
@@ -1333,11 +744,33 @@
             document.body.style.overflow = '';
         }
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeArticle();
-            }
-        });
+        // Calculator Logic
+        function calculateRepayment() {
+            const loanAmount = parseInt(document.getElementById('loan-amount').value);
+            const interestRate = parseFloat(document.getElementById('interest-rate').value);
+            const loanTerm = parseInt(document.getElementById('loan-term').value);
+            
+            if (!loanAmount || !interestRate || !loanTerm) return;
+            
+            const monthlyRate = (interestRate / 100) / 12;
+            const numberOfPayments = loanTerm * 12;
+            
+            const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
+                (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+            
+            document.getElementById('monthly-payment').textContent = '$' + monthlyPayment.toFixed(0).toLocaleString('en-AU');
+        }
+
+        // Init calc listeners
+        const loanInput = document.getElementById('loan-amount');
+        if(loanInput) {
+            loanInput.addEventListener('input', function() {
+                document.getElementById('loan-amount-display').textContent = '$' + parseInt(this.value).toLocaleString('en-AU');
+            });
+            // Initial calc
+            calculateRepayment();
+        }
+
     </script>
 </body>
 </html>
