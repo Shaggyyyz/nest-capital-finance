@@ -22,15 +22,15 @@
                     },
                     colors: {
                         brand: {
-                            900: '#686965',
+                            900: '#686965', // Dark Grey/Olive
                             800: '#686965',
                             700: '#686965',
-                            600: '#337566',
+                            600: '#337566', // Green accent
                             100: '#eff5f4',
                             50: '#f7f9f9',
                         },
                         accent: {
-                            400: '#c5a028',
+                            400: '#c5a028', // Gold
                             500: '#b08d1e',
                         }
                     },
@@ -49,33 +49,23 @@
     </script>
 
     <style>
-        /* FuturaPT Font Face fallback */
+        /* Typography */
         @font-face {
             font-family: 'FuturaPT';
-            src: local('Arial'); 
+            src: local('Arial'); /* Fallback */
             font-weight: 300;
             font-style: normal;
         }
 
-        body {
-            font-family: 'FuturaPT', 'Manrope', sans-serif;
-            font-weight: 300;
-        }
-
-        p, li, span, a, div:not(.logo):not(.icon) {
-            font-family: 'FuturaPT', 'Manrope', sans-serif;
-        }
-
-        button, .btn {
-            font-family: 'FuturaPT', 'Manrope', sans-serif;
-            font-weight: 400;
-        }
-
+        body { font-family: 'FuturaPT', 'Manrope', sans-serif; font-weight: 300; }
+        h1, h2, h3, h4, blockquote { font-family: 'Playfair Display', serif; }
+        
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #1a4036; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #686965; border-radius: 4px; }
 
-        /* Slideshow */
+        /* Slideshow Background */
         .hero-bg-slide {
             position: absolute;
             inset: 0;
@@ -95,37 +85,48 @@
             100% { transform: scale(1.15); }
         }
 
-        /* Animations */
-        /* Updated: Default to opacity 1 if JS fails, JS will add 'reveal-hidden' class */
-        .reveal {
-            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        /* --- TITLE ANIMATION --- */
+        .hero-word-wrapper {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+            margin-bottom: -0.2em; /* Fix alignment */
         }
         
-        .reveal-hidden {
-            opacity: 0;
-            transform: translateY(40px);
-        }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .stagger-delay-1 { transition-delay: 100ms; }
-        .stagger-delay-2 { transition-delay: 200ms; }
-        .stagger-delay-3 { transition-delay: 300ms; }
-
         .hero-word {
             display: inline-block;
             opacity: 0;
-            transform: translateY(100%);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(110%);
+            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
         }
+        
+        /* Triggered when body has 'loaded' class */
         .loaded .hero-word {
             opacity: 1;
             transform: translateY(0);
         }
 
+        /* --- SCROLL REVEAL ANIMATIONS --- */
+        .reveal {
+            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        /* Hidden state (applied by JS) */
+        .reveal-hidden {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        /* Active state */
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Stagger Delays */
+        .stagger-delay-1 { transition-delay: 100ms; }
+        .stagger-delay-2 { transition-delay: 200ms; }
+        .stagger-delay-3 { transition-delay: 300ms; }
+
+        /* Navigation */
         .nav-link { cursor: pointer; }
         .nav-link::after {
             content: '';
@@ -139,36 +140,33 @@
         }
         .nav-link:hover::after { width: 100%; }
 
-        /* Views */
+        /* Navbar Scroll Effect */
+        #navbar {
+            background: linear-gradient(to bottom, rgba(104, 105, 101, 0.95) 0%, rgba(104, 105, 101, 0) 100%);
+            transition: background 0.3s ease;
+        }
+        #navbar.scrolled {
+            background: #686965 !important; /* Brand 900 */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Views System */
         .view-section {
             display: none;
             animation: fadeIn 0.5s ease-out;
         }
-        .view-section.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        .view-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+        /* Image Zoom Hover */
         .img-zoom-container { overflow: hidden; }
         .img-zoom-container img { transition: transform 0.7s ease; }
         .img-zoom-container:hover img { transform: scale(1.05); }
-        
-        .prose h3 { margin-top: 2rem; margin-bottom: 1rem; }
-        .prose p { margin-bottom: 1rem; }
-        .prose ul { margin-bottom: 1.5rem; }
 
-        #navbar {
-            background: linear-gradient(to bottom, rgba(96,96,96,0.95) 0%, rgba(96,96,96,0) 100%);
-            border-bottom-color: transparent;
-            transition: background 0.3s ease, border-bottom-color 0.3s ease;
-        }
-        #navbar.scrolled {
-            background: #606060 !important;
-            border-bottom-color: #606060;
-        }
+        /* Modal Styles */
+        .prose p { margin-bottom: 1rem; line-height: 1.7; }
+        .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+        .prose li { margin-bottom: 0.5rem; }
     </style>
 </head>
 <body class="bg-brand-50 text-gray-800 font-sans antialiased overflow-x-hidden">
@@ -215,42 +213,21 @@
         
         <section id="home" class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
             <div class="absolute inset-0 z-0">
-                <div class="hero-bg-slide active">
-                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80" alt="Luxury Property">
-                </div>
-                <div class="hero-bg-slide">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80" alt="Modern Home">
-                </div>
-                <div class="hero-bg-slide">
-                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80" alt="Contemporary Property">
-                </div>
-                <div class="hero-bg-slide">
-                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80" alt="Interior Design">
-                </div>
-                <div class="absolute inset-0 z-10 pointer-events-none" style="background: linear-gradient(to bottom, #606060f5 0%, #606060cc 20%, #60606077 50%, #606060cc 80%, #606060f5 100%);"></div>
+                <div class="hero-bg-slide active"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80" alt="Luxury Property"></div>
+                <div class="hero-bg-slide"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80" alt="Modern Home"></div>
+                <div class="hero-bg-slide"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80" alt="Contemporary Property"></div>
+                <div class="absolute inset-0 z-10 pointer-events-none" style="background: linear-gradient(to bottom, #686965f5 0%, #686965cc 20%, #68696577 50%, #686965cc 80%, #686965f5 100%);"></div>
             </div>
 
             <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
                 <div class="font-serif text-4xl md:text-6xl lg:text-7xl text-white font-medium leading-tight mb-8 pb-4">
-                    <div class="overflow-hidden inline-block align-bottom">
-                        <span class="hero-word" style="transition-delay: 0.1s">Tailored</span>
-                    </div>
-                    <div class="overflow-hidden inline-block align-bottom">
-                        <span class="hero-word" style="transition-delay: 0.2s">Solutions</span>
-                    </div>
-                    <div class="overflow-hidden inline-block align-bottom">
-                        <span class="hero-word" style="transition-delay: 0.3s">For</span>
-                    </div>
+                    <div class="hero-word-wrapper"><span class="hero-word" style="transition-delay: 0.1s">Tailored</span></div>
+                    <div class="hero-word-wrapper"><span class="hero-word" style="transition-delay: 0.2s">Solutions</span></div>
+                    <div class="hero-word-wrapper"><span class="hero-word" style="transition-delay: 0.3s">For</span></div>
                     <br class="hidden md:block">
-                    <div class="overflow-hidden inline-block align-bottom">
-                        <span class="hero-word text-accent-400 italic" style="transition-delay: 0.4s">Your</span>
-                    </div>
-                    <div class="overflow-hidden inline-block align-bottom">
-                        <span class="hero-word" style="transition-delay: 0.5s">Lending</span>
-                    </div>
-                    <div class="overflow-hidden inline-block align-bottom">
-                        <span class="hero-word" style="transition-delay: 0.6s">Needs</span>
-                    </div>
+                    <div class="hero-word-wrapper"><span class="hero-word text-accent-400 italic" style="transition-delay: 0.4s">Your</span></div>
+                    <div class="hero-word-wrapper"><span class="hero-word" style="transition-delay: 0.5s">Lending</span></div>
+                    <div class="hero-word-wrapper"><span class="hero-word" style="transition-delay: 0.6s">Needs</span></div>
                 </div>
 
                 <p class="text-lg md:text-xl text-white mb-10 max-w-2xl mx-auto font-normal tracking-wide reveal stagger-delay-2 drop-shadow-md">
@@ -280,39 +257,23 @@
             </div>
         </section>
 
-        <section class="py-20 bg-brand-900 text-white">
-            <div class="max-w-4xl mx-auto px-4 text-center">
-                <blockquote class="font-serif text-3xl md:text-4xl italic leading-snug reveal">
-                    "Your financial nest, built on solid ground."
-                </blockquote>
-            </div>
-        </section>
-
         <section class="py-24 bg-brand-50">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="grid md:grid-cols-3 gap-8">
                     <div class="bg-white border border-gray-200 p-8 rounded-sm shadow-sm hover:shadow-xl transition-shadow duration-300 reveal">
-                        <div class="w-14 h-14 bg-brand-100 rounded-full flex items-center justify-center mb-6">
-                            <i data-lucide="home" class="text-brand-600 w-7 h-7"></i>
-                        </div>
+                        <div class="w-14 h-14 bg-brand-100 rounded-full flex items-center justify-center mb-6"><i data-lucide="home" class="text-brand-600 w-7 h-7"></i></div>
                         <h3 class="font-serif text-2xl text-brand-900 mb-4">Home Lending</h3>
                         <p class="text-gray-600 leading-relaxed mb-6">Personalised guidance for first home buyers, next home buyers, and refinancing.</p>
                         <a href="#" onclick="navigateTo('services'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">View Details</a>
                     </div>
-
                     <div class="bg-white border border-gray-200 p-8 rounded-sm shadow-sm hover:shadow-xl transition-shadow duration-300 reveal stagger-delay-1">
-                        <div class="w-14 h-14 bg-brand-100 rounded-full flex items-center justify-center mb-6">
-                            <i data-lucide="trending-up" class="text-brand-600 w-7 h-7"></i>
-                        </div>
+                        <div class="w-14 h-14 bg-brand-100 rounded-full flex items-center justify-center mb-6"><i data-lucide="trending-up" class="text-brand-600 w-7 h-7"></i></div>
                         <h3 class="font-serif text-2xl text-brand-900 mb-4">Investment Loans</h3>
                         <p class="text-gray-600 leading-relaxed mb-6">Tailored support for securing investment loans and growing wealth through property.</p>
                         <a href="#" onclick="navigateTo('services'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">View Details</a>
                     </div>
-
                     <div class="bg-white border border-gray-200 p-8 rounded-sm shadow-sm hover:shadow-xl transition-shadow duration-300 reveal stagger-delay-2">
-                        <div class="w-14 h-14 bg-brand-100 rounded-full flex items-center justify-center mb-6">
-                            <i data-lucide="briefcase" class="text-brand-600 w-7 h-7"></i>
-                        </div>
+                        <div class="w-14 h-14 bg-brand-100 rounded-full flex items-center justify-center mb-6"><i data-lucide="briefcase" class="text-brand-600 w-7 h-7"></i></div>
                         <h3 class="font-serif text-2xl text-brand-900 mb-4">Commercial Finance</h3>
                         <p class="text-gray-600 leading-relaxed mb-6">Solutions for purchasing commercial property, expanding business, or upgrading equipment.</p>
                         <a href="#" onclick="navigateTo('services'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">View Details</a>
@@ -327,35 +288,27 @@
                     <div class="md:w-1/2 p-12 flex flex-col justify-center">
                         <span class="text-accent-400 font-bold uppercase tracking-widest text-xs mb-4">Know Your Numbers</span>
                         <h2 class="text-3xl md:text-4xl font-serif text-white mb-6">What's your borrowing power?</h2>
-                        <p class="text-brand-100 mb-8 leading-relaxed">Don't guess when it comes to your future. Use our tools to get an estimate of your repayments and borrowing capacity before you start looking.</p>
+                        <p class="text-brand-100 mb-8 leading-relaxed">Don't guess when it comes to your future. Use our tools to get an estimate of your repayments before you start looking.</p>
                         
-                        <form id="loan-calculator-form" class="space-y-6 bg-white/5 p-6 rounded-sm border border-white/10">
+                        <form class="space-y-6 bg-white/5 p-6 rounded-sm border border-white/10">
                             <div>
                                 <label class="text-xs uppercase text-brand-100 mb-2 block">Loan Amount</label>
                                 <input type="range" id="loan-amount" min="100000" max="2000000" step="10000" value="750000" class="w-full accent-accent-500 cursor-pointer">
                                 <div class="flex justify-between text-white font-mono text-sm mt-1">
-                                    <span>$100k</span>
-                                    <span id="loan-amount-display" class="text-accent-400">$750,000</span>
-                                    <span>$2M</span>
+                                    <span>$100k</span><span id="loan-amount-display" class="text-accent-400">$750,000</span><span>$2M</span>
                                 </div>
                             </div>
-                            
                             <div>
                                 <label class="text-xs uppercase text-brand-100 mb-2 block">Interest Rate (% p.a.)</label>
-                                <input type="number" id="interest-rate" min="1" max="15" step="0.1" value="6.5" style="color: #606060; background: white;" class="w-full border border-gray-300 py-2 px-3 rounded-sm focus:outline-none focus:border-accent-400">
+                                <input type="number" id="interest-rate" min="1" max="15" step="0.1" value="6.5" class="w-full border border-gray-300 py-2 px-3 rounded-sm bg-white text-gray-800 focus:outline-none focus:border-accent-400">
                             </div>
-                            
                             <div>
                                 <label class="text-xs uppercase text-brand-100 mb-2 block">Loan Term (Years)</label>
-                                <select id="loan-term" style="color: #606060; background: white;" class="w-full border border-gray-300 py-2 px-3 rounded-sm focus:outline-none focus:border-accent-400">
-                                    <option value="10">10 years</option>
-                                    <option value="15">15 years</option>
-                                    <option value="20">20 years</option>
+                                <select id="loan-term" class="w-full border border-gray-300 py-2 px-3 rounded-sm bg-white text-gray-800 focus:outline-none focus:border-accent-400">
                                     <option value="25">25 years</option>
                                     <option value="30" selected>30 years</option>
                                 </select>
                             </div>
-                            
                             <button type="button" onclick="calculateRepayment()" class="w-full bg-accent-500 text-white py-3 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-accent-400 transition">Calculate Repayments</button>
                         </form>
                     </div>
@@ -363,10 +316,9 @@
                     <div class="md:w-1/2 relative min-h-[300px] md:min-h-[500px]">
                         <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Financial Calculator" class="absolute inset-0 w-full h-full object-cover opacity-80">
                         <div class="absolute inset-0 bg-brand-900/20"></div>
-                        
                         <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-8 text-center">
                             <p class="text-sm uppercase tracking-widest text-white/80 mb-2">Monthly Repayment</p>
-                            <p id="monthly-payment" class="text-5xl md:text-6xl font-serif font-bold text-white mb-4" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">$4,772</p>
+                            <p id="monthly-payment" class="text-5xl md:text-6xl font-serif font-bold text-white mb-4">$4,772</p>
                             <p class="text-xs uppercase tracking-wider text-white/70">Principal & Interest</p>
                         </div>
                     </div>
@@ -401,28 +353,42 @@
                         <ul class="space-y-2 mb-6">
                             <li class="flex items-center text-xs text-gray-500"><i data-lucide="check" class="w-3 h-3 text-accent-500 mr-2"></i>First Home Buyers</li>
                             <li class="flex items-center text-xs text-gray-500"><i data-lucide="check" class="w-3 h-3 text-accent-500 mr-2"></i>Next Home Buyers</li>
-                            <li class="flex items-center text-xs text-gray-500"><i data-lucide="check" class="w-3 h-3 text-accent-500 mr-2"></i>Bridging Finance</li>
                         </ul>
                     </div>
-
                     <div class="bg-white p-8 rounded-sm shadow-md hover:shadow-xl transition-all duration-300 group border-t-4 border-accent-500">
                         <div class="w-12 h-12 bg-brand-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-900 transition-colors">
                             <i data-lucide="trending-up" class="w-6 h-6 text-brand-800 group-hover:text-white transition-colors"></i>
                         </div>
                         <h3 class="text-xl font-serif text-brand-900 mb-3">Investment Property</h3>
                         <p class="text-gray-600 text-sm leading-relaxed mb-4">Maximize your returns with interest-only terms, offset accounts, and equity release strategies tailored for investors.</p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center text-xs text-gray-500"><i data-lucide="check" class="w-3 h-3 text-accent-500 mr-2"></i>Portfolio Structuring</li>
-                            <li class="flex items-center text-xs text-gray-500"><i data-lucide="check" class="w-3 h-3 text-accent-500 mr-2"></i>Equity Release</li>
-                        </ul>
                     </div>
-
                     <div class="bg-white p-8 rounded-sm shadow-md hover:shadow-xl transition-all duration-300 group">
                         <div class="w-12 h-12 bg-brand-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-900 transition-colors">
-                            <i data-lucide="briefcase" class="w-6 h-6 text-brand-800 group-hover:text-white transition-colors"></i>
+                            <i data-lucide="refresh-cw" class="w-6 h-6 text-brand-800 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-serif text-brand-900 mb-3">Refinancing</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Rates change. Ensure you aren't paying loyalty tax to your bank. We conduct free health checks to lower your repayments.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-sm shadow-md hover:shadow-xl transition-all duration-300 group">
+                        <div class="w-12 h-12 bg-brand-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-900 transition-colors">
+                            <i data-lucide="building-2" class="w-6 h-6 text-brand-800 group-hover:text-white transition-colors"></i>
                         </div>
                         <h3 class="text-xl font-serif text-brand-900 mb-3">Commercial Finance</h3>
                         <p class="text-gray-600 text-sm leading-relaxed mb-4">Buying your own office, warehouse, or retail space? We navigate commercial lending policies to get you the capital you need.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-sm shadow-md hover:shadow-xl transition-all duration-300 group">
+                        <div class="w-12 h-12 bg-brand-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-900 transition-colors">
+                            <i data-lucide="piggy-bank" class="w-6 h-6 text-brand-800 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-serif text-brand-900 mb-3">SMSF Lending</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Take control of your superannuation by purchasing residential or commercial property through your Self Managed Super Fund.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-sm shadow-md hover:shadow-xl transition-all duration-300 group">
+                        <div class="w-12 h-12 bg-brand-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-900 transition-colors">
+                            <i data-lucide="car" class="w-6 h-6 text-brand-800 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-serif text-brand-900 mb-3">Asset Finance</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Need a new car, truck, or specialized equipment for your business? We provide competitive rates for asset finance.</p>
                     </div>
                 </div>
 
@@ -450,12 +416,42 @@
                         <p class="text-gray-600 mb-6">Expert insights, market analysis, and comprehensive guides to help you navigate your property journey.</p>
                         <a href="#" onclick="navigateTo('articles'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Browse Articles →</a>
                     </div>
-                    
                     <div class="bg-white border border-gray-200 p-8 rounded-sm hover:shadow-lg transition reveal stagger-delay-1">
                         <i data-lucide="calculator" class="text-brand-600 w-10 h-10 mb-4"></i>
                         <h3 class="font-serif text-2xl text-brand-900 mb-3">Financial Calculators</h3>
                         <p class="text-gray-600 mb-6">Estimate repayments, borrowing capacity, and stamp duty costs with our easy-to-use calculators.</p>
                         <a href="#" onclick="navigateTo('home'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Use Calculators →</a>
+                    </div>
+                    <div class="bg-white border border-gray-200 p-8 rounded-sm hover:shadow-lg transition reveal stagger-delay-2">
+                        <i data-lucide="video" class="text-brand-600 w-10 h-10 mb-4"></i>
+                        <h3 class="font-serif text-2xl text-brand-900 mb-3">Video Library</h3>
+                        <p class="text-gray-600 mb-6">Watch our educational videos covering everything from first home buyers to investment strategies.</p>
+                        <a href="#contact" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Watch Videos →</a>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-lg transition reveal">
+                        <div class="img-zoom-container h-56 bg-gray-200">
+                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="First Home Buyer Guide" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-8">
+                            <span class="text-xs uppercase tracking-widest text-brand-600 font-semibold">Guide</span>
+                            <h3 class="font-serif text-2xl text-brand-900 mt-2 mb-3">First Home Buyer's Guide</h3>
+                            <p class="text-gray-600 mb-6">A step-by-step roadmap to buying your first property in Melbourne.</p>
+                            <a href="#" onclick="navigateTo('articles'); openArticle('article-1'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Read Guide →</a>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-lg transition reveal stagger-delay-1">
+                        <div class="img-zoom-container h-56 bg-gray-200">
+                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Investment Strategy" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-8">
+                            <span class="text-xs uppercase tracking-widest text-brand-600 font-semibold">Guide</span>
+                            <h3 class="font-serif text-2xl text-brand-900 mt-2 mb-3">Investment Property Strategy</h3>
+                            <p class="text-gray-600 mb-6">Maximize returns and minimize tax with our comprehensive investment guide.</p>
+                            <a href="#" onclick="navigateTo('articles'); openArticle('article-2'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Read Guide →</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -467,26 +463,62 @@
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-16 reveal">
                     <h1 class="font-serif text-5xl md:text-6xl text-brand-900 mb-6">Latest Articles & Insights</h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Stay informed with our expert guides, market insights, and property finance strategies.</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                     <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal">
-                        <div class="img-zoom-container h-56 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="First Home Buyer's Guide" class="w-full h-full object-cover">
-                        </div>
+                        <div class="img-zoom-container h-56 bg-gray-200"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="First Home" class="w-full h-full object-cover"></div>
                         <div class="p-6">
-                            <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-1')">First Home Buyer's Guide</h3>
+                            <div class="flex items-center gap-3 mb-3"><span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Guide</span></div>
+                            <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-1')">First Home Buyer's Complete Guide 2025</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">Everything you need to know about buying your first property in Australia, from saving your deposit to settlement.</p>
                             <button onclick="openArticle('article-1')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">Read Article <i data-lucide="arrow-right" class="w-3 h-3"></i></button>
                         </div>
                     </article>
-                    
-                     <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal">
-                        <div class="img-zoom-container h-56 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Refinancing" class="w-full h-full object-cover">
-                        </div>
+                    <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal stagger-delay-1">
+                        <div class="img-zoom-container h-56 bg-gray-200"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Invest" class="w-full h-full object-cover"></div>
                         <div class="p-6">
-                            <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-3')">When Should You Refinance?</h3>
+                            <div class="flex items-center gap-3 mb-3"><span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Strategy</span></div>
+                            <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-2')">Building Your Investment Property Portfolio</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">Strategic approaches to growing wealth through property investment, including tax benefits and structuring.</p>
+                            <button onclick="openArticle('article-2')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">Read Article <i data-lucide="arrow-right" class="w-3 h-3"></i></button>
+                        </div>
+                    </article>
+                    <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal stagger-delay-2">
+                        <div class="img-zoom-container h-56 bg-gray-200"><img src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Refinance" class="w-full h-full object-cover"></div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-3"><span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Analysis</span></div>
+                            <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-3')">When Should You Refinance Your Home Loan?</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">Learn the key indicators that it's time to refinance and how much you could save on your mortgage repayments.</p>
                             <button onclick="openArticle('article-3')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">Read Article <i data-lucide="arrow-right" class="w-3 h-3"></i></button>
+                        </div>
+                    </article>
+                    <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal">
+                        <div class="img-zoom-container h-56 bg-gray-200"><img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Commercial" class="w-full h-full object-cover"></div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-3"><span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Business</span></div>
+                            <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-4')">Commercial Property Finance Explained</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">Understanding the differences between residential and commercial lending, and how to finance your business property.</p>
+                            <button onclick="openArticle('article-4')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">Read Article <i data-lucide="arrow-right" class="w-3 h-3"></i></button>
+                        </div>
+                    </article>
+                    <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal stagger-delay-1">
+                        <div class="img-zoom-container h-56 bg-gray-200"><img src="https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Market" class="w-full h-full object-cover"></div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-3"><span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Update</span></div>
+                            <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-5')">Melbourne Property Market Trends Q4 2025</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">Analysis of Melbourne's property market performance, interest rate movements, and what to expect in 2026.</p>
+                            <button onclick="openArticle('article-5')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">Read Article <i data-lucide="arrow-right" class="w-3 h-3"></i></button>
+                        </div>
+                    </article>
+                    <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal stagger-delay-2">
+                        <div class="img-zoom-container h-56 bg-gray-200"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tax" class="w-full h-full object-cover"></div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-3"><span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Tax</span></div>
+                            <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-6')">Debt Recycling Strategies</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">Learn how to transform your home loan into a tax-deductible investment loan while maintaining the same debt level.</p>
+                            <button onclick="openArticle('article-6')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">Read Article <i data-lucide="arrow-right" class="w-3 h-3"></i></button>
                         </div>
                     </article>
                 </div>
@@ -499,12 +531,56 @@
             <div class="max-w-5xl mx-auto px-4">
                 <div class="text-center mb-20 reveal">
                     <h1 class="font-serif text-5xl md:text-6xl text-brand-900 mb-8">Our Philosophy</h1>
+                    <p class="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto mb-6">
+                        At <strong class="text-brand-900">Nest Capital</strong>, we believe that financial freedom requires more than just a loan; it requires an entourage. Our philosophy is simple:
+                    </p>
                     <p class="font-serif text-3xl text-brand-900 italic">One team, one briefing.</p>
                 </div>
+
                 <div class="prose prose-lg max-w-none mb-20 reveal">
-                    <p class="text-gray-700 leading-relaxed mb-6">
-                        We don't treat you like an anonymous bank application. We treat you as a partner. By surrounding you with experts in finance, property advocacy, and wealth strategy, we level the playing field against the banks and the property market.
-                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-6">We don't treat you like an anonymous bank application. We treat you as a partner. By surrounding you with experts in finance, property advocacy, and wealth strategy, we level the playing field against the banks and the property market.</p>
+                    <p class="text-gray-700 leading-relaxed">With access to over <strong class="text-brand-900">60 lenders</strong> and a team that has settled over <strong class="text-brand-900">$700M in loans</strong>, we have the scale to get you the best deal and the boutique service to ensure you feel supported every step of the way.</p>
+                </div>
+
+                <div class="mb-20">
+                    <h2 class="font-serif text-4xl text-brand-900 mb-10 text-center reveal">Our Culture</h2>
+                    <div class="grid md:grid-cols-2 gap-10">
+                        <div class="reveal">
+                            <div class="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center mb-4"><i data-lucide="heart" class="text-brand-600 w-6 h-6"></i></div>
+                            <h3 class="font-serif text-2xl text-brand-900 mb-3">Client-Obsessed</h3>
+                            <p class="text-gray-600">First and foremost, our customers. We are mad for them. Every decision starts with "does this help the client?"</p>
+                        </div>
+                        <div class="reveal stagger-delay-1">
+                            <div class="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center mb-4"><i data-lucide="zap" class="text-brand-600 w-6 h-6"></i></div>
+                            <h3 class="font-serif text-2xl text-brand-900 mb-3">Disruptively Different</h3>
+                            <p class="text-gray-600">We don't accept the status quo. We were created to do things differently to the standard brokerage.</p>
+                        </div>
+                        <div class="reveal">
+                            <div class="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center mb-4"><i data-lucide="shield" class="text-brand-600 w-6 h-6"></i></div>
+                            <h3 class="font-serif text-2xl text-brand-900 mb-3">Integrity Always</h3>
+                            <p class="text-gray-600">Integrity is second nature. Doing the right thing by our clients and team is the only way we operate.</p>
+                        </div>
+                        <div class="reveal stagger-delay-1">
+                            <div class="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center mb-4"><i data-lucide="trending-up" class="text-brand-600 w-6 h-6"></i></div>
+                            <h3 class="font-serif text-2xl text-brand-900 mb-3">Relentlessly Ambitious</h3>
+                            <p class="text-gray-600">No matter how many awards we win, we always strive for more. We are constantly learning and improving.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-brand-50 border border-brand-200 p-10 md:p-14 rounded-sm reveal">
+                    <h2 class="font-serif text-4xl text-brand-900 mb-6 text-center">Community First</h2>
+                    <p class="text-center text-lg text-gray-700 mb-12">We are deeply connected to the communities we live and work in. For us, success isn't just measured in loans settled, but in the positive impact we can create.</p>
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-6">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0"><i data-lucide="users" class="text-brand-600 w-6 h-6"></i></div>
+                            <div><h3 class="font-serif text-xl text-brand-900 mb-2">Ladies Lunches</h3><p class="text-gray-700">Proud supporters of the Ladies Lunches, raising over $33,000 for vital medical research including women's health and lung health.</p></div>
+                        </div>
+                        <div class="flex items-start gap-6">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0"><i data-lucide="heart" class="text-brand-600 w-6 h-6"></i></div>
+                            <div><h3 class="font-serif text-xl text-brand-900 mb-2">The Man Cave</h3><p class="text-gray-700">Partnering with The Man Cave to empower boys to become great men through preventative mental health and emotional literacy programs.</p></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -523,22 +599,35 @@
                         <div class="grid grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs uppercase font-bold text-white mb-2">Name</label>
-                                <input type="text" name="name" required style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm">
+                                <input type="text" name="name" required placeholder="e.g. Jane Doe" style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm placeholder-gray-400">
                             </div>
                             <div>
                                 <label class="block text-xs uppercase font-bold text-white mb-2">Phone</label>
-                                <input type="tel" name="phone" required style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm">
+                                <input type="tel" name="phone" required placeholder="e.g. 0400 000 000" style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm placeholder-gray-400">
                             </div>
                         </div>
                         
                         <div>
                             <label class="block text-xs uppercase font-bold text-white mb-2">Email</label>
-                            <input type="email" name="email" required style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm">
+                            <input type="email" name="email" required placeholder="e.g. jane@example.com" style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm placeholder-gray-400">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-xs uppercase font-bold text-white mb-2">I'm interested in...</label>
+                            <select name="interest" required style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm">
+                                <option value="" disabled selected>Select an option...</option>
+                                <option value="first-home">Buying my first home</option>
+                                <option value="refinance">Refinancing</option>
+                                <option value="investment">Investment Property</option>
+                                <option value="commercial">Commercial Finance</option>
+                                <option value="asset">Asset Finance</option>
+                                <option value="other">General Enquiry</option>
+                            </select>
                         </div>
                         
                         <div>
                             <label class="block text-xs uppercase font-bold text-white mb-2">Message</label>
-                            <textarea name="message" rows="3" required style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm"></textarea>
+                            <textarea name="message" rows="3" required placeholder="How can we help you?" style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm placeholder-gray-400"></textarea>
                         </div>
                         
                         <button type="submit" class="w-full bg-accent-500 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-400 transition shadow-lg">Send Enquiry</button>
@@ -551,17 +640,15 @@
                         <div class="space-y-4">
                             <div class="flex items-start gap-4">
                                 <i data-lucide="phone" class="w-6 h-6 text-accent-400 flex-shrink-0 mt-1"></i>
-                                <div>
-                                    <p class="text-sm text-gray-300">Call Us</p>
-                                    <a href="tel:1300385222" class="text-lg font-medium hover:text-accent-400 transition">1300 385 222</a>
-                                </div>
+                                <div><p class="text-sm text-gray-300">Call Us</p><a href="tel:1300385222" class="text-lg font-medium hover:text-accent-400 transition">1300 385 222</a></div>
                             </div>
                             <div class="flex items-start gap-4">
                                 <i data-lucide="mail" class="w-6 h-6 text-accent-400 flex-shrink-0 mt-1"></i>
-                                <div>
-                                    <p class="text-sm text-gray-300">Email Us</p>
-                                    <a href="mailto:info@nestcapitalfinance.com.au" class="text-lg font-medium hover:text-accent-400 transition">info@nestcapitalfinance.com.au</a>
-                                </div>
+                                <div><p class="text-sm text-gray-300">Email Us</p><a href="mailto:info@nestcapitalfinance.com.au" class="text-lg font-medium hover:text-accent-400 transition">info@nestcapitalfinance.com.au</a></div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-accent-400 flex-shrink-0 mt-1"></i>
+                                <div><p class="text-sm text-gray-300">Visit Us</p><p class="text-lg font-medium">Melbourne, VIC</p></div>
                             </div>
                         </div>
                     </div>
@@ -577,7 +664,7 @@
     </footer>
 
     <div id="article-modal" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white rounded-sm max-w-4xl w-full my-8 relative">
+        <div class="bg-white rounded-sm max-w-4xl w-full my-8 relative shadow-2xl">
             <button onclick="closeArticle()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition z-10">
                 <i data-lucide="x" class="w-8 h-8"></i>
             </button>
@@ -586,88 +673,66 @@
     </div>
 
     <script>
-        // Init Icons
-        lucide.createIcons();
+        // --- INIT ---
+        window.onload = function() {
+            lucide.createIcons();
+            initScrollAnimations();
+            document.body.classList.add('loaded'); // Triggers Title Animation
+            calculateRepayment();
+        };
 
-        // Slideshow logic
+        // --- SLIDESHOW ---
         let currentSlide = 0;
         const slides = document.querySelectorAll('.hero-bg-slide');
-        
-        function changeSlide() {
-            if(slides.length > 0) {
+        setInterval(() => {
+            if(slides.length) {
                 slides[currentSlide].classList.remove('active');
                 currentSlide = (currentSlide + 1) % slides.length;
                 slides[currentSlide].classList.add('active');
             }
-        }
-        setInterval(changeSlide, 6000);
+        }, 6000);
 
-        // Navigation Logic
+        // --- NAVIGATION ---
         function navigateTo(viewId, sectionId = null) {
-            // Hide all views
             document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
-            
-            // Show requested view
             const view = document.getElementById('view-' + viewId);
-            if (view) {
-                view.classList.add('active');
-                
-                // Reset scroll to top
-                if (!sectionId) {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-            } else {
-                console.error('View not found:', viewId);
-                return;
-            }
+            if (view) view.classList.add('active');
             
-            // Re-initialize animations and icons for the new view
-            setTimeout(() => {
-                initScrollAnimations();
-                lucide.createIcons();
-            }, 50);
-
-            // Handle specific section anchor if provided
             if (sectionId) {
                 setTimeout(() => {
                     const section = document.getElementById(sectionId);
                     if(section) section.scrollIntoView({ behavior: 'smooth' });
                 }, 100);
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
+            
+            setTimeout(() => {
+                initScrollAnimations();
+                lucide.createIcons();
+            }, 50);
         }
 
-        // Mobile Menu Logic
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const closeBtn = document.getElementById('close-menu-btn');
+        // --- MOBILE MENU ---
         const mobileMenu = document.getElementById('mobile-menu');
-        
         function toggleMenu() {
             mobileMenu.classList.toggle('translate-x-full');
             document.body.classList.toggle('overflow-hidden');
         }
+        document.getElementById('mobile-menu-btn').addEventListener('click', toggleMenu);
+        document.getElementById('close-menu-btn').addEventListener('click', toggleMenu);
 
-        if(mobileBtn) mobileBtn.addEventListener('click', toggleMenu);
-        if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
-
-        // Navbar scroll effect
+        // --- NAVBAR SCROLL ---
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Animation Logic - UPDATED FOR RELIABILITY
+        // --- SCROLL ANIMATIONS ---
         function initScrollAnimations() {
             const revealElements = document.querySelectorAll('.reveal');
-            
-            // Only add the hidden class if Javascript is actually running
             revealElements.forEach(el => {
-                if (!el.classList.contains('active')) {
-                    el.classList.add('reveal-hidden');
-                }
+                if (!el.classList.contains('active')) el.classList.add('reveal-hidden');
             });
 
             const revealObserver = new IntersectionObserver((entries) => {
@@ -683,54 +748,72 @@
             revealElements.forEach(el => revealObserver.observe(el));
         }
 
-        // Force loaded state immediately
-        document.body.classList.add('loaded');
-        window.onload = initScrollAnimations;
+        // --- CALCULATOR ---
+        function calculateRepayment() {
+            const amount = parseInt(document.getElementById('loan-amount').value);
+            const rate = parseFloat(document.getElementById('interest-rate').value);
+            const term = parseInt(document.getElementById('loan-term').value);
+            
+            document.getElementById('loan-amount-display').textContent = '$' + amount.toLocaleString('en-AU');
+            
+            if (amount && rate && term) {
+                const monthlyRate = (rate / 100) / 12;
+                const numPayments = term * 12;
+                const payment = amount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / (Math.pow(1 + monthlyRate, numPayments) - 1);
+                document.getElementById('monthly-payment').textContent = '$' + payment.toFixed(0).toLocaleString('en-AU');
+            }
+        }
+        document.getElementById('loan-amount').addEventListener('input', calculateRepayment);
 
-        // Article Logic
+        // --- ARTICLES SYSTEM ---
         function openArticle(articleId) {
             const modal = document.getElementById('article-modal');
             const content = document.getElementById('article-content');
             
             const articles = {
                 'article-1': {
-                    content: `
-                        <h2 class="text-3xl font-serif text-brand-900 mb-4">First Home Buyer's Complete Guide 2025</h2>
-                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Home" class="w-full h-64 object-cover rounded-sm mb-8">
-                        <div class="prose prose-lg max-w-none">
-                            <p class="text-lg text-gray-700 leading-relaxed mb-6">Buying your first home is one of the most significant financial decisions you'll ever make. This comprehensive guide walks you through every step of the journey.</p>
-                            <h3 class="text-2xl font-serif text-brand-900 mt-8 mb-4">Step 1: Save Your Deposit</h3>
-                            <p class="text-gray-700">Most lenders require a minimum deposit of 5-20% of the property's value.</p>
-                            <div class="mt-8 flex gap-4">
-                                <a href="#contact" onclick="closeArticle()" class="bg-brand-900 text-white px-8 py-3 rounded-sm text-xs font-bold uppercase hover:bg-accent-500 transition">Book Consultation</a>
-                                <button onclick="closeArticle()" class="bg-gray-200 text-gray-800 px-8 py-3 rounded-sm text-xs font-bold uppercase hover:bg-gray-300 transition">Close</button>
-                            </div>
-                        </div>
-                    `
+                    title: "First Home Buyer's Complete Guide 2025",
+                    img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    body: `<p class="text-lg text-gray-700 font-medium">Buying your first home is a milestone. Here is your roadmap.</p><p>Step 1 is saving the deposit. Aim for 20% to avoid LMI. Step 2 is getting pre-approved so you know your budget. Step 3 is the hunt!</p><p>We help you navigate grants, stamp duty concessions, and finding the right loan product.</p>`
+                },
+                'article-2': {
+                    title: "Building Your Investment Property Portfolio",
+                    img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    body: `<p class="text-lg text-gray-700 font-medium">Wealth creation through property is a long-term game.</p><p>Successful investors focus on capital growth and rental yield. Structuring your loans correctly (e.g., Interest Only) can maximize cash flow.</p><p>We can help you release equity from existing properties to fund your next purchase.</p>`
                 },
                 'article-3': {
-                    content: `
-                        <h2 class="text-3xl font-serif text-brand-900 mb-4">When Should You Refinance?</h2>
-                        <img src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Refinance" class="w-full h-64 object-cover rounded-sm mb-8">
-                        <div class="prose prose-lg max-w-none">
-                            <p class="text-lg text-gray-700 leading-relaxed mb-6">Refinancing your home loan can save you thousands of dollars, but timing is everything.</p>
-                            <h3 class="text-2xl font-serif text-brand-900 mt-8 mb-4">Key Reasons</h3>
-                            <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
-                                <li>Lower Interest Rates</li>
-                                <li>Better Loan Features</li>
-                                <li>Debt Consolidation</li>
-                            </ul>
-                            <div class="mt-8 flex gap-4">
-                                <a href="#contact" onclick="closeArticle()" class="bg-brand-900 text-white px-8 py-3 rounded-sm text-xs font-bold uppercase hover:bg-accent-500 transition">Book Consultation</a>
-                                <button onclick="closeArticle()" class="bg-gray-200 text-gray-800 px-8 py-3 rounded-sm text-xs font-bold uppercase hover:bg-gray-300 transition">Close</button>
-                            </div>
-                        </div>
-                    `
+                    title: "When Should You Refinance?",
+                    img: "https://images.unsplash.com/photo-1551836022-4c4c79ecde51?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    body: `<p class="text-lg text-gray-700 font-medium">Don't pay loyalty tax to your bank.</p><p>If your rate starts with a 6 or higher, it might be time to look elsewhere. Refinancing can also allow you to consolidate debt or access cash for renovations.</p><p>Contact us for a free loan health check.</p>`
+                },
+                'article-4': {
+                    title: "Commercial Property Finance Explained",
+                    img: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    body: `<p class="text-lg text-gray-700 font-medium">Commercial lending is different from residential.</p><p>LVRs are typically lower (65-70%) and terms are shorter. However, owning your business premises gives you security and asset appreciation.</p><p>We access specialist commercial lenders to get you the capital you need.</p>`
+                },
+                'article-5': {
+                    title: "Melbourne Market Trends Q4 2025",
+                    img: "https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    body: `<p class="text-lg text-gray-700 font-medium">The Melbourne market is showing resilience.</p><p>With population growth returning, we are seeing strong demand in the inner-ring suburbs. Rental yields are increasing, making it an attractive time for investors.</p>`
+                },
+                'article-6': {
+                    title: "Debt Recycling Strategies",
+                    img: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                    body: `<p class="text-lg text-gray-700 font-medium">Turn bad debt into good debt.</p><p>Debt recycling involves paying down non-deductible debt (your home loan) and redrawing it to invest in income-producing assets (shares or property). This makes the interest tax-deductible.</p><p>This is a complex strategy that requires professional advice.</p>`
                 }
             };
             
-            if (articles[articleId]) {
-                content.innerHTML = articles[articleId].content;
+            const data = articles[articleId];
+            if (data) {
+                content.innerHTML = `
+                    <h2 class="text-3xl font-serif text-brand-900 mb-6">${data.title}</h2>
+                    <img src="${data.img}" class="w-full h-64 object-cover rounded-sm mb-8">
+                    <div class="prose prose-lg text-gray-600">${data.body}</div>
+                    <div class="mt-8 pt-8 border-t border-gray-100 flex gap-4">
+                        <a href="#contact" onclick="closeArticle()" class="bg-brand-900 text-white px-8 py-3 rounded-sm font-bold uppercase text-xs hover:bg-accent-500 transition">Book Consultation</a>
+                        <button onclick="closeArticle()" class="px-8 py-3 border border-gray-300 rounded-sm font-bold uppercase text-xs hover:bg-gray-50 transition">Close</button>
+                    </div>
+                `;
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
@@ -743,34 +826,6 @@
             modal.classList.remove('flex');
             document.body.style.overflow = '';
         }
-
-        // Calculator Logic
-        function calculateRepayment() {
-            const loanAmount = parseInt(document.getElementById('loan-amount').value);
-            const interestRate = parseFloat(document.getElementById('interest-rate').value);
-            const loanTerm = parseInt(document.getElementById('loan-term').value);
-            
-            if (!loanAmount || !interestRate || !loanTerm) return;
-            
-            const monthlyRate = (interestRate / 100) / 12;
-            const numberOfPayments = loanTerm * 12;
-            
-            const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
-                (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
-            
-            document.getElementById('monthly-payment').textContent = '$' + monthlyPayment.toFixed(0).toLocaleString('en-AU');
-        }
-
-        // Init calc listeners
-        const loanInput = document.getElementById('loan-amount');
-        if(loanInput) {
-            loanInput.addEventListener('input', function() {
-                document.getElementById('loan-amount-display').textContent = '$' + parseInt(this.value).toLocaleString('en-AU');
-            });
-            // Initial calc
-            calculateRepayment();
-        }
-
     </script>
 </body>
 </html>
