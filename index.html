@@ -987,7 +987,7 @@
                     <img src="${data.img}" class="w-full h-64 object-cover rounded-sm mb-8">
                     <div class="prose prose-lg text-gray-600">${data.body}</div>
                     <div class="mt-8 pt-8 border-t border-gray-100 flex gap-4">
-                        <a onclick="closeArticle(); setTimeout(() => document.getElementById('contact').scrollIntoView({behavior: 'smooth'}), 100)" class="bg-brand-900 text-white px-8 py-3 rounded-sm font-bold uppercase text-xs hover:bg-accent-500 transition">Book Consultation</a>
+                        <a onclick="goToContact()" class="bg-brand-900 text-white px-8 py-3 rounded-sm font-bold uppercase text-xs hover:bg-accent-500 transition">Book Consultation</a>
                         <button onclick="closeArticle()" class="px-8 py-3 border border-gray-300 rounded-sm font-bold uppercase text-xs hover:bg-gray-50 transition">Close</button>
                     </div>
                 `;
@@ -1003,6 +1003,13 @@
             modal.classList.remove('flex');
             document.body.style.overflow = '';
         }
+
+        function goToContact() {
+              closeArticle();
+              setTimeout(function() {
+                      window.location.hash = 'contact';
+                    }, 300);
+            }
     </script>
 </body>
 </html>
