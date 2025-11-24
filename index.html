@@ -186,8 +186,8 @@
                     <a href="#" onclick="navigateTo('resources'); return false;" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Resources</a>
                     <a href="#" onclick="navigateTo('articles'); return false;" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Articles</a>
                     <a href="#" onclick="navigateTo('about'); return false;" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">About</a>
-                    <a href="#" onclick="navigateTo('contact'); return false;" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Contact</a>
-                    <a href="#" onclick="navigateTo('contact'); return false;" class="bg-white text-brand-900 px-8 py-3 rounded-sm font-medium text-xs uppercase tracking-widest hover:bg-gray-100 transition-colors duration-300 shadow-lg">Book Consultation</a>
+                    <a href="#" onclick="navigateTo('coming-soon'); return false;" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Contact</a>
+                    <a href="#" onclick="navigateTo('coming-soon'); return false;" class="bg-white text-brand-900 px-8 py-3 rounded-sm font-medium text-xs uppercase tracking-widest hover:bg-gray-100 transition-colors duration-300 shadow-lg">Book Consultation</a>
                 </nav>
 
                 <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
@@ -205,7 +205,7 @@
             <a href="#" onclick="navigateTo('resources'); toggleMenu(); return false;" class="text-3xl font-serif text-white hover:text-accent-400 transition">Resources</a>
             <a href="#" onclick="navigateTo('articles'); toggleMenu(); return false;" class="text-3xl font-serif text-white hover:text-accent-400 transition">Articles</a>
             <a href="#" onclick="navigateTo('about'); toggleMenu(); return false;" class="text-3xl font-serif text-white hover:text-accent-400 transition">About</a>
-            <a href="#" onclick="navigateTo('contact'); toggleMenu(); return false;" class="text-3xl font-serif text-white hover:text-accent-400 transition">Contact</a>
+            <a href="#" onclick="navigateTo('coming-soon'); toggleMenu(); return false;" class="text-3xl font-serif text-white hover:text-accent-400 transition">Contact</a>
         </div>
     </header>
 
@@ -236,7 +236,7 @@
                     </p>
 
                     <div class="flex flex-col sm:flex-row gap-6 justify-center items-center reveal stagger-delay-3">
-                        <a href="#" onclick="navigateTo('contact'); return false;" class="bg-white text-brand-900 px-10 py-4 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-gray-100 transition shadow-xl transform hover:-translate-y-1">Start Conversation</a>
+                        <a href="#" onclick="navigateTo('coming-soon'); return false;" class="bg-white text-brand-900 px-10 py-4 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-gray-100 transition shadow-xl transform hover:-translate-y-1">Start Conversation</a>
                         <a href="#" onclick="navigateTo('services'); return false;" class="text-white border border-white/30 px-10 py-4 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition backdrop-blur-sm">Our Services</a>
                     </div>
                 </div>
@@ -331,7 +331,7 @@
                 <div class="max-w-4xl mx-auto px-4 text-center reveal">
                     <h2 class="font-serif text-3xl md:text-4xl mb-6 text-brand-900">Ready to take the next step?</h2>
                     <p class="text-lg mb-8 text-gray-600">Book a strategy session with our team to discuss your specific scenario.</p>
-                    <a href="#" onclick="navigateTo('contact'); return false;" class="inline-block bg-brand-900 text-white px-10 py-4 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-xl">Get in Touch</a>
+                    <a href="#" onclick="navigateTo('coming-soon'); return false;" class="inline-block bg-brand-900 text-white px-10 py-4 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-xl">Get in Touch</a>
                 </div>
             </section>
 
@@ -464,11 +464,39 @@
                     <div class="mt-16 bg-brand-900 rounded-sm p-10 text-center text-white">
                         <h2 class="text-2xl font-serif mb-4">Ready to move forward?</h2>
                         <p class="text-brand-100 mb-8 max-w-xl mx-auto">Book a strategy session with our team to discuss your specific scenario.</p>
-                        <a href="#" onclick="navigateTo('contact'); return false;" class="bg-white text-brand-900 px-8 py-3 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-accent-400 transition-colors">Get in Touch</a>
+                        <a href="#" onclick="navigateTo('coming-soon'); return false;" class="bg-white text-brand-900 px-8 py-3 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-accent-400 transition-colors">Get in Touch</a>
                     </div>
                 </div>
             </section>
         </div>
+
+                <!-- COMING SOON SECTION -->
+        <div id="view-coming-soon" class="view-section">
+          <section class="flex flex-col items-center justify-center min-h-screen bg-brand-50 py-24 px-4">
+            <div class="max-w-md w-full text-center">
+              <img src="https://shaggyyyz.github.io/nest-capital-finance/logo.png"
+                   alt="Nest Capital Finance Logo"
+                   class="mx-auto mb-8 w-20 h-20">
+              <h1 class="text-4xl font-serif text-brand-900 mb-4">Coming Soon</h1>
+              <p class="text-lg text-brand-600 mb-8">Sign up for the latest news and updates from Nest Capital Finance.</p>
+              
+              <form id="coming-soon-form" class="space-y-4 w-full">
+                <input type="text" name="name" required placeholder="Name" 
+                       class="w-full border border-gray-300 px-4 py-3 rounded focus:outline-none focus:border-brand-600">
+                <input type="email" name="email" required placeholder="Email" 
+                       class="w-full border border-gray-300 px-4 py-3 rounded focus:outline-none focus:border-brand-600">
+                <input type="tel" name="mobile" required placeholder="Mobile Number" 
+                       class="w-full border border-gray-300 px-4 py-3 rounded focus:outline-none focus:border-brand-600">
+                <button type="submit" 
+                        class="w-full bg-brand-900 text-white py-3 rounded font-bold uppercase tracking-wide hover:bg-brand-700 transition">
+                  Sign Up
+                </button>
+              </form>
+              <div id="coming-soon-message" class="mt-4 text-brand-600 font-medium hidden"></div>
+            </div>
+          </section>
+        </div>
+
 
         <div id="view-resources" class="view-section">
             <section class="pt-32 pb-24 bg-white">
@@ -489,13 +517,13 @@
                             <i data-lucide="calculator" class="text-brand-600 w-10 h-10 mb-4"></i>
                             <h3 class="font-serif text-2xl text-brand-900 mb-3">Financial Calculators</h3>
                             <p class="text-gray-600 mb-6">Estimate repayments, borrowing capacity, and stamp duty costs with our easy-to-use calculators.</p>
-                            <a href="#" onclick="navigateTo('home'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Use Calculators →</a>
+                            <a href="#" onclick="navigateTo('coming-soon'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Use Calculators →</a>
                         </div>
                         <div class="bg-white border border-gray-200 p-8 rounded-sm hover:shadow-lg transition reveal stagger-delay-2">
                             <i data-lucide="video" class="text-brand-600 w-10 h-10 mb-4"></i>
                             <h3 class="font-serif text-2xl text-brand-900 mb-3">Video Library</h3>
                             <p class="text-gray-600 mb-6">Watch our educational videos covering everything from first home buyers to investment strategies.</p>
-                            <a href="#" onclick="navigateTo('contact'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Watch Videos →</a>
+                            <a href="#" onclick="navigateTo('coming-soon'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Watch Videos →</a>
                         </div>
                     </div>
                 </div>
@@ -713,7 +741,7 @@
                     <h4 class="font-bold text-lg mb-6 text-white">About Us</h4>
                     <ul class="space-y-3">
                         <li><a href="#" onclick="navigateTo('about'); return false;" class="text-base font-medium text-white/90 hover:text-accent-400 transition-colors duration-300">Our Philosophy</a></li>
-                        <li><a href="#" onclick="navigateTo('contact'); return false;" class="text-base font-medium text-white/90 hover:text-accent-400 transition-colors duration-300">Contact Us</a></li>
+                        <li><a href="#" onclick="navigateTo('coming-soon'); return false;" class="text-base font-medium text-white/90 hover:text-accent-400 transition-colors duration-300">Contact Us</a></li>
                         <li><a href="#" onclick="navigateTo('about'); return false;" class="text-base font-medium text-white/90 hover:text-accent-400 transition-colors duration-300">Community</a></li>
                     </ul>
                 </div>
@@ -730,7 +758,7 @@
                     <ul class="space-y-3">
                         <li><a href="#" onclick="navigateTo('home'); return false;" class="text-base font-medium text-white/90 hover:text-accent-400 transition-colors duration-300">Calculators</a></li>
                         <li><a href="#" onclick="navigateTo('articles'); return false;" class="text-base font-medium text-white/90 hover:text-accent-400 transition-colors duration-300">Articles & Guides</a></li>
-                        <li><a href="#" onclick="navigateTo('contact'); return false;" class="text-base font-medium text-white/90 hover:text-accent-400 transition-colors duration-300">FAQs</a></li>
+                        <li><a href="#" onclick="navigateTo('coming-soon'); return false;" class="text-base font-medium text-white/90 hover:text-accent-400 transition-colors duration-300">FAQs</a></li>
                     </ul>
                 </div>
                 <div class="md:text-right">
@@ -1011,5 +1039,15 @@
                     }, 300);
             }
     </script>
+
+            <script>
+        // Coming Soon Form Handler
+        document.getElementById('coming-soon-form').addEventListener('submit', function(e) {
+          e.preventDefault();
+          document.getElementById('coming-soon-message').textContent = "Thank you for signing up! We'll keep you updated.";
+          document.getElementById('coming-soon-message').classList.remove('hidden');
+          this.reset();
+        });
+        </script>
 </body>
 </html>
