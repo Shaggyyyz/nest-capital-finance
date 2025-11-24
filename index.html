@@ -1007,8 +1007,11 @@
         function goToContact() {
               closeArticle();
               setTimeout(function() {
-                      window.location.hash = 'contact';
-                    }, 300);
+        const contactSection = document.getElementById('contact');
+                      if (contactSection) {
+                                      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                  }
+                      }, 300);
             }
     </script>
 </body>
