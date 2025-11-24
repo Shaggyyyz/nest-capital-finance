@@ -146,10 +146,7 @@
         }
 
         /* Views System */
-        .view-section {
-            display: none;
-            /* Replaced slide animation with opacity handling in JS */
-        }
+        .view-section { display: none; }
         .view-section.active { display: block; }
         
         /* Main Content Transition Wrapper */
@@ -189,8 +186,8 @@
                     <a href="#" onclick="navigateTo('resources'); return false;" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Resources</a>
                     <a href="#" onclick="navigateTo('articles'); return false;" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Articles</a>
                     <a href="#" onclick="navigateTo('about'); return false;" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">About</a>
-                    <a href="#contact" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Contact</a>
-                    <a href="#contact" class="bg-white text-brand-900 px-8 py-3 rounded-sm font-medium text-xs uppercase tracking-widest hover:bg-gray-100 transition-colors duration-300 shadow-lg">Book Consultation</a>
+                    <a href="#" onclick="navigateTo('contact'); return false;" class="nav-link text-white font-medium text-sm uppercase tracking-widest relative">Contact</a>
+                    <a href="#" onclick="navigateTo('contact'); return false;" class="bg-white text-brand-900 px-8 py-3 rounded-sm font-medium text-xs uppercase tracking-widest hover:bg-gray-100 transition-colors duration-300 shadow-lg">Book Consultation</a>
                 </nav>
 
                 <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
@@ -208,7 +205,7 @@
             <a href="#" onclick="navigateTo('resources'); toggleMenu(); return false;" class="text-3xl font-serif text-white hover:text-accent-400 transition">Resources</a>
             <a href="#" onclick="navigateTo('articles'); toggleMenu(); return false;" class="text-3xl font-serif text-white hover:text-accent-400 transition">Articles</a>
             <a href="#" onclick="navigateTo('about'); toggleMenu(); return false;" class="text-3xl font-serif text-white hover:text-accent-400 transition">About</a>
-            <a href="#contact" onclick="toggleMenu()" class="text-3xl font-serif text-white hover:text-accent-400 transition">Contact</a>
+            <a href="#" onclick="navigateTo('contact'); toggleMenu(); return false;" class="text-3xl font-serif text-white hover:text-accent-400 transition">Contact</a>
         </div>
     </header>
 
@@ -239,7 +236,7 @@
                     </p>
 
                     <div class="flex flex-col sm:flex-row gap-6 justify-center items-center reveal stagger-delay-3">
-                        <a href="#contact" class="bg-white text-brand-900 px-10 py-4 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-gray-100 transition shadow-xl transform hover:-translate-y-1">Start Conversation</a>
+                        <a href="#" onclick="navigateTo('contact'); return false;" class="bg-white text-brand-900 px-10 py-4 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-gray-100 transition shadow-xl transform hover:-translate-y-1">Start Conversation</a>
                         <a href="#" onclick="navigateTo('services'); return false;" class="text-white border border-white/30 px-10 py-4 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition backdrop-blur-sm">Our Services</a>
                     </div>
                 </div>
@@ -334,7 +331,7 @@
                 <div class="max-w-4xl mx-auto px-4 text-center reveal">
                     <h2 class="font-serif text-3xl md:text-4xl mb-6 text-brand-900">Ready to take the next step?</h2>
                     <p class="text-lg mb-8 text-gray-600">Book a strategy session with our team to discuss your specific scenario.</p>
-                    <a href="#contact" class="inline-block bg-brand-900 text-white px-10 py-4 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-xl">Get in Touch</a>
+                    <a href="#" onclick="navigateTo('contact'); return false;" class="inline-block bg-brand-900 text-white px-10 py-4 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-xl">Get in Touch</a>
                 </div>
             </section>
         </div>
@@ -354,10 +351,6 @@
                             </div>
                             <h3 class="text-xl font-serif text-brand-900 mb-3">Residential Lending</h3>
                             <p class="text-gray-600 text-sm leading-relaxed mb-4">Whether buying your first home, upgrading, or renovating, we access over 60 lenders to find the right rate and structure for you.</p>
-                            <ul class="space-y-2 mb-6">
-                                <li class="flex items-center text-xs text-gray-500"><i data-lucide="check" class="w-3 h-3 text-accent-500 mr-2"></i>First Home Buyers</li>
-                                <li class="flex items-center text-xs text-gray-500"><i data-lucide="check" class="w-3 h-3 text-accent-500 mr-2"></i>Next Home Buyers</li>
-                            </ul>
                         </div>
                         <div class="bg-white p-8 rounded-sm shadow-md hover:shadow-xl transition-all duration-300 group border-t-4 border-accent-500">
                             <div class="w-12 h-12 bg-brand-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-900 transition-colors">
@@ -399,7 +392,7 @@
                     <div class="mt-16 bg-brand-900 rounded-sm p-10 text-center text-white">
                         <h2 class="text-2xl font-serif mb-4">Ready to move forward?</h2>
                         <p class="text-brand-100 mb-8 max-w-xl mx-auto">Book a strategy session with our team to discuss your specific scenario.</p>
-                        <a href="#contact" class="bg-white text-brand-900 px-8 py-3 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-accent-400 transition-colors">Get in Touch</a>
+                        <a href="#" onclick="navigateTo('contact'); return false;" class="bg-white text-brand-900 px-8 py-3 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-accent-400 transition-colors">Get in Touch</a>
                     </div>
                 </div>
             </section>
@@ -430,32 +423,7 @@
                             <i data-lucide="video" class="text-brand-600 w-10 h-10 mb-4"></i>
                             <h3 class="font-serif text-2xl text-brand-900 mb-3">Video Library</h3>
                             <p class="text-gray-600 mb-6">Watch our educational videos covering everything from first home buyers to investment strategies.</p>
-                            <a href="#contact" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Watch Videos →</a>
-                        </div>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-lg transition reveal">
-                            <div class="img-zoom-container h-56 bg-gray-200">
-                                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="First Home Buyer Guide" class="w-full h-full object-cover">
-                            </div>
-                            <div class="p-8">
-                                <span class="text-xs uppercase tracking-widest text-brand-600 font-semibold">Guide</span>
-                                <h3 class="font-serif text-2xl text-brand-900 mt-2 mb-3">First Home Buyer's Guide</h3>
-                                <p class="text-gray-600 mb-6">A step-by-step roadmap to buying your first property in Melbourne.</p>
-                                <a href="#" onclick="navigateTo('articles'); openArticle('article-1'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Read Guide →</a>
-                            </div>
-                        </div>
-                        <div class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-lg transition reveal stagger-delay-1">
-                            <div class="img-zoom-container h-56 bg-gray-200">
-                                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Investment Strategy" class="w-full h-full object-cover">
-                            </div>
-                            <div class="p-8">
-                                <span class="text-xs uppercase tracking-widest text-brand-600 font-semibold">Guide</span>
-                                <h3 class="font-serif text-2xl text-brand-900 mt-2 mb-3">Investment Property Strategy</h3>
-                                <p class="text-gray-600 mb-6">Maximize returns and minimize tax with our comprehensive investment guide.</p>
-                                <a href="#" onclick="navigateTo('articles'); openArticle('article-2'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Read Guide →</a>
-                            </div>
+                            <a href="#" onclick="navigateTo('contact'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Watch Videos →</a>
                         </div>
                     </div>
                 </div>
@@ -474,54 +442,42 @@
                         <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal">
                             <div class="img-zoom-container h-56 bg-gray-200"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="First Home" class="w-full h-full object-cover"></div>
                             <div class="p-6">
-                                <div class="flex items-center gap-3 mb-3"><span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Guide</span></div>
                                 <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-1')">First Home Buyer's Complete Guide 2025</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed mb-4">Everything you need to know about buying your first property in Australia, from saving your deposit to settlement.</p>
                                 <button onclick="openArticle('article-1')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">Read Article <i data-lucide="arrow-right" class="w-3 h-3"></i></button>
                             </div>
                         </article>
                         <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal stagger-delay-1">
                             <div class="img-zoom-container h-56 bg-gray-200"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Invest" class="w-full h-full object-cover"></div>
                             <div class="p-6">
-                                <div class="flex items-center gap-3 mb-3"><span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Strategy</span></div>
                                 <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-2')">Building Your Investment Property Portfolio</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed mb-4">Strategic approaches to growing wealth through property investment, including tax benefits and structuring.</p>
                                 <button onclick="openArticle('article-2')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">Read Article <i data-lucide="arrow-right" class="w-3 h-3"></i></button>
                             </div>
                         </article>
                         <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal stagger-delay-2">
                             <div class="img-zoom-container h-56 bg-gray-200"><img src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Refinance" class="w-full h-full object-cover"></div>
                             <div class="p-6">
-                                <div class="flex items-center gap-3 mb-3"><span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Analysis</span></div>
                                 <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-3')">When Should You Refinance Your Home Loan?</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed mb-4">Learn the key indicators that it's time to refinance and how much you could save on your mortgage repayments.</p>
                                 <button onclick="openArticle('article-3')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">Read Article <i data-lucide="arrow-right" class="w-3 h-3"></i></button>
                             </div>
                         </article>
                         <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal">
                             <div class="img-zoom-container h-56 bg-gray-200"><img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Commercial" class="w-full h-full object-cover"></div>
                             <div class="p-6">
-                                <div class="flex items-center gap-3 mb-3"><span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Business</span></div>
                                 <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-4')">Commercial Property Finance Explained</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed mb-4">Understanding the differences between residential and commercial lending, and how to finance your business property.</p>
                                 <button onclick="openArticle('article-4')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">Read Article <i data-lucide="arrow-right" class="w-3 h-3"></i></button>
                             </div>
                         </article>
-                        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal stagger-delay-1">
+                         <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal stagger-delay-1">
                             <div class="img-zoom-container h-56 bg-gray-200"><img src="https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Market" class="w-full h-full object-cover"></div>
                             <div class="p-6">
-                                <div class="flex items-center gap-3 mb-3"><span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Update</span></div>
                                 <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-5')">Melbourne Property Market Trends Q4 2025</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed mb-4">Analysis of Melbourne's property market performance, interest rate movements, and what to expect in 2026.</p>
                                 <button onclick="openArticle('article-5')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">Read Article <i data-lucide="arrow-right" class="w-3 h-3"></i></button>
                             </div>
                         </article>
-                        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal stagger-delay-2">
+                         <article class="bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300 reveal stagger-delay-2">
                             <div class="img-zoom-container h-56 bg-gray-200"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tax" class="w-full h-full object-cover"></div>
                             <div class="p-6">
-                                <div class="flex items-center gap-3 mb-3"><span class="text-xs uppercase tracking-widest text-accent-500 font-semibold">Tax</span></div>
                                 <h3 class="font-serif text-xl text-brand-900 mb-3 hover:text-accent-500 transition cursor-pointer" onclick="openArticle('article-6')">Debt Recycling Strategies</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed mb-4">Learn how to transform your home loan into a tax-deductible investment loan while maintaining the same debt level.</p>
                                 <button onclick="openArticle('article-6')" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition inline-flex items-center gap-2">Read Article <i data-lucide="arrow-right" class="w-3 h-3"></i></button>
                             </div>
                         </article>
@@ -536,131 +492,169 @@
                     <div class="text-center mb-20 reveal">
                         <h1 class="font-serif text-5xl md:text-6xl text-brand-900 mb-8">Our Philosophy</h1>
                         <p class="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto mb-6">
-                            At <strong class="text-brand-900">Nest Capital</strong>, we believe that financial freedom requires more than just a loan; it requires an entourage. Our philosophy is simple:
+                            At <strong class="text-brand-900">Nest Capital</strong>, we believe that financial freedom requires more than just a loan; it requires an entourage.
                         </p>
                         <p class="font-serif text-3xl text-brand-900 italic">One team, one briefing.</p>
-                    </div>
-
-                    <div class="prose prose-lg max-w-none mb-20 reveal">
-                        <p class="text-gray-700 leading-relaxed mb-6">We don't treat you like an anonymous bank application. We treat you as a partner. By surrounding you with experts in finance, property advocacy, and wealth strategy, we level the playing field against the banks and the property market.</p>
-                        <p class="text-gray-700 leading-relaxed">With access to over <strong class="text-brand-900">60 lenders</strong> and a team that has settled over <strong class="text-brand-900">$700M in loans</strong>, we have the scale to get you the best deal and the boutique service to ensure you feel supported every step of the way.</p>
-                    </div>
-
-                    <div class="mb-20">
-                        <h2 class="font-serif text-4xl text-brand-900 mb-10 text-center reveal">Our Culture</h2>
-                        <div class="grid md:grid-cols-2 gap-10">
-                            <div class="reveal">
-                                <div class="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center mb-4"><i data-lucide="heart" class="text-brand-600 w-6 h-6"></i></div>
-                                <h3 class="font-serif text-2xl text-brand-900 mb-3">Client-Obsessed</h3>
-                                <p class="text-gray-600">First and foremost, our customers. We are mad for them. Every decision starts with "does this help the client?"</p>
-                            </div>
-                            <div class="reveal stagger-delay-1">
-                                <div class="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center mb-4"><i data-lucide="zap" class="text-brand-600 w-6 h-6"></i></div>
-                                <h3 class="font-serif text-2xl text-brand-900 mb-3">Disruptively Different</h3>
-                                <p class="text-gray-600">We don't accept the status quo. We were created to do things differently to the standard brokerage.</p>
-                            </div>
-                            <div class="reveal">
-                                <div class="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center mb-4"><i data-lucide="shield" class="text-brand-600 w-6 h-6"></i></div>
-                                <h3 class="font-serif text-2xl text-brand-900 mb-3">Integrity Always</h3>
-                                <p class="text-gray-600">Integrity is second nature. Doing the right thing by our clients and team is the only way we operate.</p>
-                            </div>
-                            <div class="reveal stagger-delay-1">
-                                <div class="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center mb-4"><i data-lucide="trending-up" class="text-brand-600 w-6 h-6"></i></div>
-                                <h3 class="font-serif text-2xl text-brand-900 mb-3">Relentlessly Ambitious</h3>
-                                <p class="text-gray-600">No matter how many awards we win, we always strive for more. We are constantly learning and improving.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-brand-50 border border-brand-200 p-10 md:p-14 rounded-sm reveal">
-                        <h2 class="font-serif text-4xl text-brand-900 mb-6 text-center">Community First</h2>
-                        <p class="text-center text-lg text-gray-700 mb-12">We are deeply connected to the communities we live and work in. For us, success isn't just measured in loans settled, but in the positive impact we can create.</p>
-                        <div class="space-y-8">
-                            <div class="flex items-start gap-6">
-                                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0"><i data-lucide="users" class="text-brand-600 w-6 h-6"></i></div>
-                                <div><h3 class="font-serif text-xl text-brand-900 mb-2">Ladies Lunches</h3><p class="text-gray-700">Proud supporters of the Ladies Lunches, raising over $33,000 for vital medical research including women's health and lung health.</p></div>
-                            </div>
-                            <div class="flex items-start gap-6">
-                                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0"><i data-lucide="heart" class="text-brand-600 w-6 h-6"></i></div>
-                                <div><h3 class="font-serif text-xl text-brand-900 mb-2">The Man Cave</h3><p class="text-gray-700">Partnering with The Man Cave to empower boys to become great men through preventative mental health and emotional literacy programs.</p></div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
         </div>
 
-        <section id="contact" class="py-24 bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white">
-            <div class="max-w-5xl mx-auto px-4">
-                <div class="text-center mb-16 reveal">
-                    <h2 class="font-serif text-4xl md:text-5xl mb-6">Let's Start Your Journey</h2>
-                    <p class="text-lg text-gray-200 max-w-2xl mx-auto">Ready to secure your future? Book a free consultation with our team today.</p>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div class="reveal">
-                        <form id="contact-form" class="space-y-6">
-                            <div class="grid grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-xs uppercase font-bold text-white mb-2">Name</label>
-                                    <input type="text" name="name" required placeholder="e.g. Jane Doe" style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm placeholder-gray-400">
-                                </div>
-                                <div>
-                                    <label class="block text-xs uppercase font-bold text-white mb-2">Phone</label>
-                                    <input type="tel" name="phone" required placeholder="e.g. 0400 000 000" style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm placeholder-gray-400">
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-xs uppercase font-bold text-white mb-2">Email</label>
-                                <input type="email" name="email" required placeholder="e.g. jane@example.com" style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm placeholder-gray-400">
-                            </div>
-                            
-                            <div>
-                                <label class="block text-xs uppercase font-bold text-white mb-2">I'm interested in...</label>
-                                <select name="interest" required style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm">
-                                    <option value="" disabled selected>Select an option...</option>
-                                    <option value="first-home">Buying my first home</option>
-                                    <option value="refinance">Refinancing</option>
-                                    <option value="investment">Investment Property</option>
-                                    <option value="commercial">Commercial Finance</option>
-                                    <option value="asset">Asset Finance</option>
-                                    <option value="other">General Enquiry</option>
-                                </select>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-xs uppercase font-bold text-white mb-2">Message</label>
-                                <textarea name="message" rows="3" required placeholder="How can we help you?" style="color: #606060; background: white;" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm placeholder-gray-400"></textarea>
-                            </div>
-                            
-                            <button type="submit" class="w-full bg-accent-500 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-400 transition shadow-lg">Send Enquiry</button>
-                            <div id="form-message" class="hidden mt-4"></div>
-                        </form>
+        <div id="view-contact" class="view-section">
+            <section class="pt-32 pb-24 bg-brand-50">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="text-center mb-16 reveal">
+                        <h1 class="font-serif text-5xl md:text-6xl text-brand-900 mb-6">Get In Touch</h1>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">We are here to help you navigate your property journey. Reach out today.</p>
                     </div>
 
-                    <div class="space-y-8 reveal stagger-delay-1">
-                        <div>
-                            <h3 class="font-serif text-2xl mb-6">Get In Touch</h3>
-                            <div class="space-y-4">
+                    <div class="bg-white shadow-2xl rounded-sm overflow-hidden flex flex-col md:flex-row mb-24 reveal">
+                        
+                        <div class="md:w-5/12 bg-brand-900 text-white p-10 md:p-14 flex flex-col justify-center">
+                            <h3 class="font-serif text-3xl mb-8">Contact Details</h3>
+                            
+                            <div class="space-y-8">
                                 <div class="flex items-start gap-4">
-                                    <i data-lucide="phone" class="w-6 h-6 text-accent-400 flex-shrink-0 mt-1"></i>
-                                    <div><p class="text-sm text-gray-300">Call Us</p><a href="tel:1300385222" class="text-lg font-medium hover:text-accent-400 transition">1300 385 222</a></div>
+                                    <div class="bg-brand-800 p-3 rounded-full"><i data-lucide="phone" class="w-6 h-6 text-accent-400"></i></div>
+                                    <div>
+                                        <p class="text-xs uppercase tracking-widest text-gray-300 mb-1">Phone</p>
+                                        <a href="tel:1300385222" class="text-xl font-medium hover:text-accent-400 transition">1300 385 222</a>
+                                    </div>
                                 </div>
                                 <div class="flex items-start gap-4">
-                                    <i data-lucide="mail" class="w-6 h-6 text-accent-400 flex-shrink-0 mt-1"></i>
-                                    <div><p class="text-sm text-gray-300">Email Us</p><a href="mailto:info@nestcapitalfinance.com.au" class="text-lg font-medium hover:text-accent-400 transition">info@nestcapitalfinance.com.au</a></div>
+                                    <div class="bg-brand-800 p-3 rounded-full"><i data-lucide="mail" class="w-6 h-6 text-accent-400"></i></div>
+                                    <div>
+                                        <p class="text-xs uppercase tracking-widest text-gray-300 mb-1">Email</p>
+                                        <a href="mailto:info@nestcapitalfinance.com.au" class="text-lg font-medium hover:text-accent-400 transition">info@nestcapitalfinance.com.au</a>
+                                    </div>
                                 </div>
                                 <div class="flex items-start gap-4">
-                                    <i data-lucide="map-pin" class="w-6 h-6 text-accent-400 flex-shrink-0 mt-1"></i>
-                                    <div><p class="text-sm text-gray-300">Visit Us</p><p class="text-lg font-medium">Melbourne, VIC</p></div>
+                                    <div class="bg-brand-800 p-3 rounded-full"><i data-lucide="map-pin" class="w-6 h-6 text-accent-400"></i></div>
+                                    <div>
+                                        <p class="text-xs uppercase tracking-widest text-gray-300 mb-1">Office</p>
+                                        <p class="text-lg">Melbourne, VIC<br><span class="text-sm text-gray-300">Available Australia-wide via Zoom</span></p>
+                                    </div>
+                                </div>
+                                <div class="pt-8 border-t border-white/20">
+                                    <h4 class="font-serif text-xl mb-4">Office Hours</h4>
+                                    <p class="text-gray-300">Monday - Friday: 9:00 AM - 5:30 PM</p>
+                                    <p class="text-gray-300">Weekends: By Appointment</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="md:w-7/12 p-10 md:p-14 bg-white">
+                            <h3 class="font-serif text-3xl text-brand-900 mb-6">Send us a Message</h3>
+                            <form id="contact-form" class="space-y-6">
+                                <div class="grid grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-xs uppercase font-bold text-brand-900 mb-2">Name</label>
+                                        <input type="text" name="name" required placeholder="e.g. Jane Doe" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm placeholder-gray-400 text-brand-900 bg-white">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs uppercase font-bold text-brand-900 mb-2">Phone</label>
+                                        <input type="tel" name="phone" required placeholder="e.g. 0400 000 000" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm placeholder-gray-400 text-brand-900 bg-white">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-xs uppercase font-bold text-brand-900 mb-2">Email</label>
+                                    <input type="email" name="email" required placeholder="e.g. jane@example.com" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm placeholder-gray-400 text-brand-900 bg-white">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-xs uppercase font-bold text-brand-900 mb-2">I'm interested in...</label>
+                                    <select name="interest" required class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm text-brand-900 bg-white">
+                                        <option value="" disabled selected>Select an option...</option>
+                                        <option value="first-home">Buying my first home</option>
+                                        <option value="refinance">Refinancing</option>
+                                        <option value="investment">Investment Property</option>
+                                        <option value="commercial">Commercial Finance</option>
+                                        <option value="asset">Asset Finance</option>
+                                        <option value="other">General Enquiry</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-xs uppercase font-bold text-brand-900 mb-2">Message</label>
+                                    <textarea name="message" rows="3" required placeholder="How can we help you?" class="w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-accent-400 transition rounded-sm placeholder-gray-400 text-brand-900 bg-white"></textarea>
+                                </div>
+                                
+                                <button type="submit" class="w-full bg-accent-500 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-400 transition shadow-lg">Send Enquiry</button>
+                                <div id="form-message" class="hidden mt-4"></div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="mb-16">
+                        <div class="text-center mb-12 reveal">
+                            <span class="text-accent-500 font-bold uppercase tracking-widest text-xs">The Experts</span>
+                            <h2 class="font-serif text-4xl text-brand-900 mt-2">Meet Your Team</h2>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="bg-white rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 reveal group">
+                                <div class="h-64 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sarah Jenkins" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                </div>
+                                <div class="p-8">
+                                    <h3 class="font-serif text-2xl text-brand-900">Sarah Jenkins</h3>
+                                    <p class="text-accent-500 text-xs uppercase tracking-widest font-bold mb-4">Director & Senior Broker</p>
+                                    <p class="text-gray-600 text-sm leading-relaxed mb-6">With over 15 years in banking and finance, Sarah founded Nest Capital to provide the personalised service that big banks forgot. She specialises in complex self-employed scenarios.</p>
+                                    <div class="border-t border-gray-100 pt-4 space-y-2">
+                                        <div class="flex items-center gap-3 text-sm text-gray-500">
+                                            <i data-lucide="phone" class="w-4 h-4 text-brand-600"></i> 0400 123 456
+                                        </div>
+                                        <div class="flex items-center gap-3 text-sm text-gray-500">
+                                            <i data-lucide="mail" class="w-4 h-4 text-brand-600"></i> sarah@nestcapital.com.au
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 reveal stagger-delay-1 group">
+                                <div class="h-64 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Michael Chang" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                </div>
+                                <div class="p-8">
+                                    <h3 class="font-serif text-2xl text-brand-900">Michael Chang</h3>
+                                    <p class="text-accent-500 text-xs uppercase tracking-widest font-bold mb-4">Commercial Specialist</p>
+                                    <p class="text-gray-600 text-sm leading-relaxed mb-6">Michael brings a wealth of knowledge in commercial property and business lending. He helps business owners unlock capital to grow their operations and acquire premises.</p>
+                                    <div class="border-t border-gray-100 pt-4 space-y-2">
+                                        <div class="flex items-center gap-3 text-sm text-gray-500">
+                                            <i data-lucide="phone" class="w-4 h-4 text-brand-600"></i> 0400 987 654
+                                        </div>
+                                        <div class="flex items-center gap-3 text-sm text-gray-500">
+                                            <i data-lucide="mail" class="w-4 h-4 text-brand-600"></i> michael@nestcapital.com.au
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 reveal stagger-delay-2 group">
+                                <div class="h-64 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Emma Roberts" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                </div>
+                                <div class="p-8">
+                                    <h3 class="font-serif text-2xl text-brand-900">Emma Roberts</h3>
+                                    <p class="text-accent-500 text-xs uppercase tracking-widest font-bold mb-4">Client Success Manager</p>
+                                    <p class="text-gray-600 text-sm leading-relaxed mb-6">Emma ensures that from application to settlement, your journey is smooth and stress-free. She is passionate about helping first home buyers enter the market.</p>
+                                    <div class="border-t border-gray-100 pt-4 space-y-2">
+                                        <div class="flex items-center gap-3 text-sm text-gray-500">
+                                            <i data-lucide="phone" class="w-4 h-4 text-brand-600"></i> 1300 385 222
+                                        </div>
+                                        <div class="flex items-center gap-3 text-sm text-gray-500">
+                                            <i data-lucide="mail" class="w-4 h-4 text-brand-600"></i> emma@nestcapital.com.au
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
     </main>
     <footer class="bg-brand-900 text-white py-12 border-t border-white/10">
@@ -715,7 +709,6 @@
             
             // 4. Instant Scroll Reset (while invisible)
             if (sectionId) {
-                // If targeting a specific section, wait a tiny bit for DOM to settle then jump
                 const section = document.getElementById(sectionId);
                 if(section) section.scrollIntoView({ behavior: 'auto' }); 
             } else {
@@ -751,7 +744,6 @@
         function initScrollAnimations() {
             const revealElements = document.querySelectorAll('.reveal');
             revealElements.forEach(el => {
-                // If not active, hide it
                 if (!el.classList.contains('active')) el.classList.add('reveal-hidden');
             });
 
@@ -795,7 +787,6 @@
             const submitBtn = form.querySelector('button[type="submit"]');
             const messageDiv = document.getElementById('form-message');
             
-            // Collect Data
             const formData = {
                 name: form.name.value,
                 phone: form.phone.value,
@@ -804,41 +795,36 @@
                 message: form.message.value
             };
             
-            // Disable button
             submitBtn.disabled = true;
             submitBtn.textContent = 'SENDING...';
             submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
             
             try {
-                // Send Data
                 await fetch(SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors', // Important for Google Sheets
+                    mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
                 });
                 
-                // Success Message
                 messageDiv.innerHTML = `
-                    <div class="bg-green-500/20 border border-green-500/40 rounded-sm p-4 mt-4">
-                        <p class="text-white font-medium">✓ Thank you! Your message has been sent successfully.</p>
-                        <p class="text-gray-200 text-sm mt-1">We'll get back to you within 24 hours.</p>
+                    <div class="bg-green-50 border border-green-200 rounded-sm p-4 mt-4">
+                        <p class="text-green-800 font-medium">✓ Thank you! Your message has been sent successfully.</p>
+                        <p class="text-green-600 text-sm mt-1">We'll get back to you within 24 hours.</p>
                     </div>
                 `;
                 messageDiv.classList.remove('hidden');
                 form.reset();
                 
             } catch (error) {
-                // Error Message
                 messageDiv.innerHTML = `
-                    <div class="bg-red-500/20 border border-red-500/40 rounded-sm p-4 mt-4">
-                        <p class="text-white font-medium">✗ Oops! Something went wrong.</p>
-                        <p class="text-gray-200 text-sm mt-1">Please try again or call us directly.</p>
+                    <div class="bg-red-50 border border-red-200 rounded-sm p-4 mt-4">
+                        <p class="text-red-800 font-medium">✗ Oops! Something went wrong.</p>
+                        <p class="text-red-600 text-sm mt-1">Please try again or call us directly.</p>
                     </div>
                 `;
                 messageDiv.classList.remove('hidden');
             } finally {
-                // Re-enable button
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'SEND ENQUIRY';
                 submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
