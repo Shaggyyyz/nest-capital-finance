@@ -792,6 +792,15 @@
             initScrollAnimations();
             document.body.classList.add('loaded'); // Triggers Title Animation
             calculateRepayment();
+
+                    // Handle hash-based navigation from external pages (e.g., from faqs.html)
+                    if (window.location.hash) {
+                                    const viewId = window.location.hash.substring(1); // Remove '#' from hash
+                                    if (viewId && viewId.startsWith('view-')) {
+                                                        const sectionName = viewId.replace('view-', '');
+                                                        navigateTo(sectionName);
+                                                    }
+                                }
         };
 
         // --- SLIDESHOW ---
