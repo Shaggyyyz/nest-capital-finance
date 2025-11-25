@@ -321,7 +321,7 @@
             align-items: center;
             justify-content: center;
             height: 120px;
-            background: white;
+            background: #f3f4f6;
             border: 1px solid #e5e7eb;
             border-radius: 2px;
             transition: all 0.3s ease;
@@ -359,6 +359,41 @@
         .lender-card:hover span {
             opacity: 1;
             transform: translateY(0);
+        }
+
+                /* 45+ More Lenders Card - Special Styling */
+        .lender-card-more {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 120px;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            padding: 20px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .lender-card-more:hover {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            border-color: #b08d1e;
+            border-width: 2px;
+            background: #f3f4f6;
+        }
+        .lender-card-more span {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #337566;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .lender-card-more small {
+            font-size: 0.875rem;
+            color: #686965;
+            margin-top: 4px;
         }
     </style>
 </head>
@@ -786,10 +821,10 @@
                         </div>
 
                         <!-- More Lenders Placeholder -->
-                        <a href="#contact" onclick="navigateTo('contact'); return false;" class="lender-card group bg-brand-900 flex-col gap-2 hover:bg-accent-500 cursor-pointer border-brand-900">
-                            <span class="text-3xl font-serif font-bold text-white">45+</span>
-                            <span class="text-xs uppercase tracking-widest text-white/90">More Lenders</span>
-                        </a>
+<a href="#contact" onclick="navigateTo('contact'); return false;" class="lender-card-more">
+                                <span>45+</span>
+                                <small>More Lenders</small>
+                            </a>
                     </div>
                     
                     <div class="mt-16 bg-white rounded-sm p-10 text-center border border-gray-200 reveal stagger-delay-2 shadow-lg">
