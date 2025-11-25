@@ -289,6 +289,31 @@
         .accordion-item.active .accordion-icon {
             transform: rotate(180deg);
         }
+
+        /* Calculator Tab Styles */
+        .calc-tab {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .calc-tab.active {
+            color: #b08d1e; /* accent-500 */
+            border-bottom-color: #b08d1e;
+            background-color: rgba(176, 141, 30, 0.05);
+        }
+        .calc-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .calc-content.active {
+            display: block;
+        }
+        .input-group input, .input-group select {
+            transition: all 0.2s;
+        }
+        .input-group input:focus, .input-group select:focus {
+            border-color: #c5a028;
+            box-shadow: 0 0 0 3px rgba(197, 160, 40, 0.1);
+        }
     </style>
 </head>
 <body class="bg-brand-50 text-gray-800 font-sans antialiased overflow-x-hidden">
@@ -630,7 +655,7 @@
                             <i data-lucide="calculator" class="text-brand-600 w-10 h-10 mb-4"></i>
                             <h3 class="font-serif text-2xl text-brand-900 mb-3">Financial Calculators</h3>
                             <p class="text-gray-600 mb-6">Estimate repayments, borrowing capacity, and stamp duty costs with our easy-to-use calculators.</p>
-                            <a href="#home" onclick="navigateTo('home'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Use Calculators →</a>
+                            <a href="#calculators" onclick="navigateTo('calculators'); return false;" class="text-brand-600 font-semibold uppercase tracking-wider text-xs hover:text-accent-500 transition">Use Calculators →</a>
                         </div>
                         <div class="bg-white border border-gray-200 p-8 rounded-sm hover:shadow-lg transition reveal stagger-delay-2">
                             <i data-lucide="video" class="text-brand-600 w-10 h-10 mb-4"></i>
@@ -704,6 +729,251 @@
                 </div>
             </section>
         </div>
+
+        <!-- NEW CALCULATORS SECTION -->
+        <div id="view-calculators" class="view-section">
+            <section class="bg-brand-50 pt-32 pb-16">
+                <div class="max-w-4xl mx-auto px-4 text-center reveal">
+                    <span class="text-accent-400 font-bold uppercase tracking-widest text-xs mb-4 block">Financial Tools</span>
+                    <h2 class="font-serif text-5xl md:text-6xl text-brand-900 mb-6">Calculators</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                        Plan your property journey with confidence. Select a calculator below to estimate your repayments, borrowing power, stamp duty, and more.
+                    </p>
+                </div>
+            </section>
+
+            <section class="pb-24 px-4">
+                <div class="max-w-5xl mx-auto bg-white rounded-sm shadow-xl overflow-hidden border border-gray-200 reveal stagger-delay-1">
+                    
+                    <!-- Tab Navigation -->
+                    <div class="flex flex-wrap border-b border-gray-200">
+                        <button onclick="switchCalcTab('repayment')" class="calc-tab active flex-1 py-6 px-4 text-sm md:text-base font-bold uppercase tracking-widest text-brand-900 hover:bg-gray-50 focus:outline-none text-center" id="tab-repayment">Repayments</button>
+                        <button onclick="switchCalcTab('borrowing')" class="calc-tab flex-1 py-6 px-4 text-sm md:text-base font-bold uppercase tracking-widest text-brand-900 hover:bg-gray-50 focus:outline-none text-center" id="tab-borrowing">Borrowing Power</button>
+                        <button onclick="switchCalcTab('stampduty')" class="calc-tab flex-1 py-6 px-4 text-sm md:text-base font-bold uppercase tracking-widest text-brand-900 hover:bg-gray-50 focus:outline-none text-center" id="tab-stampduty">Stamp Duty (VIC)</button>
+                        <button onclick="switchCalcTab('extra')" class="calc-tab flex-1 py-6 px-4 text-sm md:text-base font-bold uppercase tracking-widest text-brand-900 hover:bg-gray-50 focus:outline-none text-center" id="tab-extra">Extra Repayments</button>
+                    </div>
+
+                    <!-- 1. Repayment Calculator Content -->
+                    <div id="calc-repayment" class="calc-content active p-8 md:p-12">
+                        <div class="grid md:grid-cols-2 gap-12">
+                            <div class="space-y-6">
+                                <h3 class="font-serif text-2xl text-brand-900 mb-4">Loan Details</h3>
+                                <div class="input-group">
+                                    <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Loan Amount</label>
+                                    <div class="relative">
+                                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                        <input type="number" id="r-amount" value="600000" class="w-full border border-gray-300 py-3 pl-8 pr-4 rounded-sm focus:outline-none">
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="input-group">
+                                        <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Interest Rate</label>
+                                        <div class="relative">
+                                            <input type="number" id="r-rate" value="6.24" step="0.01" class="w-full border border-gray-300 py-3 px-4 rounded-sm focus:outline-none">
+                                            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Loan Term</label>
+                                        <div class="relative">
+                                            <input type="number" id="r-term" value="30" class="w-full border border-gray-300 py-3 px-4 rounded-sm focus:outline-none">
+                                            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">Yrs</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Repayment Frequency</label>
+                                    <select id="r-freq" class="w-full border border-gray-300 py-3 px-4 rounded-sm focus:outline-none bg-white">
+                                        <option value="12">Monthly</option>
+                                        <option value="26">Fortnightly</option>
+                                        <option value="52">Weekly</option>
+                                    </select>
+                                </div>
+                                <button onclick="calcRepaymentDetail()" class="w-full bg-brand-900 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-lg">Calculate</button>
+                            </div>
+                            
+                            <div class="bg-brand-50 p-8 rounded-sm flex flex-col justify-center items-center text-center border border-brand-100">
+                                <p class="text-sm uppercase tracking-widest text-gray-500 mb-2">Estimated Repayment</p>
+                                <div class="text-5xl font-serif text-brand-900 mb-2 font-medium" id="r-result">$3,691</div>
+                                <p class="text-gray-500 text-sm" id="r-result-label">Per Month</p>
+                                <div class="mt-8 w-full border-t border-gray-200 pt-6">
+                                    <div class="flex justify-between mb-2 text-sm">
+                                        <span class="text-gray-500">Total Interest Payable:</span>
+                                        <span class="font-bold text-brand-900" id="r-total-interest">$728,692</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-500">Total Cost of Loan:</span>
+                                        <span class="font-bold text-brand-900" id="r-total-cost">$1,328,692</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Borrowing Power Content -->
+                    <div id="calc-borrowing" class="calc-content p-8 md:p-12">
+                        <div class="grid md:grid-cols-2 gap-12">
+                            <div class="space-y-6">
+                                <h3 class="font-serif text-2xl text-brand-900 mb-4">Your Financials</h3>
+                                <div class="input-group">
+                                    <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Annual Income (Pre-Tax)</label>
+                                    <div class="relative">
+                                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                        <input type="number" id="b-income1" value="90000" class="w-full border border-gray-300 py-3 pl-8 pr-4 rounded-sm focus:outline-none">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Applicant 2 Income (Optional)</label>
+                                    <div class="relative">
+                                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                        <input type="number" id="b-income2" value="0" class="w-full border border-gray-300 py-3 pl-8 pr-4 rounded-sm focus:outline-none">
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="input-group">
+                                        <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Dependents</label>
+                                        <input type="number" id="b-dependents" value="0" class="w-full border border-gray-300 py-3 px-4 rounded-sm focus:outline-none">
+                                    </div>
+                                    <div class="input-group">
+                                        <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Monthly Expenses</label>
+                                        <div class="relative">
+                                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                            <input type="number" id="b-expenses" value="2500" class="w-full border border-gray-300 py-3 pl-8 pr-4 rounded-sm focus:outline-none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Other Monthly Loan Payments</label>
+                                    <div class="relative">
+                                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                        <input type="number" id="b-liabilities" value="0" class="w-full border border-gray-300 py-3 pl-8 pr-4 rounded-sm focus:outline-none">
+                                    </div>
+                                </div>
+                                <button onclick="calcBorrowingPower()" class="w-full bg-brand-900 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-lg">Estimate Borrowing Power</button>
+                            </div>
+                            
+                            <div class="bg-brand-50 p-8 rounded-sm flex flex-col justify-center items-center text-center border border-brand-100">
+                                <p class="text-sm uppercase tracking-widest text-gray-500 mb-2">Estimated Borrowing Capacity</p>
+                                <div class="text-5xl font-serif text-brand-900 mb-4 font-medium" id="b-result">$540,000</div>
+                                <p class="text-gray-500 text-sm leading-relaxed px-4">
+                                    *This is an estimate only based on standard bank assessment rates (Approx 9%). Actual borrowing power varies significantly between lenders.
+                                </p>
+                                <a href="#contact" onclick="navigateTo('contact')" class="mt-6 text-brand-600 font-bold text-xs uppercase tracking-widest hover:text-accent-500 underline">Get an Accurate Assessment</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Stamp Duty Content (VIC Focused) -->
+                    <div id="calc-stampduty" class="calc-content p-8 md:p-12">
+                        <div class="grid md:grid-cols-2 gap-12">
+                            <div class="space-y-6">
+                                <h3 class="font-serif text-2xl text-brand-900 mb-4">VIC Property Details</h3>
+                                <div class="input-group">
+                                    <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Property Value</label>
+                                    <div class="relative">
+                                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                        <input type="number" id="s-value" value="600000" class="w-full border border-gray-300 py-3 pl-8 pr-4 rounded-sm focus:outline-none">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Property Type</label>
+                                    <select id="s-type" class="w-full border border-gray-300 py-3 px-4 rounded-sm focus:outline-none bg-white">
+                                        <option value="established">Established Home</option>
+                                        <option value="new">New Home</option>
+                                        <option value="land">Vacant Land</option>
+                                    </select>
+                                </div>
+                                <div class="input-group flex items-center gap-3 pt-2">
+                                    <input type="checkbox" id="s-fhb" class="w-5 h-5 text-brand-900 border-gray-300 rounded focus:ring-accent-400">
+                                    <label for="s-fhb" class="text-gray-700">I am a First Home Buyer</label>
+                                </div>
+                                <div class="input-group flex items-center gap-3">
+                                    <input type="checkbox" id="s-ppor" class="w-5 h-5 text-brand-900 border-gray-300 rounded focus:ring-accent-400" checked>
+                                    <label for="s-ppor" class="text-gray-700">I will live in this property (PPR)</label>
+                                </div>
+                                <button onclick="calcStampDuty()" class="w-full bg-brand-900 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-lg">Calculate Fees</button>
+                            </div>
+                            
+                            <div class="bg-brand-50 p-8 rounded-sm flex flex-col justify-center border border-brand-100">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-end border-b border-gray-200 pb-2">
+                                        <span class="text-gray-600">Stamp Duty (VIC)</span>
+                                        <span class="font-bold text-xl text-brand-900" id="s-duty">$31,070</span>
+                                    </div>
+                                    <div class="flex justify-between items-end border-b border-gray-200 pb-2">
+                                        <span class="text-gray-600">Transfer Fee</span>
+                                        <span class="font-bold text-xl text-brand-900" id="s-transfer">$1,500</span>
+                                    </div>
+                                    <div class="flex justify-between items-end border-b border-gray-200 pb-2">
+                                        <span class="text-gray-600">Mortgage Registration</span>
+                                        <span class="font-bold text-xl text-brand-900" id="s-reg">$130</span>
+                                    </div>
+                                    <div class="pt-4">
+                                        <p class="text-sm uppercase tracking-widest text-gray-500 mb-2 text-center">Total Government Fees</p>
+                                        <div class="text-4xl font-serif text-brand-900 font-medium text-center" id="s-total">$32,700</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Extra Repayments Content -->
+                    <div id="calc-extra" class="calc-content p-8 md:p-12">
+                        <div class="grid md:grid-cols-2 gap-12">
+                            <div class="space-y-6">
+                                <h3 class="font-serif text-2xl text-brand-900 mb-4">Extra Contribution</h3>
+                                <div class="input-group">
+                                    <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Loan Balance</label>
+                                    <div class="relative">
+                                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                        <input type="number" id="e-balance" value="500000" class="w-full border border-gray-300 py-3 pl-8 pr-4 rounded-sm focus:outline-none">
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="input-group">
+                                        <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Interest Rate</label>
+                                        <div class="relative">
+                                            <input type="number" id="e-rate" value="6.24" step="0.01" class="w-full border border-gray-300 py-3 px-4 rounded-sm focus:outline-none">
+                                            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Remaining Term</label>
+                                        <div class="relative">
+                                            <input type="number" id="e-term" value="25" class="w-full border border-gray-300 py-3 px-4 rounded-sm focus:outline-none">
+                                            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">Yrs</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label class="block text-xs uppercase font-bold text-brand-600 mb-2">Extra Monthly Repayment</label>
+                                    <div class="relative">
+                                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-brand-600 font-bold">+ $</span>
+                                        <input type="number" id="e-extra" value="200" class="w-full border-2 border-brand-200 py-3 pl-10 pr-4 rounded-sm focus:outline-none focus:border-accent-400 bg-brand-50">
+                                    </div>
+                                </div>
+                                <button onclick="calcExtraRepayment()" class="w-full bg-brand-900 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-lg">Calculate Savings</button>
+                            </div>
+                            
+                            <div class="bg-brand-50 p-8 rounded-sm flex flex-col justify-center items-center text-center border border-brand-100">
+                                <div class="mb-8">
+                                    <p class="text-sm uppercase tracking-widest text-gray-500 mb-2">Total Interest Saved</p>
+                                    <div class="text-5xl font-serif text-green-700 mb-2 font-medium" id="e-saved">$64,320</div>
+                                </div>
+                                <div>
+                                    <p class="text-sm uppercase tracking-widest text-gray-500 mb-2">Time Saved</p>
+                                    <div class="text-3xl font-serif text-brand-900 font-medium" id="e-time">3 Years, 4 Months</div>
+                                    <p class="text-gray-500 text-xs mt-2">You will be debt free sooner.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- RESTORED MISSING SECTIONS BELOW THIS LINE -->
 
         <div id="view-about" class="view-section">
             <section class="pt-32 pb-24 bg-white">
@@ -811,13 +1081,12 @@
             </section>
         </div>
 
-        <!-- NEW FAQ SECTION -->
         <div id="view-faqs" class="view-section">
             <!-- Hero Section -->
             <section class="bg-brand-50 pt-32 pb-16">
                 <div class="max-w-4xl mx-auto px-4 text-center reveal">
                     <span class="text-accent-400 font-bold uppercase tracking-widest text-xs mb-4 block">Expert Knowledge Base</span>
-                    <h2 class="font-serif text-5xl md:text-6xl text-brand-900 mb-6">Frequently Asked Questions</h2>
+                    <h2 class="font-serif text-5xl md:text-6xl text-brand-900 mb-6">Common Questions</h2>
                     <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
                         From first home buyers to complex commercial structures, we have the answers. Search our database below.
                     </p>
@@ -1431,6 +1700,11 @@
             initScrollAnimations();
             document.body.classList.add('loaded'); 
             calculateRepayment();
+            // Initialize all calculators once
+            calcRepaymentDetail();
+            calcBorrowingPower();
+            calcStampDuty();
+            calcExtraRepayment();
             initSearch(); 
             
             // --- HASH ROUTING LOGIC ---
@@ -1561,6 +1835,161 @@
         }
         const loanInput = document.getElementById('loan-amount');
         if(loanInput) loanInput.addEventListener('input', calculateRepayment);
+
+        // --- NEW FINANCIAL CALCULATORS LOGIC ---
+
+        // Tab Switching
+        function switchCalcTab(tabName) {
+            // Hide all tabs content
+            document.querySelectorAll('.calc-content').forEach(el => el.classList.remove('active'));
+            // Deactivate all buttons
+            document.querySelectorAll('.calc-tab').forEach(el => el.classList.remove('active'));
+            
+            // Show target content
+            document.getElementById('calc-' + tabName).classList.add('active');
+            // Activate button
+            document.getElementById('tab-' + tabName).classList.add('active');
+        }
+
+        // 1. Detailed Repayment Calculator
+        function calcRepaymentDetail() {
+            const amount = parseFloat(document.getElementById('r-amount').value) || 0;
+            const rate = parseFloat(document.getElementById('r-rate').value) || 0;
+            const term = parseFloat(document.getElementById('r-term').value) || 30;
+            const freq = parseInt(document.getElementById('r-freq').value); // 12, 26, 52
+
+            if (amount > 0 && rate > 0 && term > 0) {
+                const annualRate = rate / 100;
+                const numPayments = term * freq;
+                const ratePerPeriod = annualRate / freq;
+                
+                const payment = amount * (ratePerPeriod * Math.pow(1 + ratePerPeriod, numPayments)) / (Math.pow(1 + ratePerPeriod, numPayments) - 1);
+                
+                document.getElementById('r-result').innerText = '$' + Math.round(payment).toLocaleString('en-AU');
+                
+                const totalPaid = payment * numPayments;
+                const totalInterest = totalPaid - amount;
+                
+                document.getElementById('r-total-interest').innerText = '$' + Math.round(totalInterest).toLocaleString('en-AU');
+                document.getElementById('r-total-cost').innerText = '$' + Math.round(totalPaid).toLocaleString('en-AU');
+                
+                let label = "Per Month";
+                if(freq === 26) label = "Per Fortnight";
+                if(freq === 52) label = "Per Weekly";
+                document.getElementById('r-result-label').innerText = label;
+            }
+        }
+
+        // 2. Borrowing Power Calculator (Estimate based on 9% Assessment Rate)
+        function calcBorrowingPower() {
+            const income1 = parseFloat(document.getElementById('b-income1').value) || 0;
+            const income2 = parseFloat(document.getElementById('b-income2').value) || 0;
+            const dependents = parseInt(document.getElementById('b-dependents').value) || 0;
+            const expenses = parseFloat(document.getElementById('b-expenses').value) || 0;
+            const liabilities = parseFloat(document.getElementById('b-liabilities').value) || 0;
+
+            // Logic: Simple Net Surplus method with buffers (Not banking grade, but good for estimation)
+            // Tax Estimation (Rough average tax rate 25-30%)
+            const grossAnnual = income1 + income2;
+            const netMonthly = (grossAnnual * 0.75) / 12; 
+            
+            // Living Expenses Floor (HEM proxy)
+            let baseHEM = 1800; 
+            if(income2 > 0) baseHEM = 2600; // Couple
+            baseHEM += (dependents * 600); // Per child
+            
+            const actualExpenses = Math.max(expenses, baseHEM);
+            
+            const surplus = netMonthly - actualExpenses - liabilities;
+            
+            if(surplus > 0) {
+                // Calculate Present Value (PV) of surplus at assessment rate (e.g. 9%) over 30 years
+                const assessmentRate = 0.09 / 12; // 9% p.a.
+                const terms = 30 * 12;
+                
+                // PV formula: PV = PMT * (1 - (1 + r)^-n) / r
+                const borrowingPower = surplus * (1 - Math.pow(1 + assessmentRate, -terms)) / assessmentRate;
+                
+                // Round to nearest 10k
+                const rounded = Math.floor(borrowingPower / 10000) * 10000;
+                document.getElementById('b-result').innerText = '$' + rounded.toLocaleString('en-AU');
+            } else {
+                document.getElementById('b-result').innerText = '$0';
+            }
+        }
+
+        // 3. VIC Stamp Duty Calculator (2025 Logic Approximation)
+        function calcStampDuty() {
+            const value = parseFloat(document.getElementById('s-value').value) || 0;
+            const isFHB = document.getElementById('s-fhb').checked;
+            const isPPOR = document.getElementById('s-ppor').checked;
+            let duty = 0;
+
+            // VIC General Rates (Simplified for Estimator)
+            if (value <= 25000) {
+                duty = value * 0.014;
+            } else if (value <= 130000) {
+                duty = 350 + (value - 25000) * 0.024;
+            } else if (value <= 960000) {
+                duty = 2870 + (value - 130000) * 0.06;
+            } else {
+                duty = value * 0.055;
+            }
+
+            // FHB Concessions (VIC)
+            // 0 duty up to 600k, tapered to 750k
+            if (isFHB && isPPOR) {
+                if (value <= 600000) {
+                    duty = 0;
+                } else if (value < 750000) {
+                    // Tapered relief formula approximation
+                    const reduction = ((750000 - value) / 150000);
+                    duty = duty * (1 - reduction); // Apply discount
+                }
+            }
+            
+            // Other Fees
+            const transferFee = 1500; // Approx
+            const regFee = 130; 
+
+            document.getElementById('s-duty').innerText = '$' + Math.round(duty).toLocaleString('en-AU');
+            document.getElementById('s-transfer').innerText = '$' + transferFee.toLocaleString('en-AU');
+            document.getElementById('s-reg').innerText = '$' + regFee.toLocaleString('en-AU');
+            document.getElementById('s-total').innerText = '$' + Math.round(duty + transferFee + regFee).toLocaleString('en-AU');
+        }
+
+        // 4. Extra Repayment Calculator
+        function calcExtraRepayment() {
+            const balance = parseFloat(document.getElementById('e-balance').value);
+            const rate = parseFloat(document.getElementById('e-rate').value) / 100 / 12;
+            const termYears = parseFloat(document.getElementById('e-term').value);
+            const extra = parseFloat(document.getElementById('e-extra').value);
+            const totalPayments = termYears * 12;
+
+            // Standard Repayment
+            const standardPmt = balance * (rate * Math.pow(1 + rate, totalPayments)) / (Math.pow(1 + rate, totalPayments) - 1);
+            
+            // Calculate with Extra
+            const newPmt = standardPmt + extra;
+            
+            // Calculate new term (NPER formula equivalent)
+            // n = -log(1 - (r * PV / PMT)) / log(1 + r)
+            const newTermMonths = -Math.log(1 - (rate * balance / newPmt)) / Math.log(1 + rate);
+            
+            // Calculate Savings
+            const totalInterestStandard = (standardPmt * totalPayments) - balance;
+            const totalInterestExtra = (newPmt * newTermMonths) - balance;
+            
+            const savings = totalInterestStandard - totalInterestExtra;
+            const monthsSaved = totalPayments - newTermMonths;
+            
+            const yearsSaved = Math.floor(monthsSaved / 12);
+            const remMonthsSaved = Math.round(monthsSaved % 12);
+
+            document.getElementById('e-saved').innerText = '$' + Math.round(savings).toLocaleString('en-AU');
+            document.getElementById('e-time').innerText = `${yearsSaved} Years, ${remMonthsSaved} Months`;
+        }
+
 
         // --- GOOGLE SHEETS FORM HANDLING ---
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzM5V1rksCGnt3xLXyfSwEIRo-mFieppORTHWYZNQ_9SLlLa259aPvB_ZnOAHyjnLpeMA/exec';
