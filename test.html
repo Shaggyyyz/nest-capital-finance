@@ -326,22 +326,39 @@
             border-radius: 2px;
             transition: all 0.3s ease;
             padding: 20px;
+                        position: relative;
         }
         .lender-card:hover {
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
             transform: translateY(-5px);
             border-color: #b08d1e;
+                        background: #f3f4f6;
         }
         .lender-card img {
             max-height: 50px;
             max-width: 100%;
-            filter: grayscale(100%);
-            opacity: 0.7;
+            filter: grayscale(0%);
+            opacity: 1;
             transition: all 0.3s ease;
         }
         .lender-card:hover img {
             filter: grayscale(0%);
+            opacity: 0;
+        }
+                .lender-card span {
+            position: absolute;
+            opacity: 0;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #337566;
+            text-align: center;
+            padding: 0 10px;
+            transition: all 0.3s ease;
+            transform: translateY(10px);
+        }
+        .lender-card:hover span {
             opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
