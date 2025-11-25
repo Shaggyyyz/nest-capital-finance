@@ -1946,7 +1946,248 @@
 
         // --- NEW FINANCIAL CALCULATORS LOGIC ---
 
-        // Tab Switching
+       // Tab Switching
         function switchCalcTab(tabName) {
             // Hide all tabs content
-            document.querySelectorAll('.calc-content').
+            document.querySelectorAll('.calc-content').forEach(el => el.classList.remove('active'));
+            // Deactivate all buttons
+            document.querySelectorAll('.calc-tab').forEach(el => el.classList.remove('active'));
+            
+            // Show target content
+            document.getElementById('calc-' + tabName).classList.add('active');
+            // Activate button
+            document.getElementById('tab-' + tabName).classList.add('active');
+        }
+
+        // 1. Detailed Repayment Calculator
+        function calcRepaymentDetail() {
+            const amount = parseFloat(document.getElementById('r-amount').value) || 0;
+            const rate = parseFloat(document.getElementById('r-rate').value) || 0;
+            const term = parseFloat(document.getElementById('r-term').value) || 30;
+            const freq = parseInt(document.getElementById('r-freq').value); // 12, 26, 52
+
+            if (amount > 0 && rate > 0 && term > 0) {
+                const annualRate = rate / 100;
+                const numPayments = term * freq;
+                const ratePerPeriod = annualRate / freq;
+                
+                const payment = amount * (ratePerPeriod * Math.pow(1 + ratePerPeriod, numPayments)) / (Math.pow(1 + ratePerPeriod, numPayments) - 1);
+                
+                document.getElementById('r-result').innerText = '$' + Math.round(payment).toLocaleString('en-AU');
+                
+                const totalPaid = payment * numPayments;
+                const totalInterest = totalPaid - amount;
+                
+                document.getElementById('r-total-interest').innerText = '$' + Math.round(totalInterest).toLocaleString('en-AU');
+                document.getElementById('r-total-cost').innerText = '$' + Math.round(totalPaid).toLocaleString('en-AU');
+                
+                let label = "Per Month";
+                if(freq === 26) label = "Per Fortnight";
+                if(freq === 52) label = "Per Weekly";
+                document.getElementById('r-result-label').innerText = label;
+            }
+        }
+
+        // 2. Borrowing Power Calculator (Estimate based on 9% Assessment Rate)
+        function calcBorrowingPower() {
+            const income1 = parseFloat(document.getElementById('b-income1').value) || 0;
+            const income2 = parseFloat(document.getElementById('b-income2').value) || 0;
+            const dependents = parseInt(document.getElementById('b-dependents').value) || 0;
+            const expenses = parseFloat(document.getElementById('b-expenses').value) || 0;
+            const liabilities = parseFloat(document.getElementById('b-liabilities').value) || 0;
+
+            // Logic: Simple Net Surplus method with buffers (Not banking grade, but good for estimation)
+            // Tax Estimation (Rough average tax rate 25-30%)
+            const grossAnnual = income1 + income2;
+            const netMonthly = (grossAnnual * 0.75) / 12; 
+            
+            // Living Expenses Floor (HEM proxy)
+            let baseHEM = 1800; 
+            if(income2 > 0) baseHEM = 2600; // Couple
+            baseHEM += (dependents * 600); // Per child
+            
+            const actualExpenses = Math.max(expenses, baseHEM);
+            
+            const surplus = netMonthly - actualExpenses - liabilities;
+            
+            if(surplus > 0) {
+                // Calculate Present Value (PV) of surplus at assessment rate (e.g. 9%) over 30 years
+                const assessmentRate = 0.09 / 12; // 9% p.a.
+                const terms = 30 * 12;
+                
+                // PV formula: PV = PMT * (1 - (1 + r)^-n) / r
+                const borrowingPower = surplus * (1 - Math.pow(1 + assessmentRate, -terms)) / assessmentRate;
+                
+                // Round to nearest 10k
+                const rounded = Math.floor(borrowingPower / 10000) * 10000;
+                document.getElementById('b-result').innerText = '$' + rounded.toLocaleString('en-AU');
+            } else {
+                document.getElementById('b-result').innerText = '$0';
+            }
+        }
+
+        // 3. VIC Stamp Duty Calculator (2025 Logic Approximation)
+        function calcStampDuty() {
+            const value = parseFloat(document.getElementById('s-value').value) || 0;
+            const isFHB = document.getElementById('s-fhb').checked;
+            const isPPOR = document.getElementById('s-ppor').checked;
+            let duty = 0;
+
+            // VIC General Rates (Simplified for Estimator)
+            if (value <= 25000) {
+                duty = value * 0.014;
+            } else if (value <= 130000) {
+                duty = 350 + (value - 25000) * 0.024;
+            } else if (value <= 960000) {
+                duty = 2870 + (value - 130000) * 0.06;
+            } else {
+                duty = value * 0.055;
+            }
+
+            // FHB Concessions (VIC)
+            // 0 duty up to 600k, tapered to 750k
+            if (isFHB && isPPOR) {
+                if (value <= 600000) {
+                    duty = 0;
+                } else if (value < 750000) {
+                    // Tapered relief formula approximation
+                    const reduction = ((750000 - value) / 150000);
+                    duty = duty * (1 - reduction); // Apply discount
+                }
+            }
+            
+            // Other Fees
+            const transferFee = 1500; // Approx
+            const regFee = 130; 
+
+            document.getElementById('s-duty').innerText = '$' + Math.round(duty).toLocaleString('en-AU');
+            document.getElementById('s-transfer').innerText = '$' + transferFee.toLocaleString('en-AU');
+            document.getElementById('s-reg').innerText = '$' + regFee.toLocaleString('en-AU');
+            document.getElementById('s-total').innerText = '$' + Math.round(duty + transferFee + regFee).toLocaleString('en-AU');
+        }
+
+        // 4. Extra Repayment Calculator
+        function calcExtraRepayment() {
+            const balance = parseFloat(document.getElementById('e-balance').value);
+            const rate = parseFloat(document.getElementById('e-rate').value) / 100 / 12;
+            const termYears = parseFloat(document.getElementById('e-term').value);
+            const extra = parseFloat(document.getElementById('e-extra').value);
+            const totalPayments = termYears * 12;
+
+            // Standard Repayment
+            const standardPmt = balance * (rate * Math.pow(1 + rate, totalPayments)) / (Math.pow(1 + rate, totalPayments) - 1);
+            
+            // Calculate with Extra
+            const newPmt = standardPmt + extra;
+            
+            // Calculate new term (NPER formula equivalent)
+            // n = -log(1 - (r * PV / PMT)) / log(1 + r)
+            const newTermMonths = -Math.log(1 - (rate * balance / newPmt)) / Math.log(1 + rate);
+            
+            // Calculate Savings
+            const totalInterestStandard = (standardPmt * totalPayments) - balance;
+            const totalInterestExtra = (newPmt * newTermMonths) - balance;
+            
+            const savings = totalInterestStandard - totalInterestExtra;
+            const monthsSaved = totalPayments - newTermMonths;
+            
+            const yearsSaved = Math.floor(monthsSaved / 12);
+            const remMonthsSaved = Math.round(monthsSaved % 12);
+
+            document.getElementById('e-saved').innerText = '$' + Math.round(savings).toLocaleString('en-AU');
+            document.getElementById('e-time').innerText = `${yearsSaved} Years, ${remMonthsSaved} Months`;
+        }
+
+
+        // --- GOOGLE SHEETS FORM HANDLING ---
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzM5V1rksCGnt3xLXyfSwEIRo-mFieppORTHWYZNQ_9SLlLa259aPvB_ZnOAHyjnLpeMA/exec';
+
+        async function handleFormSubmit(e, messageId) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const messageDiv = document.getElementById(messageId);
+            
+            const formData = {
+                name: form.name.value,
+                phone: form.phone.value,
+                email: form.email.value,
+                interest: form.interest.value,
+                message: form.message.value
+            };
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'SENDING...';
+            submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            
+            try {
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                
+                messageDiv.innerHTML = `
+                    <div class="bg-green-500/20 border border-green-500/40 rounded-sm p-4 mt-4">
+                        <p class="font-medium">✓ Thank you! Your message has been sent successfully.</p>
+                        <p class="text-sm mt-1 opacity-80">We'll get back to you within 24 hours.</p>
+                    </div>
+                `;
+                messageDiv.classList.remove('hidden');
+                form.reset();
+                
+            } catch (error) {
+                messageDiv.innerHTML = `
+                    <div class="bg-red-500/20 border border-red-500/40 rounded-sm p-4 mt-4">
+                        <p class="font-medium">✗ Oops! Something went wrong.</p>
+                        <p class="text-sm mt-1 opacity-80">Please try again or call us directly.</p>
+                    </div>
+                `;
+                messageDiv.classList.remove('hidden');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'SEND ENQUIRY';
+                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        const homeForm = document.getElementById('home-contact-form');
+        if(homeForm) homeForm.addEventListener('submit', (e) => handleFormSubmit(e, 'home-form-message'));
+
+        const pageForm = document.getElementById('page-contact-form');
+        if(pageForm) pageForm.addEventListener('submit', (e) => handleFormSubmit(e, 'page-form-message'));
+
+
+        // --- ARTICLES SYSTEM (OPTIMIZED FOR SEO) ---
+        // Now pulls content from HTML DOM instead of JS object
+        function openArticle(articleId) {
+            const modal = document.getElementById('article-modal');
+            const content = document.getElementById('article-content');
+            const sourceContent = document.getElementById('raw-' + articleId);
+            
+            if (sourceContent) {
+                content.innerHTML = sourceContent.innerHTML;
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeArticle() {
+            const modal = document.getElementById('article-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        function goToContact() {
+              closeArticle();
+              setTimeout(function() {
+                      navigateTo('contact');
+                    }, 300);
+            }
+    </script>
+</body>
+</html>
