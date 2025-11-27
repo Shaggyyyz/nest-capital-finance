@@ -1126,7 +1126,7 @@
                                 <div>
                                     <p class="text-sm uppercase tracking-widest text-gray-500 mb-2">Time Saved</p>
                                     <div class="text-3xl font-serif text-brand-900 font-medium" id="e-time">3 Years, 4 Months</div>
-                                    <p class="text-gray-500 text-xs mt-2">You will be debt free sooner.</p>
+                                    <p class="text-gray-500 text-xs mt-2"><!-- 30 Year Comparison -->                                     <div class="mt-4 pt-4 border-t border-brand-200">                                         <p class="text-xs uppercase tracking-widest text-gray-500 mb-2">Interest Over Full Loan Term</p>                                         <div class="grid grid-cols-2 gap-4 text-center">                                             <div>                                                 <p class="text-xs text-gray-500">Without Extra</p>                                                 <div class="text-lg font-medium text-gray-700" id="e-interest-without">$0</div>                                             </div>                                             <div>                                                 <p class="text-xs text-gray-500">With Extra</p>                                                 <div class="text-lg font-medium text-green-700" id="e-interest-with">$0</div>                                             </div>                                         </div>                                     </div>                                     <p class="text-gray-500 text-xs mt-2">You will be debt free sooner.</p>
                                 </div>
                             </div>
                         </div>
@@ -1179,7 +1179,7 @@
                                     <canvas id="offsetChart"></canvas>
                                 </div>
 
-                                <p class="text-gray-500 text-xs mt-4">This money stays in your pocket, effectively paying off your principal faster.</p>
+                                <p class="text-gray-500 text-xs mt-4"><!-- 30 Year Savings Display -->                                     <div class="mt-4 pt-4 border-t border-brand-200">                                         <p class="text-xs uppercase tracking-widest text-gray-500 mb-2">Over 30 Years You Save</p>                                         <div class="text-3xl font-serif text-green-700 mb-1 font-medium" id="o-saved-30yr">$93,600</div>                                     </div>                                     <p class="text-gray-500 text-xs mt-4">This money stays in your pocket, effectively paying off your principal faster.</p>
                             </div>
                         </div>
                     </div>
@@ -2088,7 +2088,7 @@
             const monthsSaved = totalPayments - newTermMonths;
 
             document.getElementById('e-saved').innerText = '$' + Math.round(savings).toLocaleString('en-AU');
-            document.getElementById('e-time').innerText = `${Math.floor(monthsSaved / 12)} Years, ${Math.round(monthsSaved % 12)} Months`;
+            document.getElementById('e-time').innerText = `${Math.floor(monthsSaved / 12)} Years, ${Math.round(monthsSaved % 12)} Months`;             document.getElementById('e-interest-without').innerText = '$' + Math.round(totalInterestStandard).toLocaleString('en-AU');             document.getElementById('e-interest-with').innerText = '$' + Math.round(totalInterestExtra).toLocaleString('en-AU'); `${Math.floor(monthsSaved / 12)} Years, ${Math.round(monthsSaved % 12)} Months`;
         }
 
         // --- OFFSET CALC LOGIC ---
@@ -2105,7 +2105,7 @@
                 const monthlySaving = annualSaving / 12;
 
                 document.getElementById('o-saved-year').innerText = '$' + Math.round(annualSaving).toLocaleString('en-AU');
-                document.getElementById('o-saved-month').innerText = '$' + Math.round(monthlySaving).toLocaleString('en-AU');
+                document.getElementById('o-saved-month').innerText = '$' + Math.round(monthlySaving).toLocaleString('en-AU');                 document.getElementById('o-saved-30yr').innerText = '$' + Math.round(annualSaving * 30).toLocaleString('en-AU'); + Math.round(monthlySaving).toLocaleString('en-AU');
                 
                 // Update chart on calc
                 updateOffsetChart(loan, effectiveOffset, rate);
