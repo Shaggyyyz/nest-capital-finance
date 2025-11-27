@@ -2245,7 +2245,7 @@
 <!-- ========================================== -->
 <!-- PRIVACY POLICY MODAL                       -->
 <!-- ========================================== -->
-<div id="privacy" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4 overflow-y-auto">
+<div id="privacy" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4 overflow-y-auto" onclick="if(event.target === this) this.classList.add('hidden')">
     <div class="bg-white rounded-lg max-w-3xl w-full p-8 relative my-8">
         <!-- Close Button -->
         <button onclick="document.getElementById('privacy').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 focus:outline-none">
@@ -2303,7 +2303,7 @@
 <!-- ========================================== -->
 <!-- FEEDBACK / COMPLAINTS MODAL                -->
 <!-- ========================================== -->
-<div id="feedback" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4 overflow-y-auto">
+<div id="feedback" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4 overflow-y-auto" onclick="if(event.target === this) this.classList.add('hidden')">
     <div class="bg-white rounded-lg max-w-xl w-full p-8 relative my-8">
         <!-- Close Button -->
         <button onclick="document.getElementById('feedback').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 focus:outline-none">
@@ -2345,7 +2345,7 @@
 <!-- ========================================== -->
 <!-- TERMS AND CONDITIONS MODAL                 -->
 <!-- ========================================== -->
-<div id="tscs" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4 overflow-y-auto">
+<div id="tscs" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4 overflow-y-auto" onclick="if(event.target === this) this.classList.add('hidden')">
     <div class="bg-white rounded-lg max-w-3xl w-full p-8 relative my-8">
         <!-- Close Button (Fixed: Now targets 'tscs' instead of 'privacy') -->
         <button onclick="document.getElementById('tscs').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 focus:outline-none">
