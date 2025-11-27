@@ -366,6 +366,29 @@
         .floating-cta:hover {
             transform: translateY(-2px);
         }
+        
+        /* Floating Back Button - Mobile Only */
+        .floating-back {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 49;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            display: none;
+            opacity: 0;
+        }
+        .floating-back.visible {
+            opacity: 1;
+        }
+        .floating-back:hover {
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .floating-back {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body class="bg-brand-50 text-gray-800 font-sans antialiased overflow-x-hidden">
@@ -375,6 +398,12 @@
         <span class="hidden md:inline">Book CONSULTATION</span>
         <span class="md:hidden">Book Now</span>
     </a>
+
+        <!-- Floating Back Button (Mobile Only) -->
+    <button id="floating-back-btn" onclick="goBack()" class="floating-back bg-gray-700 text-white px-5 py-4 rounded-full font-bold shadow-lg items-center justify-center gap-2" style="display: none;">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span class="text-sm">Back</span>
+    </button>
 
     <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1897,6 +1926,7 @@
             lucide.createIcons();
             initScrollAnimations();
             document.body.classList.add('loaded'); 
+                    updateBackButton(); // Initialize mobile back button
             
             // Initialize all calculators once
             calcRepaymentDetail();
@@ -1924,9 +1954,42 @@
             }
         }, 6000);
 
+            // --- NAVIGATION HISTORY (Mobile Back Button) ---
+    let navigationHistory = ['home'];
+    let isNavigatingBack = false;
+
+    function updateBackButton() {
+        const backBtn = document.getElementById('floating-back-btn');
+        if (backBtn) {
+            // Show only if there's history and not on home
+            if (navigationHistory.length > 1 && navigationHistory[navigationHistory.length - 1] !== 'home') {
+                backBtn.style.display = 'flex';
+                backBtn.classList.add('visible');
+            } else {
+                backBtn.classList.remove('visible');
+                setTimeout(() => { backBtn.style.display = 'none'; }, 300);
+            }
+        }
+    }
+
+    function goBack() {
+        if (navigationHistory.length > 1) {
+            isNavigatingBack = true;
+            navigationHistory.pop(); // Remove current
+            const previousView = navigationHistory[navigationHistory.length - 1];
+            navigateTo(previousView);
+            isNavigatingBack = false;
+            updateBackButton();
+        }
+    }
+
         // --- NAVIGATION ---
         async function navigateTo(viewId, sectionId = null) {
             const content = document.getElementById('content-wrapper');
+                    // Track navigation history for mobile back button
+        if (!isNavigatingBack && navigationHistory[navigationHistory.length - 1] !== viewId) {
+            navigationHistory.push(viewId);
+        }
             content.classList.add('fading-out');
             await new Promise(r => setTimeout(r, 300));
             document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
@@ -1942,6 +2005,7 @@
             setTimeout(() => {
                 initScrollAnimations();
                 lucide.createIcons();
+                            updateBackButton();
             }, 100);
         }
 
