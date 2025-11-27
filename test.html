@@ -943,7 +943,7 @@
                                         <option value="52">Weekly</option>
                                     </select>
                                 </div>
-                                <button onclick="calcRepaymentDetail()" class="w-full bg-brand-900 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-lg">Calculate</button>
+                                <button onclick="calcRepaymentDetail()" class="w-full bg-brand-900 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-lg">Calculate</button><button onclick="clearRepayments()" class="w-full border border-gray-300 text-gray-600 py-4 font-bold uppercase tracking-widest text-xs hover:bg-gray-100 transition shadow-lg mt-2">Clear Form</button>
                             </div>
                             
                             <div class="bg-brand-50 p-8 rounded-sm flex flex-col justify-center items-center text-center border border-brand-100">
@@ -1002,7 +1002,7 @@
                                         <input type="number" id="b-liabilities" value="0" class="w-full border border-gray-300 py-3 pl-8 pr-4 rounded-sm focus:outline-none">
                                     </div>
                                 </div>
-                                <button onclick="calcBorrowingPower()" class="w-full bg-brand-900 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-lg">Estimate Borrowing Power</button>
+                                <button onclick="calcBorrowingPower()" class="w-full bg-brand-900 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-lg">Estimate Borrowing Power</button><button onclick="clearBorrowing()" class="w-full border border-gray-300 text-gray-600 py-4 font-bold uppercase tracking-widest text-xs hover:bg-gray-100 transition shadow-lg mt-2">Clear Form</button>
                             </div>
                             
                             <div class="bg-brand-50 p-8 rounded-sm flex flex-col justify-center items-center text-center border border-brand-100">
@@ -1058,7 +1058,7 @@
                                     <input type="checkbox" id="s-ppor" class="w-5 h-5 text-brand-900 border-gray-300 rounded focus:ring-accent-400" checked>
                                     <label for="s-ppor" class="text-gray-700">I will live in this property (PPR)</label>
                                 </div>
-                                <button onclick="calcStampDuty()" class="w-full bg-brand-900 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-lg">Calculate Fees</button>
+                                <button onclick="calcStampDuty()" class="w-full bg-brand-900 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-lg">Calculate Fees</button><button onclick="clearStampDuty()" class="w-full border border-gray-300 text-gray-600 py-4 font-bold uppercase tracking-widest text-xs hover:bg-gray-100 transition shadow-lg mt-2">Clear Form</button>
                             </div>
                             
                             <div class="bg-brand-50 p-8 rounded-sm flex flex-col justify-center border border-brand-100">
@@ -1115,7 +1115,7 @@
                                         <input type="number" id="e-extra" value="200" class="w-full border-2 border-brand-200 py-3 pl-10 pr-4 rounded-sm focus:outline-none focus:border-accent-400 bg-brand-50">
                                     </div>
                                 </div>
-                                <button onclick="calcExtraRepayment()" class="w-full bg-brand-900 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-lg">Calculate Savings</button>
+                                <button onclick="calcExtraRepayment()" class="w-full bg-brand-900 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-lg">Calculate Savings</button>                                 <button onclick="clearExtraRepayment()" class="w-full border border-gray-300 text-gray-600 py-4 font-bold uppercase tracking-widest text-xs hover:bg-gray-100 transition shadow-lg mt-2">Clear Form</button>
                             </div>
                             
                             <div class="bg-brand-50 p-8 rounded-sm flex flex-col justify-center items-center text-center border border-brand-100">
@@ -1162,7 +1162,7 @@
                                     </div>
                                 </div>
 
-                                <button onclick="calcOffset()" class="w-full bg-brand-900 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-lg">Calculate Benefit</button>
+                                <button onclick="calcOffset()" class="w-full bg-brand-900 text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition shadow-lg">Calculate Benefit</button>                                 <button onclick="clearOffset()" class="w-full border border-gray-300 text-gray-600 py-4 font-bold uppercase tracking-widest text-xs hover:bg-gray-100 transition shadow-lg mt-2">Clear Form</button>
                             </div>
                             
                             <div class="bg-brand-50 p-8 rounded-sm flex flex-col justify-center items-center text-center border border-brand-100">
@@ -2289,6 +2289,45 @@
                       navigateTo('contact');
                     }, 300);
             }
+
+                                       // --- CLEAR FORM FUNCTIONS ---
+    function clearRepayments() {
+        document.getElementById('r-amount').value = '';
+        document.getElementById('r-rate').value = '';
+        document.getElementById('r-term').value = '';
+        document.getElementById('r-result').innerText = '$0';
+        document.getElementById('r-total-interest').innerText = '$0';
+        document.getElementById('r-total-cost').innerText = '$0';
+    }
+    function clearBorrowing() {
+        document.getElementById('b-income1').value = '';
+        document.getElementById('b-income2').value = '';
+        document.getElementById('b-dependents').value = '';
+        document.getElementById('b-expenses').value = '';
+        document.getElementById('b-liabilities').value = '';
+        document.getElementById('b-result').innerText = '$0';
+    }
+    function clearStampDuty() {
+        document.getElementById('s-value').value = '';
+        document.getElementById('s-duty').innerText = '$0';
+        document.getElementById('s-transfer').innerText = '$0';
+        document.getElementById('s-total').innerText = '$0';
+    }
+    function clearExtraRepayment() {
+        document.getElementById('e-balance').value = '';
+        document.getElementById('e-rate').value = '';
+        document.getElementById('e-term').value = '';
+        document.getElementById('e-extra').value = '';
+        document.getElementById('e-saved').innerText = '$0';
+        document.getElementById('e-time').innerText = '0 Years, 0 Months';
+    }
+    function clearOffset() {
+        document.getElementById('o-loan').value = '';
+        document.getElementById('o-balance').value = '';
+        document.getElementById('o-rate').value = '';
+        document.getElementById('o-saved-year').innerText = '$0';
+        document.getElementById('o-saved-month').innerText = '$0';
+    }
 
     </script>
 <!-- ========================================== -->
