@@ -1994,9 +1994,103 @@
                 });
             }
         }
+         // --- CHART HELPER FUNCTIONS ---
+        let charts = {};
 
+        function renderChart(canvasId, type, labels, datasets, options = {}) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            
+            // Destroy existing chart if it exists to avoid overlay
+            if (charts[canvasId]) {
+                charts[canvasId].destroy();
+            }
+
+            const defaultOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { family: 'FuturaPT', size: 12 },
+                            color: '#686965'
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#686965',
+                        titleFont: { family: 'FuturaPT' },
+                        bodyFont: { family: 'FuturaPT' },
+                        padding: 10,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: 0 }).format(context.parsed.y);
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#f3f4f6' },
+                        ticks: {
+                            font: { family: 'FuturaPT' },
+                            color: '#9ca3af',
+                            callback: function(value) {
+                                if(value >= 1000000) return '$' + value/1000000 + 'M';
+                                if(value >= 1000) return '$' + value/1000 + 'k';
+                                return '$' + value;
+                            }
+                        }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { font: { family: 'FuturaPT' }, color: '#9ca3af' }
+                    }
+                }
+            };
+
+            // Merge passed options with default options (simple merge)
+            if(options.scales && options.scales.y) defaultOptions.scales.y = {...defaultOptions.scales.y, ...options.scales.y};
+            if(options.scales && options.scales.x) defaultOptions.scales.x = {...defaultOptions.scales.x, ...options.scales.x};
+
+            charts[canvasId] = new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: labels,
+                    datasets: datasets
+                },
+                options: defaultOptions
+            });
+        }
+
+        
+        function clearInputs(containerId) {
+            const container = document.getElementById(containerId);
+            const inputs = container.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                if(input.type === 'checkbox') input.checked = false;
+                else if(input.type === 'number') input.value = '';
+                else input.value = input.options ? input.options[0].value : '';
+            });
+            // Reset generic toggle switches that aren't inside the container but related
+            if(containerId === 'calc-extra') document.getElementById('e-chart-toggle').checked = false;
+            if(containerId === 'calc-offset') document.getElementById('o-chart-toggle').checked = false;
+            
+            // Re-trigger calc to clear results/charts
+            if(containerId === 'calc-repayment') calcRepaymentDetail();
+            if(containerId === 'calc-borrowing') calcBorrowingPower();
+            if(containerId === 'calc-stampduty') calcStampDuty();
+            if(containerId === 'calc-extra') calcExtraRepayment();
+            if(containerId === 'calc-offset') calcOffset();
+        }
         // --- CALCULATOR LOGIC ---
-
         function switchCalcTab(tabName) {
             document.querySelectorAll('.calc-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.calc-tab').forEach(el => el.classList.remove('active'));
