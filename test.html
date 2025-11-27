@@ -1775,9 +1775,9 @@
             </div>
 
 <div class="border-t border-white/20 pt-8 flex flex-col items-start gap-2">
-                <p class="text-white/50 text-xs">&copy; 2025 Nest Capital Finance Pty Ltd. ACN 691 621 191 | ABN 20 691 621 191 | Credit Representative 574020 is authorised under Australian Credit Licence 389328. | AFCA Member 118936</p>
-<p class="text-white/50 text-xs mt-1"><a href="#" onclick="document.getElementById('privacy').classList.remove('hidden'); document.getElementById('privacy').classList.add('flex'); return false;" class="hover:text-white transition">Privacy Policy</a> | <a href="#" onclick="document.getElementById('feedback').classList.remove('hidden'); document.getElementById('feedback').classList.add('flex'); return false;" class="hover:text-white transition">Feedback & Complaints</a> | <a href="#" onclick="document.getElementById('tscs').classList.remove('hidden'); document.getElementById('tscs').classList.add('flex'); return false;" class="hover:text-white transition">Terms and Conditions</a></p>
-<p class="text-white/40 text-xs mt-3 max-w-4xl">Disclaimer: This page provides general information only and has been prepared without taking into account your objectives, financial situation or needs. We recommend that you consider whether it is appropriate for your circumstances. Your full financial situation will need to be reviewed prior to acceptance of any offer or product. Subject to lender's terms and conditions, fees and charges and eligibility criteria apply.</p>
+        <p class="text-white/50 text-xs">&copy; 2025 Nest Capital Finance Pty Ltd. ACN 691 621 191 | ABN 20 691 621 191 | Credit Representative 574020 is authorised under Australian Credit Licence 389328. | AFCA Member 118936</p>
+        <p class="text-white/50 text-xs mt-1"><a href="#" onclick="document.getElementById('privacy').classList.remove('hidden'); document.getElementById('privacy').classList.add('flex'); return false;" class="hover:text-white transition">Privacy Policy</a> | <a href="#" onclick="document.getElementById('feedback').classList.remove('hidden'); document.getElementById('feedback').classList.add('flex'); return false;" class="hover:text-white transition">Feedback & Complaints</a> | <a href="#" onclick="document.getElementById('tscs').classList.remove('hidden'); document.getElementById('tscs').classList.add('flex'); return false;" class="hover:text-white transition">Terms and Conditions</a></p>
+        <p class="text-white/40 text-xs mt-3 max-w-4xl">Disclaimer: This page provides general information only and has been prepared without taking into account your objectives, financial situation or needs. We recommend that you consider whether it is appropriate for your circumstances. Your full financial situation will need to be reviewed prior to acceptance of any offer or product. Subject to lender's terms and conditions, fees and charges and eligibility criteria apply.</p>
 
             </div>
     </footer>
@@ -2303,8 +2303,8 @@
 <!-- ========================================== -->
 <!-- FEEDBACK / COMPLAINTS MODAL                -->
 <!-- ========================================== -->
-<div id="feedback" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4">
-    <div class="bg-white rounded-lg max-w-xl w-full p-8 relative">
+<div id="feedback" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-lg max-w-xl w-full p-8 relative my-8">
         <!-- Close Button -->
         <button onclick="document.getElementById('feedback').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 focus:outline-none">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -2314,7 +2314,7 @@
 
         <h2 class="text-2xl font-bold mb-4 text-gray-800">Feedback & Complaints</h2>
         
-        <div class="prose prose-sm text-gray-600">
+        <div class="prose prose-sm text-gray-600 max-h-[60vh] overflow-y-auto pr-2">
             <p class="mb-4">We value your feedback and are committed to resolving any concerns you may have efficiently and fairly.</p>
             
             <h3 class="text-lg font-semibold text-gray-800 mt-4">Internal Dispute Resolution (IDR)</h3>
