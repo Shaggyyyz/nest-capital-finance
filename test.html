@@ -1948,9 +1948,12 @@
             mobileMenu.classList.toggle('translate-x-full');
             document.body.classList.toggle('overflow-hidden');
         }
-        document.getElementById('mobile-menu-btn').addEventListener('click', toggleMenu);
-        document.getElementById('close-menu-btn').addEventListener('click', toggleMenu);
-
+          const mobileBtn = document.getElementById('mobile-menu-btn');
+            if(mobileBtn) mobileBtn.addEventListener('click', toggleMenu);
+        
+            const closeMenuBtn = document.getElementById('close-menu-btn');
+            if(closeMenuBtn) closeMenuBtn.addEventListener('click', toggleMenu);
+        
         // --- NAVBAR SCROLL ---
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
