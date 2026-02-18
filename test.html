@@ -2235,16 +2235,79 @@
             // Simplified approximation of 2024/25 brackets for major states
             switch(state) {
                 case 'VIC':
-                    transfer = 1500;
-                    if (value <= 25000) duty = value * 0.014;
-                    else if (value <= 130000) duty = 350 + (value - 25000) * 0.024;
-                    else if (value <= 960000) duty = 2870 + (value - 130000) * 0.06;
-                    else duty = value * 0.055;
-                    
-                    if (isFHB && isPPOR) {
-                        if (value <= 600000) duty = 0;
-                        else if (value < 750000) duty = duty * (1 - ((value - 600000)/150000));
+
+                transfer = 1500;
+                
+                // VICTORIA COMPREHENSIVE STAMP DUTY CALCULATION
+                // Collect all input parameters for VIC-specific logic
+                const isFHBVic = isFHB && isPPOR;
+                const isPensionerVic = document.getElementById('s-buyerStatus')?.value === 'pensioner' && isPPOR;
+                const isForeignVic = document.getElementById('s-buyerStatus')?.value === 'foreign';
+                
+                // Calculate General Duty (Standard Non-Concession Rates)
+                let generalDuty = 0;
+                if (value <= 25000) {
+                    generalDuty = value * 0.014;
+                } else if (value <= 130000) {
+                    generalDuty = 350 + (value - 25000) * 0.024;
+                } else if (value <= 440000) {
+                    generalDuty = 2870 + (value - 130000) * 0.05;
+                } else if (value <= 960000) {
+                    generalDuty = 18370 + (value - 440000) * 0.06;
+                } else if (value <= 2000000) {
+                    generalDuty = 49570 + (value - 960000) * 0.065;
+                } else {
+                    generalDuty = value * 0.065;
+                }
+                
+                // Apply First Home Buyer Exemption/Concession
+                if (isFHBVic) {
+                    if (value <= 600000) {
+                        duty = 0; // Full exemption
+                    } else if (value <= 750000) {
+                        // Sliding scale concession
+                        duty = generalDuty * ((value - 600000) / 150000);
+                    } else {
+                        duty = generalDuty; // No FHB benefit
                     }
+                }
+                // Apply Pensioner Concession
+                else if (isPensionerVic) {
+                    if (value <= 600000) {
+                        duty = 0; // Full exemption
+                    } else if (value <= 750000) {
+                        // Partial concession
+                        duty = generalDuty * ((value - 600000) / 150000);
+                    } else {
+                        duty = generalDuty;
+                    }
+                }
+                // Apply PPR Concession (Non-FHB, Non-Pensioner)
+                else if (isPPOR) {
+                    if (value <= 550000) {
+                        // PPR concession rates
+                        if (value <= 25000) {
+                            duty = value * 0.014;
+                        } else if (value <= 130000) {
+                            duty = 350 + (value - 25000) * 0.024;
+                        } else if (value <= 440000) {
+                            duty = 2870 + (value - 130000) * 0.05;
+                        } else {
+                            duty = 18370 + (value - 440000) * 0.06;
+                        }
+                    } else {
+                        duty = generalDuty; // Above PPR threshold
+                    }
+                }
+                // Investment/Commercial - General Rate
+                else {
+                    duty = generalDuty;
+                }
+                
+                // Add Foreign Purchaser Additional Duty (8%)
+                if (isForeignVic) {
+                    duty += value * 0.08;
+                }
                     break;
                 case 'NSW':
                     transfer = 165 + (value > 40000 ? (value - 40000) / 1000 * 0.2 : 0);
