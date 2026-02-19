@@ -3214,6 +3214,14 @@ content.innerHTML = `
         <img src="${article.image}" alt="${article.title}" class="w-full h-64 object-cover rounded-lg mb-6" onerror="this.style.display='none'">
         <h2 class="font-serif text-4xl text-brand-900 mb-4">${article.title}</h2>
         ${article.content}
+                <div class="flex gap-4" style="margin-top: 2rem;">
+            <button onclick="window.location.href='#contact'" class="bg-brand-900 text-white px-6 py-3 rounded font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition">
+                BOOK CONSULTATION
+            </button>
+            <button onclick="document.getElementById('article-modal').classList.add('hidden')" class="bg-gray-300 text-gray-700 px-6 py-3 rounded font-bold uppercase tracking-widest text-xs hover:bg-gray-400 transition">
+                CLOSE
+            </button>
+        </div>
     `;  
   modal.classList.remove('hidden');
   modal.classList.add('flex');
