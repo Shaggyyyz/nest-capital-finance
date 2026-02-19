@@ -2914,8 +2914,7 @@
             <textarea id="article-summary" rows="2" class="w-full border border-gray-300 py-2 px-4 rounded focus:outline-none focus:border-accent-400" required></textarea>
           </div>
           <div>
-            <label class="block text-sm font-bold text-gray-700 mb-2">Full Content (HTML allowed)</label>
-            <textarea id="article-content" rows="8" class="w-full border border-gray-300 py-2 px-4 rounded focus:outline-none focus:border-accent-400 font-mono text-sm" required></textarea>
+            <label class="block text-sm font-bold text-gray-700 mb-2">Article Content (Simply write your text - use "-" for bullet points)</label>            <textarea id="article-content" rows="8" class="w-full border border-gray-300 py-2 px-4 rounded focus:outline-none focus:border-accent-400 font-mono text-sm" required></textarea>
           </div>
           <div class="flex gap-4">
             <button type="submit" class="bg-brand-900 text-white px-6 py-3 rounded font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition">Save Article</button>
@@ -3052,6 +3051,45 @@ function saveArticles(articles) {
   localStorage.setItem('customArticles', JSON.stringify(articles));
 }
 
+    // Convert plain text to formatted HTML
+function textToHTML(text) {
+    // Wrap content in prose div
+    let html = '<div class="prose prose-lg max-w-none">\n';
+    
+    // Split by double line breaks to create paragraphs
+    const lines = text.trim().split('\n');
+    let inList = false;
+    
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        
+        if (!line) continue;
+        
+        // Check if it's a bullet point (starts with - or * or •)
+        if (line.match(/^[\-\*•]\s/)) {
+            if (!inList) {
+                html += '  <ul class="list-disc pl-6 mb-4 text-gray-700">\n';
+                inList = true;
+            }
+            html += `    <li class="mb-2">${line.replace(/^[\-\*•]\s/, '')}</li>\n`;
+        } else {
+            if (inList) {
+                html += '  </ul>\n';
+                inList = false;
+            }
+            // Regular paragraph
+            html += `  <p class="text-gray-700 mb-4">\n    ${line}\n  </p>\n`;
+        }
+    }
+    
+    if (inList) {
+        html += '  </ul>\n';
+    }
+    
+    html += '</div>';
+    return html;
+}
+
 // Handle Article Form Submission
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('article-edit-form').addEventListener('submit', function(e) {
@@ -3063,8 +3101,7 @@ document.addEventListener('DOMContentLoaded', function() {
       title: document.getElementById('article-title').value,
       image: document.getElementById('article-image').value,
       summary: document.getElementById('article-summary').value,
-      content: document.getElementById('article-content').value,
-      date: new Date().toISOString()
+            content: textToHTML(document.getElementById('article-content').value),      date: new Date().toISOString()
     };
     
     let articles = getArticles();
