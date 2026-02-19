@@ -3173,14 +3173,11 @@ function openCustomArticle(id) {
   const modal = document.getElementById('article-modal');
   const content = document.getElementById('article-content');
   
-  content.innerHTML = `
-    <img src="${article.image}" alt="${article.title}" class="w-full h-64 object-cover rounded-lg mb-6" onerror="this.style.display='none'">
-    <h2 class="font-serif text-4xl text-brand-900 mb-4">${article.title}</h2>
-    <div class="prose prose-lg max-w-none">
-      ${article.content}
-    </div>
-  `;
-  
+content.innerHTML = `
+        <img src="${article.image}" alt="${article.title}" class="w-full h-64 object-cover rounded-lg mb-6" onerror="this.style.display='none'">
+        <h2 class="font-serif text-4xl text-brand-900 mb-4">${article.title}</h2>
+        ${article.content}
+    `;  
   modal.classList.remove('hidden');
   modal.classList.add('flex');
   document.body.style.overflow = 'hidden';
