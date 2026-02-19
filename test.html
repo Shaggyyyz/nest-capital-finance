@@ -3219,8 +3219,7 @@ content.innerHTML = `
                 BOOK CONSULTATION
             </button>
             <button onclick="document.getElementById('article-modal').classList.add('hidden')" class="bg-gray-300 text-gray-700 px-6 py-3 rounded font-bold uppercase tracking-widest text-xs hover:bg-gray-400 transition">
-                CLOSE
-            </button>
+            <button onclick="document.getElementById('article-modal').classList.add('hidden'); navigateTo('contact');" class="bg-brand-900 text-white px-6 py-3 rounded font-bold uppercase tracking-widest text-xs hover:bg-accent-500 transition">            </button>
         </div>
     `;  
   modal.classList.remove('hidden');
