@@ -6,73 +6,137 @@
     <title>Terms and Conditions | Nest Capital Finance</title>
     <meta name="description" content="Terms and Conditions for Nest Capital Finance - Website terms of use and legal information.">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['FuturaPT', 'Futura', 'Jost', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            900: '#686965',
+                            800: '#686965',
+                        },
+                        accent: {
+                            500: '#b08d1e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Jost', sans-serif; font-weight: 300; }
         h1, h2, h3, h4 { font-weight: 700; }
+        #navbar { background: #686965; }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Header -->
-    <header class="bg-gray-800 text-white py-4 shadow-md">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="flex items-center justify-between">
-                <a href="test.html" class="text-xl font-bold">← Back to Nest Capital Finance</a>
+<body class="bg-white">
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <a href="test.html" class="flex items-center">
+                <img src="logo.png" alt="Nest Capital Finance Logo" class="h-10">
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="test.html#home" class="text-white hover:text-gray-300 transition">HOME</a>
+                <a href="test.html#services" class="text-white hover:text-gray-300 transition">SERVICES</a>
+                <a href="test.html#resources" class="text-white hover:text-gray-300 transition">RESOURCES</a>
+                <a href="test.html#about" class="text-white hover:text-gray-300 transition">ABOUT</a>
+                <a href="test.html#contact" class="text-white hover:text-gray-300 transition">CONTACT</a>
+                <a href="test.html#contact" class="bg-white text-brand-900 px-6 py-2 rounded hover:bg-gray-100 transition">BOOK CONSULTATION</a>
             </div>
         </div>
-    </header>
+    </nav>
 
     <!-- Main Content -->
-    <main class="max-w-5xl mx-auto px-6 py-12">
-        <div class="bg-white rounded-lg shadow-lg p-8 md:p-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Terms and Conditions</h1>
-            <p class="text-gray-600 mb-8"><strong>Last Updated:</strong> February 2026</p>
+    <main class="pt-32 pb-16">
+        <div class="max-w-4xl mx-auto px-6">
+            <h1 class="text-4xl md:text-5xl font-bold text-brand-900 mb-4">Terms and Conditions</h1>
+            <p class="text-gray-600 mb-12"><strong>Last Updated:</strong> February 2026</p>
 
-            <div class="prose prose-lg max-w-none">
+            <div class="prose prose-lg max-w-none text-brand-900">
                 <p class="mb-6">Welcome to the Nest Capital Finance Pty Ltd website. By accessing or using our website, you agree to be bound by these Terms and Conditions.</p>
 
-                <h2 class="text-3xl font-bold text-gray-900 mt-12 mb-4">1. General Advice Warning</h2>
+                <h2 class="text-3xl font-bold text-brand-900 mt-12 mb-4">1. General Advice Warning</h2>
                 <p class="mb-6">The information provided on this website is general in nature and does not constitute personal financial advice. It has been prepared without taking into account your personal objectives, financial situation, or needs. Before acting on any information, you should consider whether it is appropriate for your circumstances and seek professional advice.</p>
 
-                <h2 class="text-3xl font-bold text-gray-900 mt-12 mb-4">2. Services</h2>
+                <h2 class="text-3xl font-bold text-brand-900 mt-12 mb-4">2. Services</h2>
                 <p class="mb-6">Nest Capital Finance Pty Ltd (ACN 691 621 191) provides credit assistance and mortgage broking services. Our role is to act as an intermediary between you and potential lenders.</p>
 
-                <h2 class="text-3xl font-bold text-gray-900 mt-12 mb-4">3. Accuracy of Information</h2>
+                <h2 class="text-3xl font-bold text-brand-900 mt-12 mb-4">3. Accuracy of Information</h2>
                 <p class="mb-6">While we make every effort to ensure the accuracy of the information on this website, we do not guarantee that it is free from errors or omissions. Interest rates, lender policies, and government grants are subject to change without notice.</p>
 
-                <h2 class="text-3xl font-bold text-gray-900 mt-12 mb-4">4. Limitation of Liability</h2>
+                <h2 class="text-3xl font-bold text-brand-900 mt-12 mb-4">4. Limitation of Liability</h2>
                 <p class="mb-6">To the maximum extent permitted by law, Nest Capital Finance excludes all liability for any loss or damage of any kind (including special, indirect, or consequential loss or loss of profit) arising from or in connection with the use of this website or the content on this website.</p>
 
-                <h2 class="text-3xl font-bold text-gray-900 mt-12 mb-4">5. Third-Party Links</h2>
+                <h2 class="text-3xl font-bold text-brand-900 mt-12 mb-4">5. Third-Party Links</h2>
                 <p class="mb-6">This website may contain links to third-party websites. These links are provided for convenience only and do not indicate an endorsement. We are not responsible for the content or privacy practices of third-party sites.</p>
 
-                <h2 class="text-3xl font-bold text-gray-900 mt-12 mb-4">6. Intellectual Property</h2>
+                <h2 class="text-3xl font-bold text-brand-900 mt-12 mb-4">6. Intellectual Property</h2>
                 <p class="mb-6">All content on this website, including text, graphics, logos, and images, is the property of Nest Capital Finance Pty Ltd or its content suppliers and is protected by Australian copyright laws.</p>
 
-                <h2 class="text-3xl font-bold text-gray-900 mt-12 mb-4">7. Governing Law</h2>
+                <h2 class="text-3xl font-bold text-brand-900 mt-12 mb-4">7. Governing Law</h2>
                 <p class="mb-6">These Terms and Conditions are governed by and construed in accordance with the laws of Victoria, Australia. You irrevocably submit to the exclusive jurisdiction of the courts in that State.</p>
 
-                <h2 class="text-3xl font-bold text-gray-900 mt-12 mb-4">8. Changes to Terms</h2>
+                <h2 class="text-3xl font-bold text-brand-900 mt-12 mb-4">8. Changes to Terms</h2>
                 <p class="mb-6">We reserve the right to modify these Terms and Conditions at any time. Any changes will be effective immediately upon posting to this website. Your continued use of the website following any changes indicates your acceptance of the new terms.</p>
 
-                <h2 class="text-3xl font-bold text-gray-900 mt-12 mb-4">9. Contact Information</h2>
+                <h2 class="text-3xl font-bold text-brand-900 mt-12 mb-4">9. Contact Information</h2>
                 <p class="mb-2">If you have any questions about these Terms and Conditions, please contact us:</p>
-                <p class="font-semibold">Email: <a href="mailto:info@ncfinance.com.au" class="text-blue-600 hover:underline">info@ncfinance.com.au</a></p>
-                <p class="font-semibold">Phone: <a href="tel:1300385222" class="text-blue-600 hover:underline">1300 385 222</a></p>
+                <p class="font-semibold">Email: <a href="mailto:info@ncfinance.com.au" class="text-accent-500 hover:underline">info@ncfinance.com.au</a></p>
+                <p class="font-semibold">Phone: <a href="tel:1300385222" class="text-accent-500 hover:underline">1300 385 222</a></p>
                 <p class="font-semibold mt-2">Address: Melbourne, VIC | Servicing All Suburbs</p>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6 mt-12">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <p class="text-sm text-gray-400">© 2026 Nest Capital Finance Pty Ltd. ACN 691 621 191 | ABN 20 691 621 191</p>
-            <p class="text-sm text-gray-400 mt-2">
-                <a href="test.html" class="hover:text-white">Home</a> | 
-                <a href="privacy-policy.html" class="hover:text-white">Privacy Policy</a> | 
-                <a href="terms-conditions.html" class="hover:text-white">Terms & Conditions</a>
-            </p>
+    <footer class="bg-brand-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <img src="logo.png" alt="Nest Capital Finance" class="h-12 mb-4">
+                    <p class="text-white/70 text-sm">Providing clarity and confidence for your property journey. Your trusted partner in finance.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a href="test.html#services" class="hover:text-white">Home Loans</a></li>
+                        <li><a href="test.html#services" class="hover:text-white">Investment Loans</a></li>
+                        <li><a href="test.html#services" class="hover:text-white">Commercial Finance</a></li>
+                        <li><a href="test.html#services" class="hover:text-white">SMSF Lending</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a href="test.html#articles" class="hover:text-white">Articles</a></li>
+                        <li><a href="test.html#calculators" class="hover:text-white">Calculators</a></li>
+                        <li><a href="test.html#lenders" class="hover:text-white">Lender Panel</a></li>
+                        <li><a href="test.html#faqs" class="hover:text-white">FAQs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li>Melbourne, VIC<br>Servicing All Suburbs</li>
+                        <li><a href="tel:1300385222" class="hover:text-white">1300 385 222</a></li>
+                        <li><a href="mailto:info@ncfinance.com.au" class="hover:text-white">info@ncfinance.com.au</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/20 pt-8">
+                <p class="text-white/50 text-xs mb-2">&copy; 2025 Nest Capital Finance Pty Ltd. ACN 691 621 191 | ABN 20 691 621 191 | Credit Representative 574020 is authorised under Australian Credit Licence 389328. | AFCA Member 118936</p>
+                <p class="text-white/50 text-xs">
+                    <a href="privacy-policy.html" class="hover:text-white transition">Privacy Policy</a> | 
+                    <a href="#" class="hover:text-white transition">Feedback & Complaints</a> | 
+                    <a href="terms-conditions.html" class="hover:text-white transition">Terms and Conditions</a>
+                </p>
+                <p class="text-white/40 text-xs mt-3">Disclaimer: This page provides general information only and has been prepared without taking into account your objectives, financial situation or needs. We recommend that you consider whether it is appropriate for your circumstances. Your full financial situation will need to be reviewed prior to acceptance of any offer or product. Subject to lender's terms and conditions, fees and charges and eligibility criteria apply.</p>
+            </div>
         </div>
     </footer>
 </body>
