@@ -2199,14 +2199,27 @@
             }
         }
 
-        function calcBorrowingPower() {
+function calcBorrowingPower() {
             const income = (parseFloat(document.getElementById('b-income1').value) || 0) + (parseFloat(document.getElementById('b-income2').value) || 0);
-            const expenses = Math.max(parseFloat(document.getElementById('b-expenses').value) || 0, 2000); 
+            const dependents = parseInt(document.getElementById('b-dependents').value) || 0;
+            const liabilities = parseFloat(document.getElementById('b-liabilities').value) || 0;
+
+            // HEM benchmark: ~$650/month per dependent child (based on Australian lender standards)
+            // Most lenders use $630-$700/month per dependent; $650 is the industry midpoint
+            const DEPENDENT_COST_MONTHLY = 650;
+            const declaredExpenses = parseFloat(document.getElementById('b-expenses').value) || 0;
+
+            // Use the higher of declared expenses or HEM floor ($2,000 base for single/couple)
+            const baseExpenses = Math.max(declaredExpenses, 2000);
+
+            // Add dependent costs on top of living expenses
+            const totalExpenses = baseExpenses + (dependents * DEPENDENT_COST_MONTHLY) + liabilities;
+
             const netMonthly = (income * 0.75) / 12; // roughly after tax
-            const surplus = netMonthly - expenses;
-            
-            if(surplus > 0) {
-                const rate = 0.08 / 12; // assessment rate
+            const surplus = netMonthly - totalExpenses;
+
+            if (surplus > 0) {
+                const rate = 0.08 / 12; // assessment rate (8% p.a. buffer)
                 const terms = 30 * 12;
                 const capacity = surplus * (1 - Math.pow(1 + rate, -terms)) / rate;
                 document.getElementById('b-result').innerText = '$' + (Math.floor(capacity / 10000) * 10000).toLocaleString('en-AU');
