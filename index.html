@@ -2233,130 +2233,193 @@ function calcBorrowingPower() {
             const state = document.getElementById('s-state').value;
             const isFHB = document.getElementById('s-fhb').checked;
             const isPPOR = document.getElementById('s-ppor').checked;
-            
+            const propType = document.getElementById('s-type').value;
+
             document.getElementById('s-display-state').innerText = state;
-            
+
             let duty = 0;
             let transfer = 0;
-            
-            // Simplified approximation of 2024/25 brackets for major states
-            switch(state) {
-                case 'VIC':
 
-                transfer = 1500;
-                
-                // VICTORIA COMPREHENSIVE STAMP DUTY CALCULATION
-                // Collect all input parameters for VIC-specific logic
-                const isFHBVic = isFHB && isPPOR;
-                const isPensionerVic = document.getElementById('s-buyerStatus')?.value === 'pensioner' && isPPOR;
-                const isForeignVic = document.getElementById('s-buyerStatus')?.value === 'foreign';
-                
-                // Calculate General Duty (Standard Non-Concession Rates)
-                let generalDuty = 0;
-                if (value <= 25000) {
-                    generalDuty = value * 0.014;
-                } else if (value <= 130000) {
-                    generalDuty = 350 + (value - 25000) * 0.024;
-                } else if (value <= 440000) {
-                    generalDuty = 2870 + (value - 130000) * 0.05;
-                } else if (value <= 960000) {
-                    generalDuty = 18370 + (value - 440000) * 0.06;
-                } else if (value <= 2000000) {
-                    generalDuty = 49570 + (value - 960000) * 0.065;
-                } else {
-                    generalDuty = value * 0.065;
-                }
-                
-                // Apply First Home Buyer Exemption/Concession
-                if (isFHBVic) {
-                    if (value <= 600000) {
-                        duty = 0; // Full exemption
-                    } else if (value <= 750000) {
-                        // Sliding scale concession
-                        duty = generalDuty * ((value - 600000) / 150000);
+            // 2025-26 Accurate Stamp Duty Rates for All Australian States & Territories
+            switch(state) {
+
+                case 'VIC':
+                    transfer = 1630;
+                    // VIC General Duty Rates
+                    let generalDutyVic = 0;
+                    if (value <= 25000) { generalDutyVic = value * 0.014; }
+                    else if (value <= 130000) { generalDutyVic = 350 + (value - 25000) * 0.024; }
+                    else if (value <= 440000) { generalDutyVic = 2870 + (value - 130000) * 0.05; }
+                    else if (value <= 960000) { generalDutyVic = 18370 + (value - 440000) * 0.06; }
+                    else if (value <= 2000000) { generalDutyVic = 49570 + (value - 960000) * 0.065; }
+                    else { generalDutyVic = value * 0.065; }
+                    // FHB Exemption/Concession (PPOR only)
+                    if (isFHB && isPPOR) {
+                        if (value <= 600000) { duty = 0; }
+                        else if (value <= 750000) { duty = generalDutyVic * ((value - 600000) / 150000); }
+                        else { duty = generalDutyVic; }
+                    } else if (isPPOR) {
+                        // PPR concession rates for non-FHB up to $550k
+                        if (value <= 25000) { duty = value * 0.014; }
+                        else if (value <= 130000) { duty = 350 + (value - 25000) * 0.024; }
+                        else if (value <= 440000) { duty = 2870 + (value - 130000) * 0.05; }
+                        else if (value <= 550000) { duty = 18370 + (value - 440000) * 0.06; }
+                        else { duty = generalDutyVic; }
                     } else {
-                        duty = generalDuty; // No FHB benefit
+                        duty = generalDutyVic;
                     }
-                }
-                // Apply Pensioner Concession
-                else if (isPensionerVic) {
-                    if (value <= 600000) {
-                        duty = 0; // Full exemption
-                    } else if (value <= 750000) {
-                        // Partial concession
-                        duty = generalDuty * ((value - 600000) / 150000);
-                    } else {
-                        duty = generalDuty;
-                    }
-                }
-                // Apply PPR Concession (Non-FHB, Non-Pensioner)
-                else if (isPPOR) {
-                    if (value <= 550000) {
-                        // PPR concession rates
-                        if (value <= 25000) {
-                            duty = value * 0.014;
-                        } else if (value <= 130000) {
-                            duty = 350 + (value - 25000) * 0.024;
-                        } else if (value <= 440000) {
-                            duty = 2870 + (value - 130000) * 0.05;
-                        } else {
-                            duty = 18370 + (value - 440000) * 0.06;
-                        }
-                    } else {
-                        duty = generalDuty; // Above PPR threshold
-                    }
-                }
-                // Investment/Commercial - General Rate
-                else {
-                    duty = generalDuty;
-                }
-                
-                // Add Foreign Purchaser Additional Duty (8%)
-                if (isForeignVic) {
-                    duty += value * 0.08;
-                }
                     break;
+
                 case 'NSW':
-                    transfer = 165 + (value > 40000 ? (value - 40000) / 1000 * 0.2 : 0);
+                    // NSW 2025-26 Transfer Duty Rates
+                    transfer = 165 + (value > 0 ? Math.min(value, 1000000) * 0.00033 : 0);
                     if (value <= 16000) duty = value * 0.0125;
                     else if (value <= 35000) duty = 200 + (value - 16000) * 0.015;
                     else if (value <= 93000) duty = 485 + (value - 35000) * 0.0175;
                     else if (value <= 351000) duty = 1500 + (value - 93000) * 0.035;
                     else if (value <= 1168000) duty = 10530 + (value - 351000) * 0.045;
-                    else duty = value * 0.055;
+                    else if (value <= 3504000) duty = 47295 + (value - 1168000) * 0.055;
+                    else duty = 175997 + (value - 3504000) * 0.07;
+                    // NSW FHB: full exemption <=600k for new homes, <=800k for established/new (2023+)
                     if (isFHB && isPPOR) {
                         if (value <= 800000) duty = 0;
-                        else if (value < 1000000) duty = duty * ((value - 800000)/200000);
+                        else if (value < 1000000) duty = duty * ((value - 800000) / 200000);
                     }
                     break;
+
                 case 'QLD':
-                    transfer = value > 180000 ? 180 + (value - 180000) * 0.0375 : 0;
-                    if (value <= 5000) duty = 0;
-                    else if (value <= 75000) duty = (value - 5000) * 0.015;
-                    else if (value <= 540000) duty = 1050 + (value - 75000) * 0.035;
-                    else if (value <= 1000000) duty = 17325 + (value - 540000) * 0.045;
-                    else duty = value * 0.0575;
-                    if (isFHB && isPPOR) {
-                        let concession = 0;
-                        if(value < 500000) concession = duty;
-                        else if (value < 550000) concession = 8750;
-                        duty = Math.max(0, duty - concession);
+                    // QLD 2025-26 Transfer Duty Rates (Home Concession Rate for PPOR)
+                    if (isPPOR) {
+                        // QLD Home Concession Rate
+                        if (value <= 350000) duty = value * 0.01;
+                        else if (value <= 540000) duty = 3500 + (value - 350000) * 0.035;
+                        else if (value <= 1000000) duty = 10150 + (value - 540000) * 0.045;
+                        else duty = 30850 + (value - 1000000) * 0.0575;
+                    } else {
+                        // QLD Standard Rate (Investor/Non-PPOR)
+                        if (value <= 5000) duty = 0;
+                        else if (value <= 75000) duty = (value - 5000) * 0.015;
+                        else if (value <= 540000) duty = 1050 + (value - 75000) * 0.035;
+                        else if (value <= 1000000) duty = 17325 + (value - 540000) * 0.045;
+                        else duty = 38025 + (value - 1000000) * 0.0575;
                     }
+                    // QLD FHB Concession (from June 2024)
+                    if (isFHB && isPPOR) {
+                        if (propType === 'new') {
+                            // No price cap for new homes (from May 2025)
+                            duty = 0;
+                        } else {
+                            // Established homes: full exemption <=700k, sliding to 800k
+                            if (value <= 700000) { duty = 0; }
+                            else if (value < 800000) {
+                                let concessionAmt = 17350 * ((800000 - value) / 100000);
+                                duty = Math.max(0, duty - concessionAmt);
+                            }
+                        }
+                    }
+                    transfer = 195;
                     break;
+
                 case 'WA':
-                    transfer = 200;
+                    // WA 2025-26 Transfer Duty Rates
+                    transfer = 168;
                     if (value <= 120000) duty = value * 0.019;
                     else if (value <= 150000) duty = 2280 + (value - 120000) * 0.0285;
                     else if (value <= 360000) duty = 3135 + (value - 150000) * 0.038;
                     else if (value <= 725000) duty = 11115 + (value - 360000) * 0.0475;
                     else duty = 28453 + (value - 725000) * 0.0515;
-                     if (isFHB && isPPOR) {
-                        if (value <= 430000) duty = 0;
-                        else if (value < 530000) duty = duty * 0.5;
-                     }
+                    // WA FHB: Full exemption <=500k (metro), sliding to 600k (metro) / 530k (regional)
+                    if (isFHB && isPPOR) {
+                        if (value <= 500000) duty = 0;
+                        else if (value < 600000) duty = duty * ((value - 500000) / 100000);
+                    }
                     break;
-                default: 
-                    duty = value * 0.045; 
+
+                case 'SA':
+                    // SA 2025-26 Stamp Duty Rates (Official RevenueSA rates)
+                    transfer = 178;
+                    if (value <= 12000) duty = value * 0.01;
+                    else if (value <= 30000) duty = 120 + (value - 12000) * 0.02;
+                    else if (value <= 50000) duty = 480 + (value - 30000) * 0.03;
+                    else if (value <= 100000) duty = 1080 + (value - 50000) * 0.035;
+                    else if (value <= 200000) duty = 2830 + (value - 100000) * 0.04;
+                    else if (value <= 250000) duty = 6830 + (value - 200000) * 0.0425;
+                    else if (value <= 300000) duty = 8955 + (value - 250000) * 0.0475;
+                    else if (value <= 500000) duty = 11330 + (value - 300000) * 0.05;
+                    else duty = 21330 + (value - 500000) * 0.055;
+                    // SA FHB: Full exemption for new/off-the-plan homes (no value cap from June 2024)
+                    // Established homes: No concession in SA
+                    if (isFHB && isPPOR && (propType === 'new' || propType === 'land')) {
+                        duty = 0;
+                    }
+                    break;
+
+                case 'ACT':
+                    // ACT 2025-26 Conveyance Duty Rates (Owner-Occupier rates)
+                    transfer = 0; // ACT duty paid after settlement, no separate transfer fee
+                    if (isPPOR) {
+                        // Owner-Occupier Rates (from 1 July 2025)
+                        if (value <= 260000) duty = value * 0.0028;
+                        else if (value <= 300000) duty = 728 + (value - 260000) * 0.0022;
+                        else if (value <= 500000) duty = 1608 + (value - 300000) * 0.034;
+                        else if (value <= 750000) duty = 8408 + (value - 500000) * 0.0448;
+                        else if (value <= 1000000) duty = 19608 + (value - 750000) * 0.059;
+                        else if (value <= 1455000) duty = 34358 + (value - 1000000) * 0.064;
+                        else duty = value * 0.0454 - 35238;
+                    } else {
+                        // Investor Rates
+                        if (value <= 200000) duty = value * 0.012;
+                        else if (value <= 300000) duty = 2400 + (value - 200000) * 0.022;
+                        else if (value <= 500000) duty = 4600 + (value - 300000) * 0.034;
+                        else if (value <= 750000) duty = 11400 + (value - 500000) * 0.049;
+                        else if (value <= 1000000) duty = 23650 + (value - 750000) * 0.059;
+                        else if (value <= 1455000) duty = 38400 + (value - 1000000) * 0.064;
+                        else duty = value * 0.0454;
+                    }
+                    // ACT Home Buyer Concession Scheme (replaces FHB grant)
+                    // Full exemption up to $1,020,000 for eligible buyers
+                    if (isFHB && isPPOR) {
+                        if (value <= 1020000) duty = 0;
+                        else if (value < 1455000) duty = (value - 1020000) * 0.064;
+                        else duty = Math.max(0, duty - 35238);
+                    }
+                    break;
+
+                case 'TAS':
+                    // TAS 2025-26 Property Transfer Duty Rates
+                    transfer = 200;
+                    if (value <= 3000) duty = 50;
+                    else if (value <= 25000) duty = 50 + (value - 3000) * 0.0175;
+                    else if (value <= 75000) duty = 435 + (value - 25000) * 0.0225;
+                    else if (value <= 200000) duty = 1560 + (value - 75000) * 0.035;
+                    else if (value <= 375000) duty = 5935 + (value - 200000) * 0.04;
+                    else if (value <= 725000) duty = 12935 + (value - 375000) * 0.0425;
+                    else duty = 27810 + (value - 725000) * 0.045;
+                    // TAS FHB: 100% exemption up to $750,000 (both new & established, expires 30 June 2026)
+                    if (isFHB && isPPOR) {
+                        if (value <= 750000) duty = 0;
+                    }
+                    break;
+
+                case 'NT':
+                    // NT 2025-26 Stamp Duty Rates
+                    transfer = 172;
+                    if (value <= 525000) {
+                        const V = value / 1000;
+                        duty = (0.06571441 * V * V) + (15 * V);
+                    } else if (value <= 3000000) {
+                        duty = value * 0.0495;
+                    } else if (value <= 5000000) {
+                        duty = value * 0.0575;
+                    } else {
+                        duty = value * 0.0595;
+                    }
+                    // NT FHB: No stamp duty concession (HomeGrown Grant offsets cost)
+                    // No exemption, grant is separate
+                    break;
+
+                default:
+                    duty = value * 0.045;
                     transfer = 1500;
             }
 
